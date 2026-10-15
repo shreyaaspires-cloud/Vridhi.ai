@@ -206,10 +206,18 @@ async def predict_batch_route(file: UploadFile = File(...)):
         )
 
     if raw_df.empty:
-        raise HTTPException(
-            status_code=400,
-            detail={"error": "Empty CSV", "message": "The uploaded CSV contains no records."},
-        )
+        return {
+            "total_rows": 0,
+            "processed_rows": 0,
+            "failed_rows": 0,
+            "results": [],
+            "errors": [],
+            "LOW": 0,
+            "MEDIUM": 0,
+            "HIGH": 0,
+            "average_score": 0.0,
+            "message": "CSV contains no data rows.",
+        }
 
     total_rows = len(raw_df)
 

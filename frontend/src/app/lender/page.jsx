@@ -8,7 +8,7 @@ import { formatCurrency } from "../../lib/utils";
 import toast from "react-hot-toast";
 import {
   Building2, Users, Shield, AlertTriangle, Download, Upload,
-  Search, Scale, BarChart2, Filter, FileSpreadsheet
+  Search, Scale, BarChart2, Filter, FileSpreadsheet, ChevronLeft, ChevronRight
 } from "lucide-react";
 import {
   ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid,
@@ -34,6 +34,8 @@ export default function LenderPage() {
   const [batchFile, setBatchFile] = useState(null);
   const [batchResults, setBatchResults] = useState(null);
   const [batchLoading, setBatchLoading] = useState(false);
+  const [batchPage, setBatchPage] = useState(1);
+  const [batchPageSize, setBatchPageSize] = useState(10);
 
   // Fairness audit data state
   const [fairnessData, setFairnessData] = useState(null);
@@ -135,6 +137,7 @@ export default function LenderPage() {
           setBatchResults(res.data);
         } else {
           setBatchResults(res.data);
+          setBatchPage(1);
           if (failed > 0) {
             toast.success(`Batch assessment: ${processed} processed, ${failed} rows had issues.`);
           } else {
@@ -275,57 +278,135 @@ export default function LenderPage() {
         </div>
 
         {/* Batch Results Table & Stats */}
-        {batchResults && (
-          <div className="space-y-4 pt-4 border-t border-white/10">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 className="text-sm font-semibold text-[#EFF7FF]">Batch Processing Results</h3>
-                <p className="text-xs text-[#94A8C2] mt-0.5">
-                  Processed: <span className="font-bold text-[#EFF7FF]">{batchResults.processed_rows ?? (batchResults.results || []).length}</span> of <span className="font-bold text-[#EFF7FF]">{batchResults.total_rows ?? (batchResults.results || []).length}</span> applications
-                  {batchResults.failed_rows > 0 && (
-                    <span className="text-amber-400 ml-2 font-medium">({batchResults.failed_rows} rows had issues)</span>
-                  )}
-                </p>
-              </div>
-            </div>
+        {batchResults && (() => {
+          const allBatchItems = batchResults.results || batchResults.items || [];
+          const totalBatchRecords = allBatchItems.length;
+          const totalBatchPages = Math.max(1, Math.ceil(totalBatchRecords / batchPageSize));
+          const safeBatchPage = Math.min(Math.max(1, batchPage), totalBatchPages);
+          const startIdx = (safeBatchPage - 1) * batchPageSize;
+          const endIdx = Math.min(startIdx + batchPageSize, totalBatchRecords);
+          const currentBatchItems = allBatchItems.slice(startIdx, endIdx);
 
-            {batchResults.errors && batchResults.errors.length > 0 && (
-              <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 space-y-1.5">
-                <p className="text-xs font-semibold text-amber-300">Validation notices ({batchResults.errors.length}):</p>
-                <div className="max-h-28 overflow-y-auto space-y-1 text-[11px] text-[#CBD5E1]">
-                  {batchResults.errors.slice(0, 5).map((err, idx) => (
-                    <p key={idx}>Row {err.row_number} ({err.business_name || "Unknown"}): {err.error}</p>
-                  ))}
-                  {batchResults.errors.length > 5 && (
-                    <p className="text-[#94A8C2] italic">...and {batchResults.errors.length - 5} more</p>
-                  )}
+          return (
+            <div className="space-y-4 pt-4 border-t border-white/10">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 className="text-sm font-semibold text-[#EFF7FF]">Batch Processing Results</h3>
+                  <p className="text-xs text-[#94A8C2] mt-0.5">
+                    Processed: <span className="font-bold text-[#EFF7FF]">{batchResults.processed_rows ?? totalBatchRecords}</span> of <span className="font-bold text-[#EFF7FF]">{batchResults.total_rows ?? totalBatchRecords}</span> applications
+                    {batchResults.failed_rows > 0 && (
+                      <span className="text-amber-400 ml-2 font-medium">({batchResults.failed_rows} rows had issues)</span>
+                    )}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 text-xs text-[#94A8C2]">
+                  <span>Show</span>
+                  <select
+                    value={batchPageSize}
+                    onChange={(e) => {
+                      setBatchPageSize(Number(e.target.value));
+                      setBatchPage(1);
+                    }}
+                    className="bg-[#0C1C35] border border-[#168BFF]/30 text-[#EFF7FF] rounded-lg px-2.5 py-1 text-xs outline-none focus:border-[#168BFF]"
+                  >
+                    <option value={10}>10 per page</option>
+                    <option value={25}>25 per page</option>
+                    <option value={50}>50 per page</option>
+                  </select>
                 </div>
               </div>
-            )}
-            <div className="overflow-x-auto rounded-xl border border-white/10">
-              <table className="w-full text-left text-xs text-[#94A8C2]">
-                <thead className="bg-[#0C1C35] text-[#EFF7FF]">
-                  <tr>
-                    <th className="p-3">Business</th>
-                    <th className="p-3">Score</th>
-                    <th className="p-3">Risk Tier</th>
-                    <th className="p-3">Recommendation</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5 bg-[#070910]">
-                  {(batchResults.results || batchResults.items || []).slice(0, 10).map((r, i) => (
-                    <tr key={i} className="hover:bg-white/5">
-                      <td className="p-3 font-medium text-[#EFF7FF]">{r.business_name || `MSME #${i + 1}`}</td>
-                      <td className="p-3 font-bold text-[#EFF7FF]">{r.risk_score}</td>
-                      <td className="p-3"><RiskBadge label={r.risk_label} size="sm" /></td>
-                      <td className="p-3">{r.recommendation?.eligibility || "Processed"}</td>
+
+              {batchResults.errors && batchResults.errors.length > 0 && (
+                <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 space-y-1.5">
+                  <p className="text-xs font-semibold text-amber-300">Validation notices ({batchResults.errors.length}):</p>
+                  <div className="max-h-28 overflow-y-auto space-y-1 text-[11px] text-[#CBD5E1]">
+                    {batchResults.errors.slice(0, 5).map((err, idx) => (
+                      <p key={idx}>Row {err.row_number} ({err.business_name || "Unknown"}): {err.error}</p>
+                    ))}
+                    {batchResults.errors.length > 5 && (
+                      <p className="text-[#94A8C2] italic">...and {batchResults.errors.length - 5} more</p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="overflow-x-auto rounded-xl border border-white/10">
+                <table className="w-full text-left text-xs text-[#94A8C2]">
+                  <thead className="bg-[#0C1C35] text-[#EFF7FF]">
+                    <tr>
+                      <th className="p-3 w-12">#</th>
+                      <th className="p-3">Business</th>
+                      <th className="p-3">Score</th>
+                      <th className="p-3">Risk Tier</th>
+                      <th className="p-3 text-right">Confidence</th>
+                      <th className="p-3 text-right">P(default)</th>
+                      <th className="p-3">Recommendation</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-white/5 bg-[#070910]">
+                    {currentBatchItems.map((r, i) => {
+                      const itemNum = startIdx + i + 1;
+                      return (
+                        <tr key={startIdx + i} className="hover:bg-white/5">
+                          <td className="p-3 text-[#4A6080] font-mono">{itemNum}</td>
+                          <td className="p-3 font-medium text-[#EFF7FF]">{r.business_name || `MSME #${itemNum}`}</td>
+                          <td className="p-3 font-bold text-[#EFF7FF]">{r.risk_score}</td>
+                          <td className="p-3"><RiskBadge label={r.risk_label} size="sm" /></td>
+                          <td className="p-3 text-right text-[#94A8C2]">
+                            {typeof r.confidence === "number" ? `${(r.confidence * 100).toFixed(1)}%` : (r.confidence ?? "N/A")}
+                          </td>
+                          <td className="p-3 text-right text-[#94A8C2]">
+                            {typeof r.default_probability === "number" ? `${(r.default_probability * 100).toFixed(1)}%` : (r.default_probability ?? "N/A")}
+                          </td>
+                          <td className="p-3">{r.recommendation?.eligibility || "Processed"}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Pagination Controls */}
+              {totalBatchPages > 1 && (
+                <div className="flex flex-wrap items-center justify-between p-3 rounded-xl bg-[#0C1C35]/60 border border-white/10 gap-3">
+                  <div className="text-xs text-[#94A8C2]">
+                    Showing <span className="font-semibold text-[#EFF7FF]">{startIdx + 1}–{endIdx}</span> of <span className="font-semibold text-[#EFF7FF]">{totalBatchRecords}</span> scored applications
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => setBatchPage(Math.max(1, safeBatchPage - 1))}
+                      disabled={safeBatchPage === 1}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-[#94A8C2] hover:text-[#EFF7FF] border border-white/10 hover:border-[#168BFF]/40 disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-[#94A8C2] transition-base bg-[#070910]"
+                    >
+                      <ChevronLeft size={13} /> Prev
+                    </button>
+                    {Array.from({ length: totalBatchPages }, (_, i) => i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        onClick={() => setBatchPage(pageNum)}
+                        className={`min-w-[28px] h-7 px-1.5 rounded-lg text-xs font-semibold transition-base ${
+                          pageNum === safeBatchPage
+                            ? "bg-[#168BFF] text-white shadow-sm shadow-[#168BFF]/40 border border-[#168BFF]"
+                            : "bg-[#070910] text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5 border border-white/10"
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setBatchPage(Math.min(totalBatchPages, safeBatchPage + 1))}
+                      disabled={safeBatchPage === totalBatchPages}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-[#94A8C2] hover:text-[#EFF7FF] border border-white/10 hover:border-[#168BFF]/40 disabled:opacity-30 disabled:hover:border-white/10 disabled:hover:text-[#94A8C2] transition-base bg-[#070910]"
+                    >
+                      Next <ChevronRight size={13} />
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
+          );
+        })()}
       </section>
 
       {/* ── SECTION 4: RISK SEGMENTATION SCATTER PLOT ───────────────── */}
