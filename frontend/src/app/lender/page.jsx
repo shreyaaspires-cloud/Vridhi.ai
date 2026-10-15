@@ -101,6 +101,24 @@ export default function LenderPage() {
     URL.revokeObjectURL(url);
   };
 
+  // Download Batch Template
+  const handleDownloadTemplate = async () => {
+    try {
+      const blob = await api.downloadSampleCsv();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "vridhi_msme_batch_template.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      toast.error("Failed to download template.");
+    }
+  };
+
   // Batch File Process
   const handleBatchProcess = async () => {
     if (!batchFile) return;
@@ -108,9 +126,23 @@ export default function LenderPage() {
     try {
       const res = await api.predictBatch(batchFile);
       if (res.data) {
-        setBatchResults(res.data);
-        const count = res.data.total_processed || (res.data.results || res.data.items || []).length || 0;
-        toast.success(`Batch assessment complete! Processed ${count} applications.`);
+        const processed = res.data.processed_rows ?? res.data.total_processed ?? (res.data.results || []).length ?? 0;
+        const failed = res.data.failed_rows ?? (res.data.errors || []).length ?? 0;
+
+        if (processed === 0) {
+          const firstErr = res.data.errors?.[0]?.error || "Zero records could be processed. Please check file format and values.";
+          toast.error(`Batch processing failed: ${firstErr}`);
+          setBatchResults(res.data);
+        } else {
+          setBatchResults(res.data);
+          if (failed > 0) {
+            toast.success(`Batch assessment: ${processed} processed, ${failed} rows had issues.`);
+          } else {
+            toast.success(`Batch assessment complete! Processed ${processed} applications.`);
+          }
+          // Refresh portfolio stats
+          fetchLenderData();
+        }
       } else if (res.error) {
         console.error("Batch error:", res.error);
         toast.error(res.error);
@@ -206,7 +238,7 @@ export default function LenderPage() {
             <p className="text-xs text-[#94A8C2] mt-1">Include annual_income, requested_amount, gst_compliance, etc.</p>
           </div>
 
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <input
               type="file"
               accept=".csv"
@@ -221,6 +253,15 @@ export default function LenderPage() {
               {batchFile ? batchFile.name : "Choose CSV File"}
             </label>
 
+            <button
+              type="button"
+              onClick={handleDownloadTemplate}
+              className="px-4 py-2 rounded-lg bg-transparent border border-[#168BFF]/25 text-xs font-medium text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5 transition-base flex items-center gap-1.5"
+            >
+              <Download size={13} />
+              <span>Download Template</span>
+            </button>
+
             {batchFile && (
               <button
                 onClick={handleBatchProcess}
@@ -233,10 +274,34 @@ export default function LenderPage() {
           </div>
         </div>
 
-        {/* Batch Results Table */}
+        {/* Batch Results Table & Stats */}
         {batchResults && (
-          <div className="space-y-3 pt-4 border-t border-white/10">
-            <h3 className="text-sm font-semibold text-[#EFF7FF]">Batch Processing Results</h3>
+          <div className="space-y-4 pt-4 border-t border-white/10">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-semibold text-[#EFF7FF]">Batch Processing Results</h3>
+                <p className="text-xs text-[#94A8C2] mt-0.5">
+                  Processed: <span className="font-bold text-[#EFF7FF]">{batchResults.processed_rows ?? (batchResults.results || []).length}</span> of <span className="font-bold text-[#EFF7FF]">{batchResults.total_rows ?? (batchResults.results || []).length}</span> applications
+                  {batchResults.failed_rows > 0 && (
+                    <span className="text-amber-400 ml-2 font-medium">({batchResults.failed_rows} rows had issues)</span>
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {batchResults.errors && batchResults.errors.length > 0 && (
+              <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 space-y-1.5">
+                <p className="text-xs font-semibold text-amber-300">Validation notices ({batchResults.errors.length}):</p>
+                <div className="max-h-28 overflow-y-auto space-y-1 text-[11px] text-[#CBD5E1]">
+                  {batchResults.errors.slice(0, 5).map((err, idx) => (
+                    <p key={idx}>Row {err.row_number} ({err.business_name || "Unknown"}): {err.error}</p>
+                  ))}
+                  {batchResults.errors.length > 5 && (
+                    <p className="text-[#94A8C2] italic">...and {batchResults.errors.length - 5} more</p>
+                  )}
+                </div>
+              </div>
+            )}
             <div className="overflow-x-auto rounded-xl border border-white/10">
               <table className="w-full text-left text-xs text-[#94A8C2]">
                 <thead className="bg-[#0C1C35] text-[#EFF7FF]">

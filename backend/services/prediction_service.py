@@ -41,14 +41,17 @@ def predict_batch(df: pd.DataFrame) -> dict:
     avg = sum(scores) / total if total else 0
 
     individual = []
-    for i, (r, row) in enumerate(zip(results, df.itertuples(index=False))):
+    for i, (r, row_dict) in enumerate(zip(results, df.to_dict(orient="records"))):
+        biz_name = str(row_dict.get("business_name") or f"Row {i+1}")
+        rec = generate_recommendation(r["risk_score"], r["risk_label"], row_dict)
         individual.append({
             "index": i,
-            "business_name": getattr(row, "business_name", f"Row {i+1}") if "business_name" in df.columns else f"Row {i+1}",
+            "business_name": biz_name,
             "risk_score": r["risk_score"],
             "risk_label": r["risk_label"],
             "confidence": r["confidence"],
             "default_probability": r["default_probability"],
+            "recommendation": rec,
         })
 
     return {
@@ -59,3 +62,4 @@ def predict_batch(df: pd.DataFrame) -> dict:
         "average_score": round(avg, 1),
         "results": individual,
     }
+

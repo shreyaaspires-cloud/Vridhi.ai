@@ -171,3 +171,35 @@ class SegmentationParams(BaseModel):
     size: str | None = None
     x: str = Field(default="income")
     y: str = Field(default="risk_score")
+
+
+# -- Batch Processing -----------------------------------------------------
+class BatchRowResult(BaseModel):
+    index: int
+    business_name: str
+    risk_score: float
+    risk_label: str
+    confidence: float
+    default_probability: float
+    recommendation: dict[str, Any] | None = None
+
+
+class BatchRowError(BaseModel):
+    row_number: int
+    business_name: str | None = None
+    error: str
+
+
+class BatchResponse(BaseModel):
+    total_rows: int
+    processed_rows: int
+    failed_rows: int
+    total: int  # backwards compatibility
+    total_processed: int  # backwards compatibility
+    LOW: int
+    MEDIUM: int
+    HIGH: int
+    average_score: float
+    results: list[BatchRowResult]
+    errors: list[BatchRowError]
+

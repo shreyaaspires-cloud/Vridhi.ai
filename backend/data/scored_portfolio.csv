@@ -311,3 +311,327 @@ abc,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Un
 abc,7200000.0,1100000.0,64.0,300000.0,5.0,81.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,70.0,LOW,1
 MSME Borrower,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
 MSME Borrower,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+Sri balaji Enterprises,5000000.0,1500000.0,85.0,200000.0,5.0,75.0,Manufacturing,70.0,Male,South,Small,8.0,25.0,,,,,,,,,,,,,72.5,LOW,1
+Sri balaji Enterprises,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+Sri balaji Enterprises,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+Sri balaji Enterprises,7200000.0,1900000.0,66.0,500000.0,5.0,75.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,76.2,LOW,1
+Alpha Precision Tools,4500000.0,800000.0,92.5,150000.0,1.0,85.0,Manufacturing,76.62,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,89.5,LOW,1
+Balaji Supermart,2200000.0,350000.0,88.0,85000.0,0.0,78.0,Retail,71.58,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.9000015258789,LOW,1
+CloudZen Infotech,6500000.0,1200000.0,95.0,280000.0,2.0,92.0,Services,79.83,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,96.30000305175781,LOW,1
+Devi Handlooms,1800000.0,250000.0,75.0,45000.0,3.0,68.0,Manufacturing,69.75,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,35.400001525878906,HIGH,0
+Evergreen Food Products,3800000.0,600000.0,91.0,120000.0,0.0,82.0,Manufacturing,73.21,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,81.5,LOW,1
+Falcon Logistics,5200000.0,1500000.0,84.0,210000.0,4.0,74.0,Services,69.25,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.9000015258789,LOW,1
+Golden Agro Tech,2900000.0,400000.0,86.5,70000.0,1.0,79.0,Manufacturing,72.33,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,80.5999984741211,LOW,1
+Hindustan Plastics,4100000.0,900000.0,89.0,160000.0,2.0,80.0,Manufacturing,73.71,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,85.5999984741211,LOW,1
+Imperial Chemicals,7500000.0,2000000.0,97.0,350000.0,0.0,94.0,Manufacturing,76.83,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,96.30000305175781,LOW,1
+Janta Garments,1500000.0,200000.0,70.0,38000.0,5.0,62.0,Retail,67.62,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,20.5,HIGH,0
+Kisan Steel Works,6200000.0,1800000.0,88.0,240000.0,3.0,76.0,Manufacturing,72.54,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,91.30000305175781,LOW,1
+Lotus Pharma Distributors,8200000.0,1900000.0,94.0,380000.0,1.0,90.0,Services,79.33,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,94.69999694824219,LOW,1
+Meera Handicrafts,1200000.0,150000.0,78.0,32000.0,2.0,65.0,Retail,67.88,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,22.0,HIGH,0
+National Engineering,5800000.0,1400000.0,93.0,220000.0,1.0,88.0,Manufacturing,76.04,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,96.0999984741211,LOW,1
+Om Electricals,3100000.0,500000.0,87.0,110000.0,2.0,81.0,Retail,73.88,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,76.69999694824219,LOW,1
+Prakash Auto Spares,2700000.0,450000.0,82.0,90000.0,4.0,72.0,Services,71.92,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,73.5999984741211,LOW,1
+Quality Print & Pack,4900000.0,1100000.0,95.5,190000.0,0.0,89.0,Manufacturing,74.67,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,96.30000305175781,LOW,1
+Radha Krishna Traders,1900000.0,300000.0,85.0,55000.0,1.0,75.0,Retail,70.08,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,41.79999923706055,MEDIUM,0
+Shiv Shakti Enterprises,3600000.0,700000.0,90.0,135000.0,2.0,83.0,Manufacturing,75.46,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,85.5999984741211,LOW,1
+Zenith Bio Solutions,7100000.0,1600000.0,96.5,310000.0,0.0,93.0,Services,80.17,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,91.0999984741211,LOW,1
+Vijay Infotech 001,487151.4,217864.04,74.83,4955.72,2.27,88.92,Services,69.7,Male,West,Micro,13.0,6.0,,,,,,,,,,,,,16.399999618530273,HIGH,0
+Ganesh Traders 002,1666250.85,150075.13,92.98,16969.45,7.73,88.54,Retail,59.64,Male,West,Small,25.0,10.0,,,,,,,,,,,,,43.599998474121094,MEDIUM,0
+Krishna Plastics 003,1415615.17,422691.55,100.0,10922.42,13.0,89.8,Services,53.27,Male,West,Small,27.0,7.0,,,,,,,,,,,,,33.29999923706055,HIGH,0
+Global Food Products 004,685865.51,188437.3,58.35,6617.25,3.55,56.43,Retail,77.0,Male,North,Micro,13.0,4.0,,,,,,,,,,,,,30.299999237060547,HIGH,0
+Ganesh Chemicals 005,1106490.44,409239.08,89.86,4890.41,3.19,82.18,Manufacturing,74.78,Male,Central,Micro,29.0,5.0,,,,,,,,,,,,,63.70000076293945,MEDIUM,1
+Excel Pharma 006,962019.98,142979.75,73.6,11300.97,0.56,87.46,Services,82.31,Male,East,Micro,17.0,6.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
+Apex Foods 007,4753133.62,1714450.12,93.66,16339.93,1.55,63.56,Services,80.19,Male,South,Medium,12.0,16.0,,,,,,,,,,,,,63.20000076293945,MEDIUM,1
+Shakti Traders 008,996263.49,237338.14,85.7,11578.83,1.51,78.13,Services,75.64,Female,East,Micro,1.0,4.0,,,,,,,,,,,,,58.20000076293945,MEDIUM,1
+Sunrise Agro Tech 009,2209037.23,750763.85,96.43,28965.4,4.32,76.37,Manufacturing,80.35,Male,Central,Small,18.0,17.0,,,,,,,,,,,,,80.0,LOW,1
+Global Infotech 010,565815.5,54793.52,100.0,4756.16,5.73,100.0,Retail,71.36,Male,Central,Small,19.0,7.0,,,,,,,,,,,,,66.19999694824219,MEDIUM,1
+Shakti Textiles 011,1352926.89,370601.07,87.89,12004.36,4.48,100.0,Retail,78.19,Male,Central,Small,29.0,4.0,,,,,,,,,,,,,66.30000305175781,MEDIUM,1
+Krishna Electronics 012,272869.19,81682.13,100.0,1747.09,1.04,54.7,Services,61.11,Male,East,Micro,21.0,1.0,,,,,,,,,,,,,39.0,HIGH,0
+Sunrise Steel Works 013,4132200.76,702544.75,49.84,60405.47,11.54,100.0,Retail,77.55,Male,West,Medium,1.0,57.0,,,,,,,,,,,,,31.399999618530273,HIGH,0
+New Chemicals 014,809794.94,112271.54,100.0,9445.49,1.09,65.19,Services,82.03,Male,South,Micro,17.0,11.0,,,,,,,,,,,,,72.0999984741211,LOW,1
+Anand Exports 015,2738076.26,435790.05,90.63,19474.18,3.22,91.73,Retail,61.95,Female,West,Small,22.0,30.0,,,,,,,,,,,,,70.19999694824219,LOW,1
+Global Foods 016,2939697.36,660077.45,100.0,13772.75,2.6,91.59,Manufacturing,72.78,Male,West,Small,15.0,16.0,,,,,,,,,,,,,92.30000305175781,LOW,1
+Sunrise Food Products 017,1796565.82,216774.1,66.7,9422.53,1.48,64.06,Retail,62.65,Male,South,Small,13.0,13.0,,,,,,,,,,,,,31.5,HIGH,0
+Sai Agro Tech 018,3160087.24,1510124.52,72.54,26225.65,7.53,84.91,Manufacturing,64.1,Male,South,Medium,24.0,16.0,,,,,,,,,,,,,19.299999237060547,HIGH,0
+Shree Steel Works 019,1034504.76,258727.06,87.19,14774.91,1.85,76.49,Services,55.13,Male,North,Micro,18.0,4.0,,,,,,,,,,,,,28.200000762939453,HIGH,0
+Anand Manufacturing Co 020,623369.05,261669.9,84.74,7278.97,1.6,85.76,Retail,90.99,Male,North,Micro,20.0,4.0,,,,,,,,,,,,,48.400001525878906,MEDIUM,0
+Royal Chemicals 021,811108.0,396838.8,89.25,4210.09,8.8,81.23,Services,87.99,Male,East,Micro,14.0,7.0,,,,,,,,,,,,,33.599998474121094,HIGH,0
+Bharat Foods 022,1328978.26,151382.34,100.0,17601.67,3.23,94.75,Retail,80.06,Male,East,Micro,9.0,9.0,,,,,,,,,,,,,79.80000305175781,LOW,1
+New Chemicals 023,614133.22,217219.64,58.52,4438.65,0.07,79.06,Services,100.0,Male,North,Micro,16.0,6.0,,,,,,,,,,,,,31.100000381469727,HIGH,0
+Balaji Chemicals 024,1214316.76,541575.34,99.61,15964.05,0.9,75.65,Services,69.16,Female,East,Micro,28.0,7.0,,,,,,,,,,,,,55.5,MEDIUM,1
+Apex Pharma 025,1138877.29,394482.57,85.12,6288.02,4.36,93.34,Services,100.0,Male,West,Micro,18.0,7.0,,,,,,,,,,,,,58.5,MEDIUM,1
+Royal Agro Tech 026,503559.38,131021.6,81.94,5153.05,5.61,86.13,Manufacturing,68.59,Female,South,Micro,21.0,6.0,,,,,,,,,,,,,10.5,HIGH,0
+New Constructions 027,1320868.3,344815.4,62.93,18602.29,1.52,88.25,Retail,75.83,Male,South,Micro,4.0,17.0,,,,,,,,,,,,,42.5,MEDIUM,0
+Global Enterprises 028,2301986.89,218867.23,92.55,13175.83,2.91,68.7,Manufacturing,66.03,Male,South,Small,29.0,15.0,,,,,,,,,,,,,74.19999694824219,LOW,1
+Apex Logistics 029,1708220.84,520208.45,48.79,19066.45,6.73,63.37,Manufacturing,77.58,Female,East,Small,8.0,16.0,,,,,,,,,,,,,13.5,HIGH,0
+Prime Agro Tech 030,554427.37,275710.11,94.73,8228.48,2.85,70.05,Retail,84.53,Female,South,Micro,29.0,3.0,,,,,,,,,,,,,52.400001525878906,MEDIUM,0
+Sai Pharma 031,528210.32,254944.49,62.62,2314.87,2.22,69.31,Retail,70.29,Male,West,Micro,13.0,1.0,,,,,,,,,,,,,17.0,HIGH,0
+Apex Textiles 032,620339.09,60152.84,85.8,2236.34,1.02,89.01,Services,98.65,Female,South,Micro,27.0,7.0,,,,,,,,,,,,,87.69999694824219,LOW,1
+Krishna Textiles 033,2129285.92,801537.19,83.21,23267.64,7.35,91.66,Manufacturing,75.59,Male,East,Small,26.0,9.0,,,,,,,,,,,,,53.599998474121094,MEDIUM,0
+Sri Enterprises 034,503349.6,104063.12,100.0,3395.95,13.86,75.83,Retail,76.06,Male,South,Micro,22.0,3.0,,,,,,,,,,,,,44.20000076293945,MEDIUM,0
+Shree Food Products 035,1010149.55,463916.68,82.32,3424.97,0.2,98.03,Retail,58.37,Female,North,Micro,27.0,8.0,,,,,,,,,,,,,6.599999904632568,HIGH,0
+New Food Products 036,436251.88,50000.0,74.59,3682.54,3.54,97.16,Manufacturing,78.28,Male,West,Micro,18.0,2.0,,,,,,,,,,,,,50.099998474121094,MEDIUM,0
+Vijay Trading Co 037,732939.56,346729.61,77.4,8738.2,4.48,81.41,Manufacturing,69.99,Female,South,Micro,25.0,2.0,,,,,,,,,,,,,11.399999618530273,HIGH,0
+Balaji Trading Co 038,857414.46,370179.96,100.0,5199.39,4.81,66.49,Retail,62.88,Male,South,Micro,5.0,5.0,,,,,,,,,,,,,31.899999618530273,HIGH,0
+Anand Plastics 039,5512699.96,713077.89,93.04,36869.41,17.28,100.0,Manufacturing,60.35,Female,West,Small,3.0,79.0,,,,,,,,,,,,,78.80000305175781,LOW,1
+Sai Associates 040,815325.07,85712.04,79.22,10657.31,0.47,77.15,Retail,100.0,Male,Central,Small,16.0,8.0,,,,,,,,,,,,,62.70000076293945,MEDIUM,1
+Apex Logistics 041,3388870.65,1459170.5,81.45,30502.88,8.65,79.77,Retail,68.05,Male,West,Small,24.0,24.0,,,,,,,,,,,,,17.5,HIGH,0
+Bharat Traders 042,1749641.04,254429.69,61.49,22805.08,2.29,73.25,Services,50.15,Male,Central,Small,23.0,5.0,,,,,,,,,,,,,16.200000762939453,HIGH,0
+Bharat Plastics 043,1993865.87,607445.64,90.83,16110.17,7.45,65.54,Retail,61.53,Male,Central,Small,16.0,19.0,,,,,,,,,,,,,35.5,HIGH,0
+Vijay Exports 044,861152.4,400102.46,58.6,12411.09,1.59,57.44,Manufacturing,71.23,Male,East,Micro,16.0,3.0,,,,,,,,,,,,,26.700000762939453,HIGH,0
+Sri Steel Works 045,2027600.05,645442.29,96.28,21563.39,2.6,86.86,Services,80.2,Male,West,Small,18.0,18.0,,,,,,,,,,,,,83.4000015258789,LOW,1
+Vijay Plastics 046,751638.12,185532.84,86.93,2968.02,1.34,67.03,Services,80.32,Male,South,Micro,26.0,8.0,,,,,,,,,,,,,64.4000015258789,MEDIUM,1
+Excel Electronics 047,1679283.73,448212.15,100.0,22777.24,2.27,100.0,Retail,82.15,Male,East,Micro,25.0,13.0,,,,,,,,,,,,,74.30000305175781,LOW,1
+Sri Food Products 048,1292080.71,137618.5,68.5,11132.33,2.13,62.79,Manufacturing,62.33,Male,East,Small,4.0,8.0,,,,,,,,,,,,,29.0,HIGH,0
+Global Steel Works 049,1429692.73,696083.04,83.46,6105.48,3.54,60.4,Retail,77.11,Female,Central,Micro,18.0,4.0,,,,,,,,,,,,,50.400001525878906,MEDIUM,0
+Ganesh Exports 050,588109.99,123782.31,100.0,2592.76,4.42,85.14,Manufacturing,58.86,Male,Central,Micro,12.0,1.0,,,,,,,,,,,,,66.9000015258789,MEDIUM,1
+Apex Agro Tech 051,1575170.5,251291.15,100.0,17475.22,4.49,99.41,Manufacturing,62.71,Female,East,Small,24.0,12.0,,,,,,,,,,,,,72.80000305175781,LOW,1
+Royal Textiles 052,949811.41,190095.13,74.56,2936.97,3.68,78.9,Manufacturing,58.23,Male,West,Small,15.0,12.0,,,,,,,,,,,,,18.799999237060547,HIGH,0
+Sai Pharma 053,5095164.91,2471342.19,88.36,30990.94,4.83,86.01,Services,54.17,Female,South,Medium,29.0,28.0,,,,,,,,,,,,,32.900001525878906,HIGH,0
+Sri Food Products 054,1671807.27,199948.39,85.03,7100.74,4.98,52.19,Retail,87.96,Male,Central,Micro,13.0,16.0,,,,,,,,,,,,,37.099998474121094,HIGH,0
+Balaji Infotech 055,780878.41,346918.72,89.23,6257.54,2.69,68.51,Retail,82.33,Male,East,Micro,20.0,8.0,,,,,,,,,,,,,51.79999923706055,MEDIUM,0
+Prime Food Products 056,1471153.21,555057.92,74.52,11297.61,9.36,62.97,Services,86.65,Male,East,Small,4.0,4.0,,,,,,,,,,,,,21.100000381469727,HIGH,0
+Anand Trading Co 057,464884.53,199253.26,83.66,4194.86,3.54,51.47,Retail,72.59,Male,West,Micro,28.0,2.0,,,,,,,,,,,,,30.0,HIGH,0
+Bharat Manufacturing Co 058,1447507.51,709100.59,61.03,8678.46,5.46,79.64,Retail,83.65,Male,West,Small,5.0,9.0,,,,,,,,,,,,,25.100000381469727,HIGH,0
+Global Enterprises 059,366024.55,158746.66,87.03,1061.67,10.75,46.6,Manufacturing,45.58,Male,North,Micro,11.0,3.0,,,,,,,,,,,,,17.600000381469727,HIGH,0
+Sri Steel Works 060,514223.78,244883.95,91.75,5234.71,7.84,59.49,Manufacturing,84.95,Female,South,Micro,25.0,4.0,,,,,,,,,,,,,39.900001525878906,HIGH,0
+Bharat Logistics 061,909132.24,121198.97,81.59,6519.82,0.49,70.48,Retail,74.66,Male,North,Micro,29.0,10.0,,,,,,,,,,,,,53.29999923706055,MEDIUM,0
+Global Infotech 062,3139288.06,1300391.05,60.77,33407.32,3.39,66.36,Retail,81.41,Male,West,Small,15.0,41.0,,,,,,,,,,,,,39.0,HIGH,0
+Shakti Food Products 063,3306690.01,1022374.95,99.83,12758.32,3.78,83.55,Retail,77.7,Female,North,Micro,15.0,39.0,,,,,,,,,,,,,80.69999694824219,LOW,1
+Krishna Exports 064,605348.91,186609.79,90.47,1617.62,6.96,82.28,Services,57.19,Male,South,Micro,2.0,9.0,,,,,,,,,,,,,25.200000762939453,HIGH,0
+Royal Constructions 065,1663613.99,761181.69,74.11,9322.36,7.01,90.51,Retail,49.53,Male,East,Micro,29.0,19.0,,,,,,,,,,,,,23.399999618530273,HIGH,0
+Anand Industries 066,916877.41,447580.68,80.79,7524.67,2.92,88.53,Retail,61.32,Female,West,Micro,1.0,12.0,,,,,,,,,,,,,15.399999618530273,HIGH,0
+Royal Textiles 067,752554.72,282984.73,62.49,5588.4,2.92,93.97,Retail,80.47,Female,East,Micro,1.0,9.0,,,,,,,,,,,,,31.100000381469727,HIGH,0
+Global Constructions 068,2015337.49,570006.21,69.62,25451.26,1.2,77.97,Manufacturing,82.35,Male,Central,Small,14.0,23.0,,,,,,,,,,,,,42.79999923706055,MEDIUM,0
+Vijay Textiles 069,837193.97,227456.91,76.93,6047.03,1.7,82.25,Manufacturing,51.48,Male,Central,Micro,1.0,10.0,,,,,,,,,,,,,4.5,HIGH,0
+Excel Traders 070,1715470.36,415595.7,100.0,15663.13,6.53,85.16,Retail,57.28,Male,North,Small,5.0,24.0,,,,,,,,,,,,,70.69999694824219,LOW,1
+Balaji Manufacturing Co 071,1323557.07,306895.28,75.41,13128.29,5.93,79.98,Manufacturing,61.15,Male,Central,Small,19.0,11.0,,,,,,,,,,,,,11.0,HIGH,0
+Excel Electronics 072,403446.02,98615.47,94.6,1118.71,4.18,72.44,Retail,66.64,Male,West,Micro,21.0,4.0,,,,,,,,,,,,,31.5,HIGH,0
+Balaji Exports 073,375134.62,50000.0,76.93,3353.39,0.12,73.35,Services,51.57,Male,West,Micro,9.0,3.0,,,,,,,,,,,,,8.300000190734863,HIGH,0
+Global Pharma 074,2250408.79,253223.1,88.72,15326.16,4.66,66.55,Manufacturing,50.67,Male,North,Small,24.0,29.0,,,,,,,,,,,,,55.29999923706055,MEDIUM,1
+Pioneer Food Products 075,706799.83,288052.97,82.88,5489.01,11.46,83.9,Manufacturing,59.67,Female,West,Micro,18.0,5.0,,,,,,,,,,,,,2.5999999046325684,HIGH,0
+Mahalaxmi Associates 076,602479.17,161073.18,98.1,2261.46,1.16,76.68,Manufacturing,73.29,Male,West,Micro,7.0,7.0,,,,,,,,,,,,,79.9000015258789,LOW,1
+Sunrise Trading Co 077,4075661.18,1919177.85,76.98,50070.55,5.3,68.72,Manufacturing,54.29,Male,East,Medium,21.0,50.0,,,,,,,,,,,,,68.0999984741211,MEDIUM,1
+Shree Logistics 078,6039047.5,2035961.13,61.41,86237.92,10.82,68.73,Retail,70.26,Male,North,Medium,18.0,87.0,,,,,,,,,,,,,71.5999984741211,LOW,1
+New Textiles 079,1776546.68,168370.28,64.27,4935.89,2.39,61.05,Retail,87.88,Female,East,Small,24.0,9.0,,,,,,,,,,,,,28.600000381469727,HIGH,0
+Royal Handlooms 080,584683.15,85457.17,77.02,5856.86,6.73,91.7,Services,52.47,Male,Central,Micro,5.0,6.0,,,,,,,,,,,,,16.399999618530273,HIGH,0
+Sri Food Products 081,2997072.32,498845.64,66.26,36108.88,2.78,79.1,Retail,68.9,Male,West,Small,7.0,35.0,,,,,,,,,,,,,34.599998474121094,HIGH,0
+Anand Industries 082,3575418.36,1751272.56,91.15,21667.37,11.61,65.92,Retail,87.37,Male,North,Small,9.0,50.0,,,,,,,,,,,,,7.400000095367432,HIGH,0
+Sri Food Products 083,1039376.06,178622.78,78.01,12830.52,0.05,89.32,Services,65.73,Male,Central,Micro,10.0,14.0,,,,,,,,,,,,,17.299999237060547,HIGH,0
+New Steel Works 084,2641432.01,783494.65,100.0,27482.62,1.69,70.15,Manufacturing,63.39,Male,Central,Small,26.0,25.0,,,,,,,,,,,,,90.69999694824219,LOW,1
+Global Agro Tech 085,1510321.07,714675.34,58.93,21317.48,3.23,58.31,Manufacturing,89.45,Female,North,Micro,22.0,14.0,,,,,,,,,,,,,64.30000305175781,MEDIUM,1
+Royal Logistics 086,1428167.17,700403.09,88.05,21083.4,6.74,92.3,Manufacturing,67.41,Male,Central,Micro,16.0,6.0,,,,,,,,,,,,,55.400001525878906,MEDIUM,1
+Apex Foods 087,1103395.07,197807.16,68.08,3342.54,2.08,70.48,Retail,88.57,Female,East,Micro,16.0,16.0,,,,,,,,,,,,,28.399999618530273,HIGH,0
+Bharat Infotech 088,1094738.79,110162.92,77.6,8825.48,1.86,72.28,Retail,78.43,Female,East,Micro,26.0,6.0,,,,,,,,,,,,,40.900001525878906,MEDIUM,0
+Apex Plastics 089,1052504.49,152100.34,87.12,9827.6,6.14,78.58,Manufacturing,66.86,Male,East,Micro,13.0,12.0,,,,,,,,,,,,,26.100000381469727,HIGH,0
+Sri Steel Works 090,937836.74,99971.48,50.12,4064.86,3.36,94.0,Retail,79.2,Male,West,Small,7.0,11.0,,,,,,,,,,,,,61.099998474121094,MEDIUM,1
+Pioneer Electronics 091,5761176.76,933035.14,88.55,38620.47,6.32,78.28,Manufacturing,76.81,Male,Central,Medium,4.0,46.0,,,,,,,,,,,,,84.5999984741211,LOW,1
+Sri Manufacturing Co 092,824137.79,262734.53,100.0,12234.81,4.6,61.21,Retail,87.31,Female,West,Small,10.0,4.0,,,,,,,,,,,,,41.599998474121094,MEDIUM,0
+Royal Logistics 093,1091103.66,505430.3,78.2,2949.12,0.93,85.61,Retail,63.77,Male,Central,Small,19.0,5.0,,,,,,,,,,,,,16.0,HIGH,0
+Krishna Constructions 094,7787833.5,2380210.59,88.9,63520.29,2.94,71.21,Retail,72.62,Male,Central,Medium,14.0,102.0,,,,,,,,,,,,,73.9000015258789,LOW,1
+Global Manufacturing Co 095,1235471.09,423662.33,100.0,16102.12,5.78,100.0,Manufacturing,71.08,Male,North,Micro,13.0,10.0,,,,,,,,,,,,,81.4000015258789,LOW,1
+Ganesh Foods 096,1707518.94,281372.22,82.54,11182.14,7.73,77.98,Retail,82.56,Female,South,Micro,14.0,6.0,,,,,,,,,,,,,11.399999618530273,HIGH,0
+Royal Logistics 097,708578.14,294942.2,76.29,6021.13,1.69,46.71,Retail,56.62,Male,West,Micro,29.0,8.0,,,,,,,,,,,,,3.0999999046325684,HIGH,0
+Excel Food Products 098,456219.07,154873.3,50.86,6718.09,5.72,83.0,Manufacturing,87.25,Male,East,Micro,29.0,2.0,,,,,,,,,,,,,15.5,HIGH,0
+Sri Foods 099,1439464.03,637592.55,94.61,12143.26,0.42,100.0,Manufacturing,78.99,Male,North,Small,5.0,19.0,,,,,,,,,,,,,75.9000015258789,LOW,1
+Royal Traders 100,854155.44,408725.42,83.3,3533.23,2.47,100.0,Services,52.25,Female,North,Micro,4.0,5.0,,,,,,,,,,,,,19.0,HIGH,0
+New Enterprises 101,844370.94,190927.74,69.81,2656.83,2.04,100.0,Services,90.12,Male,East,Micro,8.0,4.0,,,,,,,,,,,,,43.099998474121094,MEDIUM,0
+Anand Associates 102,1430726.71,168887.57,86.9,20484.73,11.49,63.72,Retail,100.0,Male,West,Micro,25.0,5.0,,,,,,,,,,,,,27.799999237060547,HIGH,0
+Shakti Plastics 103,677535.76,118494.34,76.24,3945.03,0.6,90.77,Manufacturing,87.03,Female,North,Micro,14.0,6.0,,,,,,,,,,,,,56.79999923706055,MEDIUM,1
+Unity Textiles 104,4839432.25,1277094.51,77.07,42590.87,9.99,67.89,Services,93.4,Female,North,Medium,26.0,39.0,,,,,,,,,,,,,75.30000305175781,LOW,1
+Prime Foods 105,495111.98,236263.15,94.09,1799.12,1.83,81.14,Services,73.28,Male,North,Micro,19.0,5.0,,,,,,,,,,,,,67.5999984741211,MEDIUM,1
+Prime Manufacturing Co 106,1016637.79,242864.73,64.92,7925.39,2.67,60.18,Retail,47.08,Male,East,Micro,17.0,8.0,,,,,,,,,,,,,14.0,HIGH,0
+Apex Manufacturing Co 107,812935.54,328202.2,100.0,11483.79,2.27,68.98,Retail,44.34,Female,North,Micro,9.0,5.0,,,,,,,,,,,,,48.900001525878906,MEDIUM,0
+Shakti Electronics 108,557906.21,171277.32,64.03,4898.51,8.61,68.53,Manufacturing,75.83,Female,East,Micro,10.0,3.0,,,,,,,,,,,,,6.800000190734863,HIGH,0
+Anand Enterprises 109,1442784.26,226199.26,75.06,21121.19,1.94,90.58,Manufacturing,63.12,Male,East,Small,5.0,8.0,,,,,,,,,,,,,9.399999618530273,HIGH,0
+Unity Handlooms 110,740266.06,158941.29,100.0,4245.76,13.35,89.21,Services,58.28,Male,East,Micro,16.0,10.0,,,,,,,,,,,,,18.0,HIGH,0
+Mahalaxmi Textiles 111,709116.6,251268.8,100.0,6245.06,8.0,81.88,Retail,71.06,Female,West,Micro,9.0,3.0,,,,,,,,,,,,,25.200000762939453,HIGH,0
+Anand Chemicals 112,1967990.33,713590.19,86.46,26064.33,3.84,59.09,Manufacturing,81.23,Female,East,Micro,9.0,29.0,,,,,,,,,,,,,72.9000015258789,LOW,1
+Excel Pharma 113,1545374.76,405814.01,70.89,12522.41,1.22,73.64,Manufacturing,50.21,Female,West,Small,2.0,10.0,,,,,,,,,,,,,30.299999237060547,HIGH,0
+Krishna Industries 114,1436976.69,252952.66,77.06,8612.65,4.47,67.55,Retail,65.27,Male,West,Small,24.0,5.0,,,,,,,,,,,,,8.100000381469727,HIGH,0
+Bharat Industries 115,568794.52,217962.54,86.1,7504.36,3.1,90.18,Manufacturing,94.65,Male,Central,Small,28.0,3.0,,,,,,,,,,,,,72.9000015258789,LOW,1
+Global Industries 116,1038093.4,156675.99,85.56,7654.5,5.7,94.49,Services,55.87,Female,West,Small,15.0,3.0,,,,,,,,,,,,,29.899999618530273,HIGH,0
+Apex Chemicals 117,1423263.86,673774.92,83.64,13000.15,6.49,92.79,Services,85.05,Female,East,Small,16.0,17.0,,,,,,,,,,,,,62.20000076293945,MEDIUM,1
+Sai Pharma 118,576036.6,91543.45,84.54,8471.53,20.53,67.43,Retail,64.73,Female,East,Micro,27.0,5.0,,,,,,,,,,,,,1.0,HIGH,0
+Pioneer Food Products 119,1619627.3,202568.72,81.78,7824.49,2.22,39.65,Retail,80.19,Male,South,Micro,15.0,10.0,,,,,,,,,,,,,18.799999237060547,HIGH,0
+Krishna Trading Co 120,747421.03,216013.67,63.37,4684.47,6.88,53.26,Retail,88.46,Male,East,Micro,19.0,8.0,,,,,,,,,,,,,30.399999618530273,HIGH,0
+Krishna Constructions 121,1545835.26,460984.82,77.25,4464.94,2.35,97.9,Retail,83.12,Female,North,Micro,13.0,16.0,,,,,,,,,,,,,35.900001525878906,HIGH,0
+Apex Trading Co 122,1674210.58,491282.07,98.72,12385.76,1.44,72.38,Retail,85.64,Male,Central,Small,15.0,23.0,,,,,,,,,,,,,49.79999923706055,MEDIUM,0
+New Handlooms 123,826922.9,217811.78,64.47,4136.51,3.8,67.49,Manufacturing,54.73,Female,Central,Micro,16.0,12.0,,,,,,,,,,,,,7.900000095367432,HIGH,0
+Shree Infotech 124,1552848.86,773042.72,82.16,17082.02,1.88,100.0,Retail,88.7,Male,North,Small,21.0,17.0,,,,,,,,,,,,,47.70000076293945,MEDIUM,0
+Bharat Manufacturing Co 125,1626430.23,462293.04,72.7,7752.41,0.24,95.71,Manufacturing,59.21,Male,West,Small,18.0,20.0,,,,,,,,,,,,,13.399999618530273,HIGH,0
+Krishna Steel Works 126,1916958.4,538162.23,86.67,20962.25,0.74,78.34,Retail,75.89,Female,North,Micro,15.0,23.0,,,,,,,,,,,,,50.400001525878906,MEDIUM,0
+Excel Trading Co 127,1272488.98,327210.04,79.17,7372.09,0.89,73.89,Manufacturing,75.87,Male,West,Medium,3.0,10.0,,,,,,,,,,,,,55.5,MEDIUM,1
+Anand Textiles 128,596734.24,64487.17,100.0,4141.47,1.54,76.15,Manufacturing,79.28,Male,North,Small,27.0,6.0,,,,,,,,,,,,,88.30000305175781,LOW,1
+Pioneer Chemicals 129,1237265.9,407112.18,92.6,8488.58,9.77,81.18,Manufacturing,77.05,Male,East,Small,26.0,4.0,,,,,,,,,,,,,61.5,MEDIUM,1
+Shakti Pharma 130,817590.4,143688.62,65.32,9369.09,3.55,100.0,Retail,59.34,Male,West,Micro,6.0,9.0,,,,,,,,,,,,,7.5,HIGH,0
+Excel Logistics 131,1146133.92,398620.53,95.07,9548.86,2.28,83.91,Manufacturing,51.75,Male,West,Micro,9.0,16.0,,,,,,,,,,,,,58.099998474121094,MEDIUM,1
+Apex Steel Works 132,1028278.31,104216.06,73.38,7214.64,5.75,88.16,Services,85.09,Male,East,Micro,29.0,3.0,,,,,,,,,,,,,69.9000015258789,MEDIUM,1
+Vijay Trading Co 133,669796.93,329662.39,76.35,8813.04,3.62,94.37,Retail,74.79,Female,Central,Micro,10.0,8.0,,,,,,,,,,,,,17.700000762939453,HIGH,0
+Balaji Handlooms 134,1351025.74,374209.99,89.71,13036.56,4.23,61.62,Manufacturing,89.24,Male,West,Micro,24.0,19.0,,,,,,,,,,,,,44.5,MEDIUM,0
+Sri Steel Works 135,6792899.5,3101890.99,77.62,35138.89,2.67,88.57,Retail,71.33,Male,South,Medium,23.0,36.0,,,,,,,,,,,,,38.0,HIGH,0
+Pioneer Exports 136,1779830.9,497882.23,98.39,24474.71,1.35,73.88,Manufacturing,50.92,Male,West,Small,25.0,16.0,,,,,,,,,,,,,66.30000305175781,MEDIUM,1
+Unity Food Products 137,1313468.11,138359.34,73.38,8909.42,3.39,42.77,Services,86.49,Male,West,Micro,1.0,18.0,,,,,,,,,,,,,65.19999694824219,MEDIUM,1
+Pioneer Electronics 138,930219.12,395649.81,75.72,2778.79,3.14,48.21,Retail,66.44,Male,South,Micro,15.0,13.0,,,,,,,,,,,,,11.399999618530273,HIGH,0
+Ganesh Handlooms 139,612994.54,215919.46,75.15,5322.33,7.03,63.75,Services,77.13,Male,West,Micro,17.0,2.0,,,,,,,,,,,,,11.600000381469727,HIGH,0
+Shree Trading Co 140,1150562.19,469818.22,76.52,4658.89,3.49,85.44,Manufacturing,62.29,Male,Central,Micro,25.0,7.0,,,,,,,,,,,,,17.200000762939453,HIGH,0
+Pioneer Constructions 141,4289142.1,1114453.55,100.0,23508.06,1.68,79.59,Retail,96.66,Male,Central,Medium,7.0,48.0,,,,,,,,,,,,,69.0999984741211,MEDIUM,1
+Sri Textiles 142,812216.93,282597.43,94.43,9615.74,1.57,80.58,Retail,58.85,Female,West,Micro,9.0,4.0,,,,,,,,,,,,,39.400001525878906,HIGH,0
+Shree Manufacturing Co 143,1695231.06,745251.0,100.0,7008.76,16.66,100.0,Services,66.94,Male,West,Micro,6.0,11.0,,,,,,,,,,,,,37.599998474121094,HIGH,0
+Vijay Exports 144,476662.48,164471.19,100.0,5999.66,0.12,60.23,Retail,73.61,Male,South,Small,23.0,1.0,,,,,,,,,,,,,66.69999694824219,MEDIUM,1
+Sunrise Logistics 145,399516.66,90299.92,69.54,5677.67,9.2,77.62,Retail,55.62,Female,West,Micro,29.0,1.0,,,,,,,,,,,,,4.900000095367432,HIGH,0
+Pioneer Textiles 146,448344.69,160625.06,86.06,4520.05,4.37,82.26,Manufacturing,76.96,Female,South,Micro,5.0,4.0,,,,,,,,,,,,,55.5,MEDIUM,1
+Apex Agro Tech 147,1353723.74,490289.98,67.36,15404.69,5.32,67.69,Manufacturing,96.18,Male,East,Small,7.0,14.0,,,,,,,,,,,,,44.599998474121094,MEDIUM,0
+Mahalaxmi Trading Co 148,1429300.78,690990.49,73.34,16322.38,7.4,78.4,Retail,64.64,Male,South,Small,9.0,15.0,,,,,,,,,,,,,7.900000095367432,HIGH,0
+Prime Pharma 149,1910026.95,450352.22,75.55,28478.69,4.8,55.6,Retail,77.93,Male,South,Medium,26.0,23.0,,,,,,,,,,,,,22.0,HIGH,0
+New Infotech 150,991943.06,256451.35,69.14,6714.69,2.6,97.74,Manufacturing,30.76,Male,North,Small,13.0,7.0,,,,,,,,,,,,,9.399999618530273,HIGH,0
+Apex Associates 151,527778.51,222243.12,69.22,2393.85,12.46,68.46,Services,71.42,Male,Central,Micro,9.0,3.0,,,,,,,,,,,,,9.5,HIGH,0
+Anand Foods 152,5546690.75,1621964.26,82.84,49862.48,6.81,100.0,Services,67.3,Male,North,Small,10.0,14.0,,,,,,,,,,,,,29.5,HIGH,0
+Vijay Enterprises 153,9990664.91,3889972.27,66.75,91570.66,1.92,77.55,Manufacturing,59.72,Male,North,Medium,18.0,50.0,,,,,,,,,,,,,30.299999237060547,HIGH,0
+Global Traders 154,1321298.19,360817.44,97.63,6241.69,10.52,92.39,Retail,88.22,Male,Central,Small,12.0,8.0,,,,,,,,,,,,,44.400001525878906,MEDIUM,0
+Pioneer Plastics 155,3383763.42,576958.6,71.23,34392.12,0.37,77.25,Manufacturing,67.11,Female,East,Medium,5.0,15.0,,,,,,,,,,,,,31.700000762939453,HIGH,0
+Apex Handlooms 156,913828.32,359121.38,100.0,2445.92,13.03,77.57,Retail,69.34,Male,East,Small,24.0,2.0,,,,,,,,,,,,,15.300000190734863,HIGH,0
+Sunrise Manufacturing Co 157,625267.47,84464.36,78.23,8813.68,5.57,69.82,Manufacturing,66.34,Male,West,Small,13.0,2.0,,,,,,,,,,,,,6.300000190734863,HIGH,0
+Unity Plastics 158,765598.17,125102.67,86.08,4445.97,0.31,79.67,Retail,43.25,Male,South,Micro,8.0,8.0,,,,,,,,,,,,,20.600000381469727,HIGH,0
+New Associates 159,985667.16,338346.51,65.57,2951.58,6.21,82.45,Retail,55.02,Male,North,Small,22.0,10.0,,,,,,,,,,,,,7.199999809265137,HIGH,0
+Sri Plastics 160,777957.79,306401.26,100.0,2997.56,2.43,67.02,Services,86.42,Male,West,Micro,22.0,11.0,,,,,,,,,,,,,59.599998474121094,MEDIUM,1
+Sai Pharma 161,729341.3,332411.09,100.0,4013.65,2.02,76.25,Manufacturing,40.35,Female,North,Small,5.0,9.0,,,,,,,,,,,,,35.5,HIGH,0
+Balaji Chemicals 162,1109048.25,215694.72,89.45,6569.81,5.57,69.46,Services,60.51,Female,East,Small,3.0,10.0,,,,,,,,,,,,,31.899999618530273,HIGH,0
+Apex Agro Tech 163,4371445.45,553006.16,64.8,12721.45,3.99,100.0,Manufacturing,66.0,Female,Central,Medium,2.0,18.0,,,,,,,,,,,,,55.900001525878906,MEDIUM,1
+Prime Electronics 164,4873853.87,2346953.63,88.16,29203.82,8.1,76.74,Manufacturing,98.15,Female,Central,Medium,23.0,46.0,,,,,,,,,,,,,62.900001525878906,MEDIUM,1
+Sunrise Plastics 165,1000078.24,144869.03,68.18,4912.16,0.44,99.63,Retail,83.53,Female,South,Micro,19.0,3.0,,,,,,,,,,,,,53.0,MEDIUM,0
+Excel Associates 166,838823.43,136745.11,100.0,6067.01,5.97,75.26,Retail,63.64,Female,West,Small,23.0,6.0,,,,,,,,,,,,,42.0,MEDIUM,0
+Krishna Manufacturing Co 167,2488878.75,503645.45,97.14,18205.14,4.99,81.63,Services,91.57,Male,West,Small,19.0,18.0,,,,,,,,,,,,,73.5,LOW,1
+Royal Chemicals 168,544023.09,164482.32,86.43,3665.41,6.72,59.5,Services,60.89,Male,East,Micro,12.0,4.0,,,,,,,,,,,,,15.100000381469727,HIGH,0
+Sunrise Trading Co 169,1113792.9,502083.07,48.45,7349.97,2.15,71.74,Manufacturing,87.14,Male,North,Micro,18.0,6.0,,,,,,,,,,,,,29.5,HIGH,0
+Excel Infotech 170,807366.89,322486.02,70.25,2923.99,14.98,80.95,Services,51.62,Male,South,Micro,21.0,8.0,,,,,,,,,,,,,5.0,HIGH,0
+Krishna Traders 171,815703.53,307867.86,95.32,2296.26,5.38,100.0,Manufacturing,88.1,Male,West,Small,12.0,10.0,,,,,,,,,,,,,71.5,LOW,1
+Krishna Logistics 172,692978.3,106424.72,100.0,3483.21,3.16,81.11,Retail,65.91,Female,Central,Micro,27.0,8.0,,,,,,,,,,,,,46.400001525878906,MEDIUM,0
+Royal Exports 173,4871793.02,1121616.85,100.0,58257.47,2.41,97.37,Manufacturing,56.57,Male,North,Medium,27.0,50.0,,,,,,,,,,,,,94.9000015258789,LOW,1
+Ganesh Chemicals 174,1102769.73,309801.18,61.12,16414.86,6.99,86.97,Services,68.74,Male,West,Micro,24.0,10.0,,,,,,,,,,,,,10.699999809265137,HIGH,0
+Krishna Pharma 175,3782125.77,536755.13,89.52,53352.85,10.89,100.0,Manufacturing,76.16,Male,Central,Medium,29.0,10.0,,,,,,,,,,,,,76.19999694824219,LOW,1
+Balaji Industries 176,1745832.83,340158.9,100.0,15368.12,3.65,77.17,Manufacturing,64.58,Male,Central,Micro,12.0,20.0,,,,,,,,,,,,,72.9000015258789,LOW,1
+Krishna Pharma 177,2686515.03,562824.75,60.12,24575.7,12.27,100.0,Retail,80.31,Male,East,Small,4.0,25.0,,,,,,,,,,,,,25.5,HIGH,0
+Sai Electronics 178,713919.69,95276.87,84.88,4592.12,1.25,71.2,Services,63.26,Female,North,Micro,15.0,4.0,,,,,,,,,,,,,33.099998474121094,HIGH,0
+Krishna Associates 179,2362098.33,734850.38,89.11,28756.76,5.13,67.27,Services,81.31,Male,South,Small,22.0,15.0,,,,,,,,,,,,,50.0,MEDIUM,0
+Anand Manufacturing Co 180,4269028.08,1605632.02,80.49,51482.17,5.25,61.06,Retail,78.63,Female,Central,Small,23.0,60.0,,,,,,,,,,,,,28.200000762939453,HIGH,0
+Anand Handlooms 181,10815956.25,1182955.04,57.22,141185.05,6.01,100.0,Services,71.09,Male,Central,Medium,12.0,111.0,,,,,,,,,,,,,47.0,MEDIUM,0
+Sai Handlooms 182,878525.37,247807.15,80.11,12030.36,4.13,89.47,Services,65.38,Male,West,Small,9.0,7.0,,,,,,,,,,,,,10.800000190734863,HIGH,0
+Sai Associates 183,510724.85,208645.76,80.09,4049.72,4.89,73.32,Retail,74.27,Male,North,Micro,13.0,5.0,,,,,,,,,,,,,15.899999618530273,HIGH,0
+Excel Constructions 184,1705403.36,672194.72,82.78,20611.41,1.21,95.49,Manufacturing,80.25,Female,North,Micro,24.0,13.0,,,,,,,,,,,,,47.79999923706055,MEDIUM,0
+Krishna Manufacturing Co 185,478165.55,201943.99,76.55,6015.32,10.1,87.63,Services,100.0,Female,East,Micro,2.0,4.0,,,,,,,,,,,,,40.29999923706055,MEDIUM,0
+Prime Industries 186,418981.59,112396.45,78.35,2662.94,7.67,100.0,Retail,86.09,Male,East,Micro,10.0,2.0,,,,,,,,,,,,,52.599998474121094,MEDIUM,0
+Shakti Plastics 187,1273020.44,540567.73,84.4,17969.36,4.72,56.33,Retail,86.64,Female,North,Small,7.0,10.0,,,,,,,,,,,,,38.400001525878906,HIGH,0
+Apex Traders 188,2002913.35,362760.24,91.64,7369.26,7.81,74.28,Manufacturing,100.0,Male,West,Small,24.0,22.0,,,,,,,,,,,,,48.70000076293945,MEDIUM,0
+Sri Manufacturing Co 189,1542325.11,357110.63,80.43,23024.39,10.35,71.52,Retail,79.74,Female,East,Small,14.0,4.0,,,,,,,,,,,,,10.800000190734863,HIGH,0
+Mahalaxmi Steel Works 190,1172581.39,180658.84,78.86,14218.88,5.94,50.37,Manufacturing,79.27,Male,North,Small,3.0,14.0,,,,,,,,,,,,,33.0,HIGH,0
+Excel Manufacturing Co 191,1158797.94,320226.29,86.39,4248.02,16.19,92.84,Services,82.56,Male,North,Small,8.0,6.0,,,,,,,,,,,,,33.20000076293945,HIGH,0
+Shakti Trading Co 192,1136917.79,278164.23,56.19,12168.28,6.36,74.21,Manufacturing,56.87,Female,East,Small,2.0,12.0,,,,,,,,,,,,,7.599999904632568,HIGH,0
+Sri Handlooms 193,522875.15,94739.43,92.16,1530.58,1.45,88.35,Manufacturing,65.34,Male,West,Micro,14.0,5.0,,,,,,,,,,,,,65.69999694824219,MEDIUM,1
+Anand Steel Works 194,2539986.33,1005194.25,84.99,30803.27,4.51,100.0,Services,64.41,Male,Central,Micro,29.0,27.0,,,,,,,,,,,,,51.900001525878906,MEDIUM,0
+Apex Logistics 195,1883713.28,398999.94,85.6,23528.12,8.06,73.05,Manufacturing,81.71,Male,East,Small,17.0,19.0,,,,,,,,,,,,,33.79999923706055,HIGH,0
+Ganesh Plastics 196,2529113.81,492109.45,99.41,25367.34,10.35,72.1,Manufacturing,69.39,Male,South,Small,26.0,36.0,,,,,,,,,,,,,54.20000076293945,MEDIUM,0
+Excel Agro Tech 197,635593.24,85788.52,55.71,8396.67,4.21,79.66,Retail,74.07,Male,Central,Micro,22.0,5.0,,,,,,,,,,,,,17.600000381469727,HIGH,0
+Sri Manufacturing Co 198,739607.18,195481.96,55.39,2753.96,1.32,91.82,Services,88.31,Female,East,Micro,26.0,8.0,,,,,,,,,,,,,42.29999923706055,MEDIUM,0
+Global Infotech 199,1136226.24,235477.37,89.11,6759.46,2.9,70.07,Manufacturing,84.95,Female,South,Small,10.0,12.0,,,,,,,,,,,,,61.29999923706055,MEDIUM,1
+Sai Exports 200,215560.88,50677.2,84.89,1654.91,0.72,69.17,Manufacturing,69.57,Male,East,Micro,28.0,1.0,,,,,,,,,,,,,39.900001525878906,HIGH,0
+Anand Trading Co 201,407521.18,72994.72,87.55,1235.08,6.91,92.8,Services,61.95,Male,North,Micro,7.0,2.0,,,,,,,,,,,,,42.79999923706055,MEDIUM,0
+Prime Logistics 202,656508.33,262948.2,78.07,5319.49,2.38,83.3,Services,89.03,Male,South,Small,13.0,5.0,,,,,,,,,,,,,36.70000076293945,HIGH,0
+Sri Handlooms 203,527080.26,248044.71,94.97,3065.06,1.73,49.37,Retail,83.61,Male,East,Small,20.0,3.0,,,,,,,,,,,,,30.700000762939453,HIGH,0
+Global Electronics 204,446490.47,129094.4,98.99,3308.13,7.46,60.84,Manufacturing,47.91,Male,Central,Micro,9.0,3.0,,,,,,,,,,,,,19.899999618530273,HIGH,0
+Pioneer Enterprises 205,3148629.51,1102207.16,92.26,24602.71,12.09,99.02,Manufacturing,67.3,Female,West,Small,8.0,23.0,,,,,,,,,,,,,81.9000015258789,LOW,1
+Apex Traders 206,793838.04,352632.66,81.09,10710.98,1.72,83.63,Manufacturing,74.48,Female,West,Micro,4.0,7.0,,,,,,,,,,,,,22.200000762939453,HIGH,0
+Pioneer Agro Tech 207,3094948.68,1545953.01,53.38,18196.01,4.23,67.33,Manufacturing,83.68,Female,East,Small,1.0,16.0,,,,,,,,,,,,,43.400001525878906,MEDIUM,0
+Shree Handlooms 208,996838.56,336609.38,96.54,13628.57,3.02,75.61,Retail,85.65,Male,North,Micro,15.0,12.0,,,,,,,,,,,,,50.20000076293945,MEDIUM,0
+Prime Agro Tech 209,2400720.39,1089224.55,100.0,18784.77,10.73,78.19,Manufacturing,76.26,Male,South,Small,29.0,19.0,,,,,,,,,,,,,64.30000305175781,MEDIUM,1
+Sai Enterprises 210,517313.48,238799.9,94.67,3413.03,3.36,88.3,Retail,80.78,Male,Central,Micro,7.0,5.0,,,,,,,,,,,,,59.400001525878906,MEDIUM,1
+Excel Exports 211,1054764.73,434995.13,71.81,9262.31,1.18,58.98,Retail,72.96,Male,North,Micro,13.0,3.0,,,,,,,,,,,,,45.900001525878906,MEDIUM,0
+Unity Plastics 212,2336949.76,639368.85,95.11,18045.44,3.52,66.23,Retail,61.89,Male,Central,Small,28.0,19.0,,,,,,,,,,,,,60.20000076293945,MEDIUM,1
+Apex Pharma 213,608364.31,69405.05,97.91,3478.11,9.05,81.82,Manufacturing,68.08,Male,West,Micro,23.0,1.0,,,,,,,,,,,,,34.900001525878906,HIGH,0
+Pioneer Enterprises 214,1073701.95,93023.75,100.0,9430.85,2.85,76.6,Services,72.28,Male,South,Micro,1.0,11.0,,,,,,,,,,,,,85.9000015258789,LOW,1
+Vijay Enterprises 215,1077276.55,302094.49,71.86,4737.35,1.93,86.01,Retail,71.48,Female,West,Micro,15.0,7.0,,,,,,,,,,,,,16.600000381469727,HIGH,0
+Vijay Manufacturing Co 216,1233324.21,354718.97,81.6,8508.86,3.22,60.79,Retail,43.72,Male,Central,Small,5.0,17.0,,,,,,,,,,,,,6.699999809265137,HIGH,0
+Unity Industries 217,925987.29,232508.19,96.21,8863.9,1.22,83.0,Manufacturing,66.04,Female,North,Small,8.0,6.0,,,,,,,,,,,,,57.29999923706055,MEDIUM,1
+Shakti Steel Works 218,2245023.54,715332.5,85.86,17213.95,3.02,93.28,Manufacturing,72.84,Male,North,Medium,8.0,21.0,,,,,,,,,,,,,89.5,LOW,1
+Vijay Traders 219,847550.4,264358.04,68.24,10847.72,2.09,84.82,Services,67.78,Male,West,Micro,18.0,4.0,,,,,,,,,,,,,10.0,HIGH,0
+Sri Electronics 220,955851.41,412332.77,91.22,5456.98,18.39,79.95,Retail,68.3,Male,Central,Micro,6.0,9.0,,,,,,,,,,,,,11.5,HIGH,0
+Sri Infotech 221,546117.76,68612.04,93.68,7985.41,1.45,76.66,Manufacturing,79.32,Male,North,Micro,8.0,4.0,,,,,,,,,,,,,83.19999694824219,LOW,1
+Sri Chemicals 222,1645068.64,287187.23,86.32,20249.19,1.92,66.31,Retail,55.82,Male,West,Small,7.0,11.0,,,,,,,,,,,,,34.599998474121094,HIGH,0
+New Foods 223,5398108.92,2229754.16,88.29,78784.93,1.24,76.99,Retail,47.58,Male,North,Medium,11.0,27.0,,,,,,,,,,,,,49.5,MEDIUM,0
+Mahalaxmi Manufacturing Co 224,2211309.33,964333.17,81.12,28695.51,5.17,95.64,Services,66.78,Female,West,Small,20.0,8.0,,,,,,,,,,,,,37.29999923706055,HIGH,0
+Shakti Enterprises 225,3526935.99,1755801.03,100.0,15082.23,1.69,76.33,Manufacturing,83.46,Male,West,Small,12.0,14.0,,,,,,,,,,,,,61.0,MEDIUM,1
+Mahalaxmi Associates 226,1537000.33,686459.77,71.49,13957.12,0.61,65.54,Services,97.31,Male,North,Micro,10.0,23.0,,,,,,,,,,,,,43.20000076293945,MEDIUM,0
+Prime Handlooms 227,2459933.85,1116213.64,76.19,11376.53,3.9,71.11,Manufacturing,83.73,Male,West,Medium,16.0,18.0,,,,,,,,,,,,,34.20000076293945,HIGH,0
+Shree Industries 228,1883506.81,399352.67,85.16,23972.98,2.69,80.81,Retail,49.98,Male,Central,Micro,18.0,4.0,,,,,,,,,,,,,46.400001525878906,MEDIUM,0
+Apex Textiles 229,622416.38,154793.64,98.18,6100.94,1.78,72.77,Retail,68.51,Male,Central,Micro,1.0,8.0,,,,,,,,,,,,,43.79999923706055,MEDIUM,0
+Global Manufacturing Co 230,1368586.79,263583.99,62.54,7928.38,10.52,84.79,Manufacturing,75.85,Male,North,Micro,26.0,3.0,,,,,,,,,,,,,8.5,HIGH,0
+Balaji Trading Co 231,839738.77,281015.01,65.35,11857.1,5.32,85.32,Manufacturing,74.66,Female,South,Micro,27.0,6.0,,,,,,,,,,,,,6.599999904632568,HIGH,0
+Anand Handlooms 232,660516.99,313282.05,54.43,2602.32,4.82,90.45,Retail,80.09,Female,South,Micro,18.0,7.0,,,,,,,,,,,,,22.5,HIGH,0
+Shakti Pharma 233,328734.06,73882.71,85.49,3138.84,5.42,97.93,Services,58.24,Female,East,Micro,17.0,4.0,,,,,,,,,,,,,31.200000762939453,HIGH,0
+Shree Steel Works 234,744948.65,233869.74,68.23,8576.6,5.19,91.94,Retail,72.97,Male,North,Micro,21.0,8.0,,,,,,,,,,,,,14.600000381469727,HIGH,0
+Shakti Foods 235,744381.08,152185.62,79.23,2408.52,2.83,64.92,Services,78.3,Male,Central,Small,13.0,6.0,,,,,,,,,,,,,35.5,HIGH,0
+Krishna Traders 236,1316519.98,199210.52,94.92,13129.92,1.71,65.35,Services,84.39,Female,West,Micro,11.0,19.0,,,,,,,,,,,,,60.70000076293945,MEDIUM,1
+Apex Traders 237,1732799.99,280675.34,75.38,22004.42,3.98,76.94,Retail,59.91,Male,Central,Micro,11.0,5.0,,,,,,,,,,,,,16.899999618530273,HIGH,0
+Excel Textiles 238,2724608.31,284277.58,88.47,9111.34,2.78,71.68,Services,66.82,Male,North,Medium,5.0,40.0,,,,,,,,,,,,,72.19999694824219,LOW,1
+Global Pharma 239,1887918.34,903752.7,80.51,16808.21,1.11,62.06,Manufacturing,31.44,Male,North,Small,25.0,24.0,,,,,,,,,,,,,10.300000190734863,HIGH,0
+Shakti Plastics 240,564760.52,140743.65,95.08,3237.19,2.44,71.82,Manufacturing,62.68,Female,Central,Micro,10.0,7.0,,,,,,,,,,,,,64.4000015258789,MEDIUM,1
+Ganesh Industries 241,592798.87,255099.6,92.13,6394.26,7.59,71.36,Services,64.13,Male,South,Micro,9.0,3.0,,,,,,,,,,,,,11.100000381469727,HIGH,0
+Global Chemicals 242,2391060.03,875506.66,74.62,9524.71,3.99,68.59,Services,56.71,Female,West,Small,28.0,10.0,,,,,,,,,,,,,42.099998474121094,MEDIUM,0
+Pioneer Associates 243,796182.48,127872.39,82.47,11316.26,1.38,73.58,Manufacturing,74.48,Female,Central,Micro,15.0,8.0,,,,,,,,,,,,,55.400001525878906,MEDIUM,1
+Balaji Textiles 244,1937050.17,297713.27,100.0,26506.8,0.99,94.5,Retail,71.16,Male,North,Micro,19.0,17.0,,,,,,,,,,,,,73.5,LOW,1
+Prime Electronics 245,3188861.43,1342622.41,90.9,15385.24,8.92,80.79,Retail,38.11,Female,North,Medium,8.0,28.0,,,,,,,,,,,,,30.799999237060547,HIGH,0
+Global Foods 246,1337778.53,255755.05,64.05,8750.17,2.96,100.0,Services,75.23,Male,North,Micro,9.0,18.0,,,,,,,,,,,,,30.399999618530273,HIGH,0
+Balaji Pharma 247,1704371.04,790111.94,94.83,16780.28,3.15,80.39,Retail,58.08,Male,North,Small,22.0,17.0,,,,,,,,,,,,,50.400001525878906,MEDIUM,0
+New Chemicals 248,2416640.73,335485.97,68.73,27732.84,6.32,73.94,Retail,79.29,Male,North,Small,14.0,15.0,,,,,,,,,,,,,38.900001525878906,HIGH,0
+Balaji Exports 249,1298111.63,473340.33,100.0,10427.99,0.95,78.06,Retail,52.77,Female,Central,Small,5.0,9.0,,,,,,,,,,,,,36.900001525878906,HIGH,0
+Balaji Electronics 250,791807.35,334205.28,100.0,3526.43,3.72,81.59,Retail,72.45,Male,West,Micro,25.0,3.0,,,,,,,,,,,,,62.70000076293945,MEDIUM,1
+Vijay Logistics 251,766127.11,136989.41,89.35,2912.73,4.05,84.09,Retail,67.75,Male,Central,Micro,12.0,3.0,,,,,,,,,,,,,40.0,MEDIUM,0
+Sri Steel Works 252,534359.58,104738.27,87.36,8013.83,1.03,100.0,Services,76.55,Male,Central,Micro,20.0,2.0,,,,,,,,,,,,,83.5,LOW,1
+Ganesh Textiles 253,1130186.91,548251.33,81.86,9258.38,9.56,66.17,Retail,73.87,Male,Central,Micro,10.0,14.0,,,,,,,,,,,,,9.5,HIGH,0
+Excel Chemicals 254,2247040.34,429479.05,95.18,30125.28,4.11,90.03,Manufacturing,68.17,Male,South,Small,17.0,25.0,,,,,,,,,,,,,89.69999694824219,LOW,1
+Ganesh Traders 255,1092118.74,284586.44,79.44,9315.45,2.43,80.91,Manufacturing,48.96,Male,South,Micro,23.0,9.0,,,,,,,,,,,,,16.299999237060547,HIGH,0
+Apex Food Products 256,3500732.63,915989.62,88.53,49113.43,2.98,56.0,Retail,49.84,Male,Central,Small,26.0,25.0,,,,,,,,,,,,,25.899999618530273,HIGH,0
+Krishna Constructions 257,3350675.08,624145.64,98.08,12052.35,0.79,88.79,Services,63.24,Female,South,Small,7.0,36.0,,,,,,,,,,,,,74.5999984741211,LOW,1
+Excel Foods 258,1345838.31,546184.6,76.57,5282.74,0.75,95.75,Manufacturing,71.88,Male,North,Small,20.0,17.0,,,,,,,,,,,,,29.200000762939453,HIGH,0
+Global Chemicals 259,978111.53,395329.91,75.76,13811.33,2.21,66.0,Manufacturing,62.88,Female,West,Micro,27.0,13.0,,,,,,,,,,,,,16.200000762939453,HIGH,0
+Prime Constructions 260,594248.27,141962.09,67.08,8523.7,2.35,77.87,Retail,81.38,Male,Central,Micro,19.0,5.0,,,,,,,,,,,,,25.200000762939453,HIGH,0
+New Industries 261,4106034.96,1768686.19,69.03,26418.1,2.79,53.85,Manufacturing,67.81,Male,Central,Medium,5.0,52.0,,,,,,,,,,,,,32.0,HIGH,0
+Unity Foods 262,1202754.95,203856.71,57.57,8346.59,10.23,60.38,Services,57.52,Male,Central,Small,6.0,10.0,,,,,,,,,,,,,7.400000095367432,HIGH,0
+Sai Food Products 263,3649260.69,298540.27,95.95,29762.01,6.05,92.67,Manufacturing,67.83,Male,North,Small,6.0,30.0,,,,,,,,,,,,,71.4000015258789,LOW,1
+Royal Pharma 264,4867737.5,1557141.97,100.0,37491.42,0.32,71.47,Manufacturing,75.39,Female,West,Medium,4.0,64.0,,,,,,,,,,,,,95.0,LOW,1
+Apex Textiles 265,1455682.52,724220.49,100.0,7097.28,8.77,62.48,Services,76.87,Male,Central,Small,22.0,10.0,,,,,,,,,,,,,51.599998474121094,MEDIUM,0
+Pioneer Logistics 266,1474253.19,141868.28,60.61,20241.04,2.19,81.21,Manufacturing,100.0,Male,West,Micro,28.0,10.0,,,,,,,,,,,,,47.20000076293945,MEDIUM,0
+Excel Plastics 267,548362.75,91773.55,95.87,3107.21,6.54,70.69,Manufacturing,61.97,Male,Central,Small,15.0,3.0,,,,,,,,,,,,,54.70000076293945,MEDIUM,0
+Shree Logistics 268,296499.71,88340.35,100.0,3355.16,2.37,71.41,Manufacturing,70.9,Female,Central,Micro,18.0,2.0,,,,,,,,,,,,,83.80000305175781,LOW,1
+Shree Exports 269,2416714.01,1015443.07,78.15,8070.49,3.88,88.35,Manufacturing,78.39,Male,East,Small,23.0,22.0,,,,,,,,,,,,,68.19999694824219,MEDIUM,1
+Anand Exports 270,4182940.21,491067.32,86.52,12483.53,0.88,61.74,Manufacturing,71.65,Male,North,Medium,13.0,44.0,,,,,,,,,,,,,77.5,LOW,1
+Prime Food Products 271,919951.26,226306.68,54.88,9817.38,4.69,65.32,Manufacturing,64.49,Female,East,Micro,14.0,7.0,,,,,,,,,,,,,9.699999809265137,HIGH,0
+Bharat Enterprises 272,418174.78,164665.45,89.0,2817.54,7.15,80.16,Manufacturing,48.76,Female,South,Micro,18.0,2.0,,,,,,,,,,,,,13.5,HIGH,0
+Bharat Pharma 273,802298.46,189381.07,69.05,8579.17,0.44,91.57,Manufacturing,64.34,Female,North,Micro,9.0,10.0,,,,,,,,,,,,,19.899999618530273,HIGH,0
+Global Manufacturing Co 274,11051154.25,1760573.71,87.99,40615.92,7.24,95.33,Retail,55.89,Male,North,Medium,2.0,75.0,,,,,,,,,,,,,33.29999923706055,HIGH,0
+Shree Plastics 275,1225614.16,198682.16,61.58,17615.93,1.7,68.69,Retail,46.1,Male,West,Micro,17.0,17.0,,,,,,,,,,,,,18.0,HIGH,0
+Global Industries 276,883552.59,222850.07,93.14,10475.78,12.8,91.12,Retail,60.06,Male,East,Micro,24.0,4.0,,,,,,,,,,,,,11.0,HIGH,0
+Global Exports 277,651691.04,183356.64,100.0,8767.42,6.63,67.02,Manufacturing,56.29,Female,East,Micro,3.0,6.0,,,,,,,,,,,,,41.599998474121094,MEDIUM,0
+Anand Electronics 278,666347.37,294500.25,73.25,2802.58,5.72,100.0,Retail,80.76,Male,West,Micro,7.0,6.0,,,,,,,,,,,,,30.600000381469727,HIGH,0
+Shree Associates 279,279918.53,97900.39,67.95,1820.03,3.0,62.13,Services,81.02,Female,East,Micro,8.0,3.0,,,,,,,,,,,,,48.099998474121094,MEDIUM,0
+Mahalaxmi Trading Co 280,923266.34,341579.76,52.66,6559.16,20.86,96.6,Services,58.44,Male,West,Micro,24.0,3.0,,,,,,,,,,,,,3.4000000953674316,HIGH,0
+Global Trading Co 281,1238726.48,610512.06,81.0,11414.44,2.2,68.81,Manufacturing,68.1,Male,North,Micro,15.0,17.0,,,,,,,,,,,,,25.0,HIGH,0
+Sri Trading Co 282,369181.31,93393.36,76.28,2292.93,1.14,100.0,Manufacturing,44.13,Male,Central,Micro,16.0,3.0,,,,,,,,,,,,,10.899999618530273,HIGH,0
+Shree Electronics 283,583117.72,145434.72,61.73,1899.73,1.77,86.28,Manufacturing,64.58,Male,East,Micro,19.0,5.0,,,,,,,,,,,,,9.399999618530273,HIGH,0
+Vijay Exports 284,455030.85,212866.04,91.8,3235.72,8.22,63.78,Manufacturing,77.98,Female,North,Micro,9.0,4.0,,,,,,,,,,,,,30.899999618530273,HIGH,0
+Prime Textiles 285,500907.75,91800.23,78.25,2846.09,3.82,70.69,Retail,84.37,Male,Central,Micro,21.0,1.0,,,,,,,,,,,,,26.799999237060547,HIGH,0
+Shree Pharma 286,1667341.19,644464.72,68.86,12211.63,3.32,88.94,Retail,61.3,Male,West,Small,1.0,14.0,,,,,,,,,,,,,15.100000381469727,HIGH,0
+Bharat Steel Works 287,286258.85,113622.07,76.68,1420.41,2.24,92.74,Manufacturing,87.78,Male,North,Micro,4.0,1.0,,,,,,,,,,,,,37.599998474121094,HIGH,0
+New Plastics 288,1103489.55,133600.54,100.0,6371.22,3.16,77.01,Retail,49.26,Male,North,Micro,24.0,7.0,,,,,,,,,,,,,47.29999923706055,MEDIUM,0
+Mahalaxmi Manufacturing Co 289,1183255.81,327356.23,94.04,12231.2,2.08,78.63,Retail,53.29,Male,North,Micro,20.0,12.0,,,,,,,,,,,,,26.700000762939453,HIGH,0
+Prime Foods 290,715904.12,117577.4,83.05,5263.27,6.18,88.62,Manufacturing,82.64,Male,South,Micro,6.0,6.0,,,,,,,,,,,,,41.79999923706055,MEDIUM,0
+Sri Food Products 291,234802.16,50000.0,94.29,1600.71,2.73,79.85,Services,97.07,Male,North,Micro,13.0,1.0,,,,,,,,,,,,,61.900001525878906,MEDIUM,1
+Pioneer Manufacturing Co 292,493186.91,135531.61,67.59,4524.41,1.8,59.89,Manufacturing,79.4,Male,West,Micro,2.0,1.0,,,,,,,,,,,,,37.70000076293945,HIGH,0
+Krishna Foods 293,3006992.5,606090.84,85.49,36529.72,7.68,66.62,Services,71.39,Male,East,Small,20.0,14.0,,,,,,,,,,,,,37.599998474121094,HIGH,0
+Vijay Pharma 294,202370.55,83851.3,87.21,1464.32,1.19,81.29,Manufacturing,39.07,Male,Central,Micro,22.0,1.0,,,,,,,,,,,,,48.5,MEDIUM,0
+Apex Electronics 295,682208.84,314630.66,77.95,6715.66,3.86,95.02,Services,41.66,Male,West,Micro,9.0,6.0,,,,,,,,,,,,,6.900000095367432,HIGH,0
+Anand Constructions 296,449932.31,187685.96,91.53,6558.9,0.24,100.0,Services,73.94,Male,West,Micro,11.0,2.0,,,,,,,,,,,,,69.69999694824219,MEDIUM,1
+Sri Industries 297,1213644.01,232695.57,73.29,10952.84,0.67,88.91,Services,66.63,Male,East,Micro,7.0,16.0,,,,,,,,,,,,,17.799999237060547,HIGH,0
+Sunrise Logistics 298,579137.87,113010.91,92.65,8034.07,2.45,82.02,Services,55.41,Female,North,Micro,12.0,2.0,,,,,,,,,,,,,54.79999923706055,MEDIUM,0
+Unity Pharma 299,1986683.08,371481.74,93.28,24676.41,2.04,88.48,Services,72.98,Female,North,Small,8.0,7.0,,,,,,,,,,,,,75.0999984741211,LOW,1
+Balaji Textiles 300,2153769.69,294454.78,41.24,6965.26,2.04,68.67,Retail,73.73,Male,West,Small,8.0,28.0,,,,,,,,,,,,,21.100000381469727,HIGH,0

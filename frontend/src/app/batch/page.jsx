@@ -49,8 +49,16 @@ export default function BatchPage() {
     setError(null);
     const r = await api.predictBatch(file);
     setLoading(false);
-    if (r.error) setError(r.error);
-    else         setResult(r.data);
+    if (r.error) {
+      setError(r.error);
+    } else if (r.data) {
+      const processed = r.data.processed_rows ?? r.data.total ?? 0;
+      if (processed === 0) {
+        const firstErr = r.data.errors?.[0]?.error || "Zero applications could be processed from this file.";
+        setError(`No valid applications found: ${firstErr}`);
+      }
+      setResult(r.data);
+    }
   };
 
   const handleDownloadSample = async () => {
@@ -58,7 +66,7 @@ export default function BatchPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "vridhi_sample_template.csv";
+    a.download = "vridhi_msme_batch_template.csv";
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -79,7 +87,7 @@ export default function BatchPage() {
     URL.revokeObjectURL(url);
   };
 
-  const pieData = result
+  const pieData = result && result.processed_rows > 0
     ? [
         { name: "LOW",    value: result.LOW,    color: RISK_COLORS.LOW },
         { name: "MEDIUM", value: result.MEDIUM, color: RISK_COLORS.MEDIUM },
@@ -177,22 +185,36 @@ export default function BatchPage() {
 
       {error && (
         <div className="bg-red-500/10 border border-red-500/25 rounded-xl p-4 flex items-start gap-2 text-sm text-red-400">
-          <AlertCircle className="w-5 h-5 flex-shrink-0" />
-          {error}
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-semibold">Assessment Notice</p>
+            <p className="text-xs text-red-300 mt-0.5">{error}</p>
+          </div>
+        </div>
+      )}
+
+      {result && result.errors && result.errors.length > 0 && (
+        <div className="bg-amber-500/10 border border-amber-500/25 rounded-xl p-4 text-xs text-amber-300 space-y-1">
+          <p className="font-semibold">Notice: {result.failed_rows} rows had formatting or value errors</p>
+          <div className="max-h-24 overflow-y-auto space-y-0.5 text-[11px] text-[#CBD5E1]">
+            {result.errors.slice(0, 5).map((e, idx) => (
+              <p key={idx}>Row {e.row_number}: {e.error}</p>
+            ))}
+          </div>
         </div>
       )}
 
       {/* Results */}
-      {result && (
+      {result && (result.processed_rows > 0 || (result.results && result.results.length > 0)) && (
         <>
           {/* Summary KPIs */}
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              ["Total",     result.total,         "text-[#EFF7FF]"],
-              ["LOW",       result.LOW,            "text-emerald-400"],
-              ["MEDIUM",    result.MEDIUM,         "text-amber-400"],
-              ["HIGH",      result.HIGH,           "text-red-400"],
-              ["Avg Score", result.average_score,  "text-[#EFF7FF]"],
+              ["Processed", result.processed_rows ?? result.total, "text-[#EFF7FF]"],
+              ["LOW Risk",  result.LOW,                            "text-emerald-400"],
+              ["MEDIUM Risk", result.MEDIUM,                       "text-amber-400"],
+              ["HIGH Risk", result.HIGH,                           "text-red-400"],
+              ["Avg Score", result.average_score,                  "text-[#EFF7FF]"],
             ].map(([label, val, cls]) => (
               <div key={label} className="glass-panel rounded-xl p-5">
                 <p className="text-xs text-[#4A6080] uppercase tracking-wide">{label}</p>
