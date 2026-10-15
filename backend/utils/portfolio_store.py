@@ -24,7 +24,51 @@ def load_portfolio() -> pd.DataFrame:
         df = pd.read_csv(SCORED_PATH)
         _store = df
         return df
-    _store = pd.DataFrame()
+
+    # No CSV — seed with realistic mock data so charts are never empty
+    import random
+    random.seed(42)
+
+    sectors = ["Manufacturing", "Services", "Retail", "Agriculture", "Technology"]
+    regions = ["Urban", "Semi-Urban", "Rural"]
+    sizes = ["Micro", "Small", "Medium"]
+    genders = ["Male", "Female"]
+
+    rows = []
+    for i in range(40):
+        risk_score = random.randint(20, 95)
+        if risk_score >= 70:
+            label = "LOW"
+        elif risk_score >= 45:
+            label = "MEDIUM"
+        else:
+            label = "HIGH"
+        rows.append({
+            "business_name": f"MSME Business {i+1}",
+            "income": random.randint(200000, 2000000),
+            "loan_amount": random.randint(100000, 1500000),
+            "gst_compliance_rate": random.randint(60, 100),
+            "monthly_upi_volume": random.randint(50000, 500000),
+            "utility_delay_days": random.randint(0, 15),
+            "vendor_trust_score": random.randint(50, 100),
+            "sector_type": random.choice(sectors),
+            "afhi_score": random.randint(40, 90),
+            "owner_gender": random.choice(genders),
+            "region": random.choice(regions),
+            "business_size": random.choice(sizes),
+            "years_in_operation": random.randint(1, 15),
+            "employee_count": random.randint(2, 50),
+            "risk_score": risk_score,
+            "risk_label": label,
+            "approved": 1 if risk_score >= 55 else 0,
+        })
+
+    _store = pd.DataFrame(rows)
+    try:
+        os.makedirs(DATA_DIR, exist_ok=True)
+        _store.to_csv(SCORED_PATH, index=False)
+    except Exception as err:
+        print(f"[portfolio_store] Could not save seed data: {err}")
     return _store
 
 

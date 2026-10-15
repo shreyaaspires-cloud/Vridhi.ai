@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import CreditCoin3D from "../components/CreditCoin3D";
+const CreditCoin3D = dynamic(
+  () => import("../components/CreditCoin3D"),
+  { ssr: false, loading: () => (
+    <div className="w-full h-48 rounded-2xl bg-[#0C1C35] animate-pulse" />
+  )}
+);
 import {
   ArrowRight, User, Building2, FileSearch, ShieldCheck,
   Zap, BarChart3, Layers, Scale, Sparkles, SlidersHorizontal,
@@ -206,7 +211,7 @@ export default function LandingPage() {
             {/* DUAL HERO CTAS (Side by side) */}
             <div className="flex flex-wrap items-center gap-4 pt-3">
               <Link
-                href="/borrower"
+                href="/login/borrower"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white transition-base shadow-lg shadow-[#168BFF]/20"
                 style={{
                   background: "#168BFF",
@@ -218,7 +223,7 @@ export default function LandingPage() {
               </Link>
 
               <Link
-                href="/lender"
+                href="/login/lender"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-[#EFF7FF] transition-base hover:bg-[#168BFF]/10"
                 style={{
                   background: "transparent",

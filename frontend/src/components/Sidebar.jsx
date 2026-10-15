@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import {
   FileSearch,
   LayoutDashboard,
@@ -15,6 +15,7 @@ import {
   MessageCircle,
   Building2,
   User,
+  LogOut,
 } from "lucide-react";
 
 const sectionItems = [
@@ -37,14 +38,6 @@ const lenderNavItems = [
   { href: "/fairness", label: "Fairness", icon: Scale },
 ];
 
-const appNavItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/simulator", label: "Simulator", icon: SlidersHorizontal },
-  { href: "/portfolio", label: "Portfolio", icon: Users },
-  { href: "/fairness", label: "Fairness", icon: Scale },
-  { href: "/batch", label: "Batch Upload", icon: Upload },
-];
-
 function VridhiLogo({ className = "" }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -59,18 +52,58 @@ function VridhiLogo({ className = "" }) {
 
 export default function TopNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem("vridhi_user") || "{}");
+      if (user.name) {
+        setUserName(user.name);
+      } else {
+        setUserName("");
+      }
+    } catch {
+      setUserName("");
+    }
+  }, [pathname]);
+
+  const handlePortalClick = (role) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("vridhi_user") || "{}");
+      if (user.role === role) {
+        router.push(role === "borrower" ? "/borrower" : "/lender");
+      } else {
+        router.push(role === "borrower" ? "/login/borrower" : "/login/lender");
+      }
+    } catch {
+      router.push(role === "borrower" ? "/login/borrower" : "/login/lender");
+    }
+  };
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("vridhi_user");
+    } catch {}
+    setUserName("");
+    router.push("/");
+  };
 
   const isBorrowerPage = pathname.startsWith("/borrower");
   const isLenderPage = pathname.startsWith("/lender");
   const isLandingPage = pathname === "/" || pathname.startsWith("/#");
 
-  let activeNavItems = appNavItems;
+  let activeNavItems = [];
   if (isLandingPage) {
     activeNavItems = sectionItems;
   } else if (isBorrowerPage) {
     activeNavItems = borrowerNavItems;
   } else if (isLenderPage) {
+    activeNavItems = lenderNavItems;
+  } else {
+    // Pages like /dashboard /portfolio /batch /fairness /simulator
+    // redirect to lender portal since they are lender features
     activeNavItems = lenderNavItems;
   }
 
@@ -144,10 +177,27 @@ export default function TopNav() {
                 })}
           </nav>
 
-          {/* Right Side: Persistent Portal Switcher Pills */}
+          {/* Right Side: Persistent Portal Switcher Pills & User Greeting */}
           <div className="flex items-center gap-2">
-            <Link
-              href="/borrower"
+            {userName && (
+              <div className="flex items-center gap-2 mr-1">
+                <span className="hidden md:inline text-xs text-[#94A8C2]">
+                  Hi, {userName}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  title="Sign out"
+                  className="p-1 rounded-md text-[#94A8C2] hover:text-[#FF5252] hover:bg-white/5 transition-colors flex items-center text-xs gap-1"
+                >
+                  <LogOut size={13} />
+                  <span className="hidden lg:inline text-[11px]">Sign out</span>
+                </button>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={() => handlePortalClick("borrower")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base ${
                 isBorrowerPage
                   ? "bg-[#168BFF] text-white shadow-sm shadow-[#168BFF]/30"
@@ -157,10 +207,11 @@ export default function TopNav() {
               <User size={13} />
               <span className="hidden sm:inline">Business Owner</span>
               <span className="sm:hidden">Borrower</span>
-            </Link>
+            </button>
 
-            <Link
-              href="/lender"
+            <button
+              type="button"
+              onClick={() => handlePortalClick("lender")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base ${
                 isLenderPage
                   ? "bg-[#168BFF] text-white shadow-sm shadow-[#168BFF]/30"
@@ -170,7 +221,7 @@ export default function TopNav() {
               <Building2 size={13} />
               <span className="hidden sm:inline">Bank / Lender</span>
               <span className="sm:hidden">Lender</span>
-            </Link>
+            </button>
 
             {/* Mobile burger */}
             <button
