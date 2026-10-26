@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import {
   FileSearch,
   LayoutDashboard,
@@ -15,7 +16,6 @@ import {
   MessageCircle,
   Building2,
   User,
-  LogOut,
 } from "lucide-react";
 
 const sectionItems = [
@@ -54,40 +54,19 @@ export default function TopNav() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [userName, setUserName] = useState("");
+  const { user, profile, signOut } = useAuth();
 
-  useEffect(() => {
-    try {
-      const user = JSON.parse(localStorage.getItem("vridhi_user") || "{}");
-      if (user.name) {
-        setUserName(user.name);
-      } else {
-        setUserName("");
-      }
-    } catch {
-      setUserName("");
-    }
-  }, [pathname]);
-
-  const handlePortalClick = (role) => {
-    try {
-      const user = JSON.parse(localStorage.getItem("vridhi_user") || "{}");
-      if (user.role === role) {
-        router.push(role === "borrower" ? "/borrower" : "/lender");
-      } else {
-        router.push(role === "borrower" ? "/login/borrower" : "/login/lender");
-      }
-    } catch {
-      router.push(role === "borrower" ? "/login/borrower" : "/login/lender");
-    }
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/");
   };
 
-  const handleLogout = () => {
-    try {
-      localStorage.removeItem("vridhi_user");
-    } catch {}
-    setUserName("");
-    router.push("/");
+  const handlePortalClick = (role) => {
+    if (user) {
+      router.push(role === "borrower" ? "/borrower" : "/lender");
+    } else {
+      router.push(role === "borrower" ? "/login/borrower" : "/login/lender");
+    }
   };
 
   const isBorrowerPage = pathname.startsWith("/borrower");
@@ -144,6 +123,12 @@ export default function TopNav() {
                 ← Home
               </Link>
             )}
+
+            {user && profile && (
+              <span className="hidden lg:inline text-xs text-[#94A8C2]">
+                Hi, {profile.full_name || user.email?.split("@")[0]}
+              </span>
+            )}
           </div>
 
           {/* Center Desktop nav */}
@@ -179,24 +164,7 @@ export default function TopNav() {
 
           {/* Right Side: Persistent Portal Switcher Pills & User Greeting */}
           <div className="flex items-center gap-2">
-            {userName && (
-              <div className="flex items-center gap-2 mr-1">
-                <span className="hidden md:inline text-xs text-[#94A8C2]">
-                  Hi, {userName}
-                </span>
-                <button
-                  onClick={handleLogout}
-                  title="Sign out"
-                  className="p-1 rounded-md text-[#94A8C2] hover:text-[#FF5252] hover:bg-white/5 transition-colors flex items-center text-xs gap-1"
-                >
-                  <LogOut size={13} />
-                  <span className="hidden lg:inline text-[11px]">Sign out</span>
-                </button>
-              </div>
-            )}
-
             <button
-              type="button"
               onClick={() => handlePortalClick("borrower")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base ${
                 isBorrowerPage
@@ -210,7 +178,6 @@ export default function TopNav() {
             </button>
 
             <button
-              type="button"
               onClick={() => handlePortalClick("lender")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base ${
                 isLenderPage
@@ -222,6 +189,15 @@ export default function TopNav() {
               <span className="hidden sm:inline">Bank / Lender</span>
               <span className="sm:hidden">Lender</span>
             </button>
+
+            {user && (
+              <button
+                onClick={handleSignOut}
+                className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium text-[#94A8C2] border border-white/10 hover:text-[#EFF7FF] hover:border-white/20 transition-base"
+              >
+                Sign out
+              </button>
+            )}
 
             {/* Mobile burger */}
             <button
@@ -262,6 +238,18 @@ export default function TopNav() {
               >
                 ← Home
               </Link>
+            )}
+
+            {user && (
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  handleSignOut();
+                }}
+                className="px-4 py-3 rounded-xl text-left text-sm font-medium text-[#FF5252] hover:bg-white/5 transition-base mb-2 border-b border-white/5"
+              >
+                Sign out
+              </button>
             )}
 
             {isLandingPage

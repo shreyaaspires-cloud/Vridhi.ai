@@ -1,175 +1,156 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+import { supabase } from "../../../lib/supabase";
+import { formatAuthError, isValidEmail } from "../../../lib/authErrorUtils";
+import toast from "react-hot-toast";
 
-export default function LenderLoginPage() {
+export default function LenderLogin() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const isSubmittingRef = useRef(false);
 
-  const handleSubmit = (e) => {
+  const handleAuth = async (e) => {
     e.preventDefault();
-    const emailValue = email.trim() || "analyst@bank.in";
-    const name = emailValue.split("@")[0];
 
-    localStorage.setItem(
-      "vridhi_user",
-      JSON.stringify({
-        role: "lender",
-        email: emailValue,
-        name: name,
-      })
-    );
-    router.push("/lender");
+    if (isSubmittingRef.current || loading) {
+      return;
+    }
+
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail)) {
+      toast.error("Please enter a valid email address (e.g. name@example.com).");
+      return;
+    }
+
+    if (!password || password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+
+    isSubmittingRef.current = true;
+    setLoading(true);
+
+    try {
+      if (isSignUp) {
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email: trimmedEmail,
+          password,
+          options: {
+            data: { role: "lender" }
+          }
+        });
+
+        if (signUpError) {
+          throw signUpError;
+        }
+
+        // If a session was already established upon signup (auto-confirm enabled)
+        if (signUpData?.session) {
+          toast.success("Account created successfully!");
+          router.push("/lender");
+          return;
+        }
+
+        // If user was created but no session returned, email confirmation is required
+        if (signUpData?.user && !signUpData?.session) {
+          toast.success("Account created! Please check your email inbox to confirm your account before signing in.", {
+            duration: 6000,
+          });
+          setIsSignUp(false);
+          return;
+        }
+
+        toast.success("Account created! You can now sign in.");
+        setIsSignUp(false);
+      } else {
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email: trimmedEmail,
+          password
+        });
+        if (signInError) throw signInError;
+        toast.success("Welcome back!");
+        router.push("/lender");
+      }
+    } catch (err) {
+      const friendlyMessage = formatAuthError(err);
+      toast.error(friendlyMessage);
+    } finally {
+      isSubmittingRef.current = false;
+      setLoading(false);
+    }
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center px-4 py-12"
-      style={{ background: "#070910" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-[#070910] px-4">
       <div
-        className="w-full relative shadow-2xl"
-        style={{
-          background: "#0C1C35",
-          border: "1px solid rgba(22, 139, 255, 0.15)",
-          borderRadius: "20px",
-          padding: "40px",
-          maxWidth: "420px",
-        }}
+        className="w-full max-w-md p-10 rounded-2xl"
+        style={{ background: "#0C1C35", border: "1px solid rgba(22,139,255,0.15)" }}
       >
-        {/* Logo at top center */}
-        <div className="flex justify-center mb-6">
-          <Link href="/">
-            <Image
-              src="/vridhi-logo.svg"
-              alt="Vridhi.ai"
-              width={140}
-              height={36}
-              style={{ height: 32, width: "auto" }}
-              priority
-            />
-          </Link>
-        </div>
-
-        {/* Badge */}
-        <div className="flex justify-center mb-3">
-          <span
-            className="px-3 py-1 rounded-full text-xs font-semibold"
-            style={{
-              background: "rgba(139, 92, 246, 0.15)",
-              color: "#a78bfa",
-              border: "1px solid rgba(139, 92, 246, 0.3)",
-            }}
-          >
+        <div className="text-center mb-8">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/25">
             Bank / Lender Portal
           </span>
-        </div>
-
-        {/* Heading & Subtext */}
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-white mb-2">Lender Intelligence Portal</h1>
-          <p className="text-xs text-[#94A8C2] leading-relaxed">
-            Sign in to access portfolio analytics and batch assessment
+          <h1 className="text-2xl font-bold text-[#EFF7FF] mt-4">
+            {isSignUp ? "Create Account" : "Lender Intelligence Portal"}
+          </h1>
+          <p className="text-sm text-[#94A8C2] mt-2">
+            {isSignUp
+              ? "Sign up to access lender dashboard"
+              : "Sign in to access portfolio analytics and batch assessment tools"}
           </p>
         </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-medium text-[#94A8C2] mb-1.5">
-              Work Email Address
-            </label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="officer@bank.com"
-              style={{
-                background: "#070910",
-                border: "1px solid rgba(22, 139, 255, 0.2)",
-                color: "#EFF7FF",
-                borderRadius: "10px",
-                padding: "10px 14px",
-                width: "100%",
-                outline: "none",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = "#168BFF")}
-              onBlur={(e) => (e.target.style.borderColor = "rgba(22, 139, 255, 0.2)")}
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-[#94A8C2] mb-1.5">
-              Password
-            </label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              style={{
-                background: "#070910",
-                border: "1px solid rgba(22, 139, 255, 0.2)",
-                color: "#EFF7FF",
-                borderRadius: "10px",
-                padding: "10px 14px",
-                width: "100%",
-                outline: "none",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = "#168BFF")}
-              onBlur={(e) => (e.target.style.borderColor = "rgba(22, 139, 255, 0.2)")}
-            />
-          </div>
-
+        <form onSubmit={handleAuth} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            disabled={loading}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-3 rounded-xl text-sm text-[#EFF7FF] bg-[#070910] border border-[rgba(22,139,255,0.2)] focus:border-[#168BFF] outline-none transition-colors disabled:opacity-50"
+          />
+          <input
+            type="password"
+            placeholder="Password (min 6 characters)"
+            value={password}
+            disabled={loading}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+            className="w-full px-4 py-3 rounded-xl text-sm text-[#EFF7FF] bg-[#070910] border border-[rgba(22,139,255,0.2)] focus:border-[#168BFF] outline-none transition-colors disabled:opacity-50"
+          />
           <button
             type="submit"
-            className="w-full font-semibold transition-opacity hover:opacity-90 mt-2"
-            style={{
-              background: "#168BFF",
-              color: "#FFFFFF",
-              borderRadius: "10px",
-              padding: "12px",
-              border: "none",
-              cursor: "pointer",
-            }}
+            disabled={loading}
+            className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-[#168BFF] hover:bg-[#1278e0] transition-all disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
-            Sign In
+            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
           </button>
         </form>
-
-        {/* Links below button */}
-        <div className="text-center mt-5 space-y-2">
-          <p className="text-xs text-[#94A8C2]">
-            Don&apos;t have an account?{" "}
-            <Link href="/" className="text-[#168BFF] hover:underline font-medium">
-              Register
-            </Link>
-          </p>
-
-          <div>
-            <Link
-              href="/lender"
-              className="text-xs text-[#94A8C2] hover:text-[#EFF7FF] underline transition-colors"
-            >
-              Continue as Guest
-            </Link>
-          </div>
-        </div>
-
-        {/* Bottom switch link */}
-        <div className="mt-8 pt-4 border-t border-white/10 text-center">
-          <Link
-            href="/login/borrower"
-            className="text-xs text-[#94A8C2] hover:text-[#EFF7FF] transition-colors"
+        <div className="text-center mt-6 space-y-3">
+          <button
+            type="button"
+            disabled={loading}
+            onClick={() => setIsSignUp(!isSignUp)}
+            className="text-sm text-[#94A8C2] hover:text-[#168BFF] transition-colors block w-full disabled:opacity-50"
           >
-            Are you a Business Owner? <span className="text-[#168BFF] font-medium">Sign in here →</span>
-          </Link>
+            {isSignUp ? "Already have an account? Sign in" : "New here? Create account"}
+          </button>
+          <p className="text-xs text-[#4A6080]">
+            Are you a Business Owner?{" "}
+            <a href="/login/borrower" className="text-[#168BFF] hover:underline">
+              Sign in here →
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedRoute from "../../components/ProtectedRoute";
 import { useEffect, useState } from "react";
 import KpiCard from "../../components/KpiCard";
 import RiskBadge from "../../components/RiskBadge";
@@ -15,7 +16,7 @@ import {
   BarChart, Bar, Legend
 } from "recharts";
 
-export default function LenderPage() {
+function LenderPageContent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -613,5 +614,13 @@ export default function LenderPage() {
         </button>
       </section>
     </div>
+  );
+}
+
+export default function LenderPage() {
+  return (
+    <ProtectedRoute requiredRole="lender">
+      <LenderPageContent />
+    </ProtectedRoute>
   );
 }

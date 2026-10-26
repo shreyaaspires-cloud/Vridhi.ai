@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedRoute from "../../components/ProtectedRoute";
 import { useAssessment } from "../../context/AssessmentContext";
 import AssessmentForm from "../../components/AssessmentForm";
 import ScoreGauge from "../../components/ScoreGauge";
@@ -20,7 +21,7 @@ import toast from "react-hot-toast";
 
 const STORAGE_KEY = "vridhi_history";
 
-export default function BorrowerPage() {
+function BorrowerPageContent() {
   const { prediction, chatContext, setPrediction } = useAssessment();
   const resultsRef = useRef(null);
 
@@ -531,5 +532,13 @@ export default function BorrowerPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function BorrowerPage() {
+  return (
+    <ProtectedRoute requiredRole="borrower">
+      <BorrowerPageContent />
+    </ProtectedRoute>
   );
 }
