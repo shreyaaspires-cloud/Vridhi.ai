@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "../../lib/api";
+import { useLanguage } from "../../context/LanguageContext";
 import { SlidersHorizontal, TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
 import RiskBadge from "../../components/RiskBadge";
 
@@ -32,6 +33,7 @@ const DEFAULTS = {
 };
 
 export default function SimulatorPage() {
+  const { t } = useLanguage();
   const [form, setForm] = useState(DEFAULTS);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -58,11 +60,11 @@ export default function SimulatorPage() {
             className="text-2xl font-bold text-[#EFF7FF]"
             style={{ fontFamily: "'Space Grotesk', Inter, system-ui, sans-serif" }}
           >
-            Scenario Simulator
+            {t("simulator_title")}
           </h1>
         </div>
         <p className="text-sm text-[#94A8C2] mt-1">
-          Adjust business parameters and macro scenarios to see how credit scores change.
+          {t("simulator_sub")}
         </p>
       </div>
 
@@ -72,12 +74,12 @@ export default function SimulatorPage() {
           <h3 className="text-sm font-semibold text-[#94A8C2]">Business Parameters</h3>
 
           {[
-            { key: "income_change_pct",      label: "Income Change",       unit: "%",    min: -80,  max: 200, step: 5  },
-            { key: "loan_amount_change_pct", label: "Loan Amount Change",  unit: "%",    min: -80,  max: 200, step: 5  },
-            { key: "gst_compliance_change",  label: "GST Compliance Change",unit: "",   min: -50,  max: 50,  step: 1  },
-            { key: "utility_delay_change",   label: "Utility Delay Change", unit: " days", min: -60, max: 120, step: 1 },
-            { key: "upi_volume_change_pct",  label: "UPI Volume Change",   unit: "%",    min: -80,  max: 200, step: 5  },
-            { key: "vendor_trust_change",    label: "Vendor Trust Change", unit: "",     min: -50,  max: 50,  step: 1  },
+            { key: "income_change_pct",      label: t("income_change"),       unit: "%",    min: -80,  max: 200, step: 5  },
+            { key: "loan_amount_change_pct", label: t("loan_change"),         unit: "%",    min: -80,  max: 200, step: 5  },
+            { key: "gst_compliance_change",  label: t("gst_change"),          unit: "",   min: -50,  max: 50,  step: 1  },
+            { key: "utility_delay_change",   label: t("utility_change"),      unit: " days", min: -60, max: 120, step: 1 },
+            { key: "upi_volume_change_pct",  label: t("upi_change"),          unit: "%",    min: -80,  max: 200, step: 5  },
+            { key: "vendor_trust_change",    label: t("vendor_change"),       unit: "",     min: -50,  max: 50,  step: 1  },
           ].map(({ key, label, unit, min, max, step }) => (
             <div key={key}>
               <div className="flex justify-between items-center mb-2">
@@ -100,7 +102,7 @@ export default function SimulatorPage() {
 
           <div>
             <label className="block text-sm font-medium text-[#94A8C2] mb-1.5">
-              Macro Scenario
+              {t("macro_scenario")}
             </label>
             <select
               className="dark-input"
@@ -122,7 +124,7 @@ export default function SimulatorPage() {
               boxShadow: "0 4px 16px rgba(22,139,255,0.25)",
             }}
           >
-            {loading ? "Simulating…" : "Run Simulation"}
+            {loading ? t("simulating") : t("run_simulation")}
           </button>
           {error && (
             <div className="bg-red-500/10 border border-red-500/25 text-red-400 rounded-lg px-4 py-2 text-sm">
@@ -136,71 +138,45 @@ export default function SimulatorPage() {
           {result ? (
             <>
               <div className="glass-panel rounded-xl p-6">
-                <h3 className="text-sm font-semibold text-[#94A8C2] mb-5">Credit Score Simulation</h3>
+                <h3 className="text-sm font-semibold text-[#94A8C2] mb-5">{t("simulation_results")}</h3>
 
-                {/* Main score comparison */}
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  {/* Previous score */}
-                  <div className="text-center flex-1">
-                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-2">Previous Score</p>
-                    <div
-                      className="inline-flex flex-col items-center justify-center rounded-2xl p-4 w-full"
-                      style={{ background: "#0C1C35", border: "1px solid rgba(22,139,255,0.15)" }}
-                    >
-                      <span className="text-4xl font-bold tabular-nums text-[#EFF7FF]">
-                        {result.original_score != null ? result.original_score.toFixed(1) : "—"}
-                      </span>
-                      <span className="text-xs text-[#4A6080] mt-1">/ 100</span>
-                    </div>
-                    <div className="mt-2 flex justify-center"><RiskBadge label={result.old_label} size="sm" /></div>
+                {/* Score transition display with animated arrow */}
+                <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
+                  {/* Previous Score */}
+                  <div className="text-center">
+                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-1">{t("before")}</p>
+                    <div className="text-4xl font-bold text-[#94A8C2]">{result.original_score}</div>
+                    <div className="mt-2"><RiskBadge label={result.old_label} size="sm" /></div>
                   </div>
 
-                  {/* Directional arrow */}
+                  {/* Animated Arrow + Delta */}
                   <div className="flex flex-col items-center gap-1">
-                    <ArrowRight
-                      className="w-7 h-7"
-                      style={{ color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#4A6080" }}
-                    />
-                    {/* Delta badge */}
-                    <span
-                      className="text-xs font-bold px-2 py-0.5 rounded-full tabular-nums"
-                      style={{
-                        background: result.delta > 0
-                          ? "rgba(16,185,129,0.15)"
-                          : result.delta < 0
-                          ? "rgba(239,68,68,0.15)"
-                          : "rgba(74,96,128,0.2)",
-                        color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#94A8C2",
-                      }}
+                    <div
+                      className="flex items-center gap-1"
+                      style={{ animation: "pulse 1.5s ease-in-out infinite" }}
                     >
-                      {result.delta > 0 ? "+" : ""}{result.delta != null ? result.delta.toFixed(1) : "0"} pts
+                      <span className="text-2xl" style={{ color: result.delta >= 0 ? "#10b981" : "#ef4444" }}>
+                        {result.delta >= 0 ? "↗" : "↘"}
+                      </span>
+                    </div>
+                    <span
+                      className="text-sm font-bold tabular-nums"
+                      style={{ color: result.delta >= 0 ? "#10b981" : "#ef4444" }}
+                    >
+                      {result.delta > 0 ? "+" : ""}{result.delta} pts
                     </span>
                   </div>
 
-                  {/* New score */}
-                  <div className="text-center flex-1">
-                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-2">Simulated Score</p>
+                  {/* New Score */}
+                  <div className="text-center">
+                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-1">{t("after")}</p>
                     <div
-                      className="inline-flex flex-col items-center justify-center rounded-2xl p-4 w-full"
-                      style={{
-                        background: "#0C1C35",
-                        border: `1px solid ${result.delta > 0 ? "rgba(16,185,129,0.3)" : result.delta < 0 ? "rgba(239,68,68,0.3)" : "rgba(22,139,255,0.15)"}`,
-                        boxShadow: result.delta > 0
-                          ? "0 0 16px rgba(16,185,129,0.12)"
-                          : result.delta < 0
-                          ? "0 0 16px rgba(239,68,68,0.12)"
-                          : "none",
-                      }}
+                      className="text-4xl font-bold tabular-nums"
+                      style={{ color: result.delta >= 0 ? "#10b981" : "#ef4444" }}
                     >
-                      <span
-                        className="text-4xl font-bold tabular-nums"
-                        style={{ color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#EFF7FF" }}
-                      >
-                        {result.new_score != null ? result.new_score.toFixed(1) : "—"}
-                      </span>
-                      <span className="text-xs text-[#4A6080] mt-1">/ 100</span>
+                      {result.original_score} → {result.new_score}
                     </div>
-                    <div className="mt-2 flex justify-center"><RiskBadge label={result.new_label} size="sm" /></div>
+                    <div className="mt-2"><RiskBadge label={result.new_label} size="sm" /></div>
                   </div>
                 </div>
 
@@ -217,7 +193,7 @@ export default function SimulatorPage() {
                     result.delta > 0 ? "text-emerald-400" : result.delta < 0 ? "text-red-400" : "text-[#94A8C2]"
                   }`}>
                     Score change:{" "}
-                    {result.delta > 0 ? "+" : ""}{result.delta != null ? result.delta.toFixed(1) : "0"} points
+                    {result.delta > 0 ? "+" : ""}{result.delta != null ? result.delta : "0"} points
                   </span>
                 </div>
 
@@ -250,7 +226,7 @@ export default function SimulatorPage() {
               </div>
 
               <div className="glass-panel rounded-xl p-6">
-                <h3 className="text-sm font-semibold text-[#94A8C2] mb-3">Applied Values</h3>
+                <h3 className="text-sm font-semibold text-[#94A8C2] mb-3">{t("applied_values")}</h3>
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   {Object.entries(result.applied_multipliers || {}).map(([k, v]) => (
                     <div

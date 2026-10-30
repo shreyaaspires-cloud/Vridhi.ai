@@ -33,7 +33,7 @@ export function formatAuthError(error) {
 
   // 5. Invalid credentials
   if (lowerMsg.includes("invalid login credentials") || lowerMsg.includes("invalid credentials")) {
-    return "Invalid email or password. Please verify your credentials and try again.";
+    return "Invalid email or password. If you haven't created an account yet, switch to 'Create Account' below.";
   }
 
   // 6. Email confirmation required

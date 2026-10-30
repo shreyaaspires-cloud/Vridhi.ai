@@ -29,7 +29,7 @@ const NOTIFICATION_THRESHOLD = 0.5;
 
 
 function BorrowerPageContent() {
-  const { prediction, formData, chatContext, setPrediction } = useAssessment();
+  const { prediction, formData, lastFormPayload, chatContext, setPrediction } = useAssessment();
   const { user } = useAuth();
   const { t } = useLanguage();
   const resultsRef = useRef(null);
@@ -262,13 +262,14 @@ function BorrowerPageContent() {
     try {
       const payload = {
         business_name: prediction?.business_name || "MSME Borrower",
-        annual_income: (newVals.monthly_revenue || 600000) * 12,
-        requested_amount: newVals.requested_amount,
-        gst_compliance: newVals.gst_compliance,
+        income: (newVals.monthly_revenue || 600000) * 12,
+        loan_amount: newVals.requested_amount,
+        gst_compliance_rate: newVals.gst_compliance,
         monthly_upi_volume: newVals.monthly_upi_volume,
-        avg_bank_balance: newVals.bank_balance,
-        years_in_business: newVals.years_in_business,
         vendor_trust_score: newVals.vendor_trust_score,
+        sector_type: prediction?.sector_type || "Services",
+        afhi_score: prediction?.afhi_score || 70,
+        utility_delay_days: 5,
         loan_tenure_months: newVals.loan_tenure_months,
       };
       const res = await api.predict(payload);
@@ -327,17 +328,17 @@ function BorrowerPageContent() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#168BFF]/10 border border-[#168BFF]/25">
             <Sparkles size={14} className="text-[#168BFF]" />
             <span className="text-xs font-semibold uppercase tracking-wider text-[#168BFF]">
-              Powered by Explainable AI
+              {t("powered_by")}
             </span>
           </div>
           <h1
             className="text-3xl md:text-5xl font-bold text-[#EFF7FF] leading-tight"
             style={{ fontFamily: "'Space Grotesk', Inter, system-ui, sans-serif" }}
           >
-            Check Your Credit Eligibility
+            {t("hero_title")}
           </h1>
           <p className="text-[#94A8C2] text-base md:text-lg leading-relaxed">
-            Get a transparent, AI-powered credit score based on your actual business performance — not just your CIBIL score.
+            {t("hero_subtitle")}
           </p>
         </div>
       </section>
@@ -365,9 +366,9 @@ function BorrowerPageContent() {
                   : t("score_change_decreased")}
               </p>
               <p className="text-xs text-[#94A8C2] mt-0.5">
-                Score changed from{" "}
+                {t("score_changed_from")}{" "}
                 <span className="font-bold text-[#EFF7FF]">{Number(scoreNotification.prev).toFixed(1)}</span>
-                {" "}to{" "}
+                {" "}{t("score_changed_to")}{" "}
                 <span className={`font-bold ${scoreNotification.delta > 0 ? "text-emerald-400" : "text-red-400"}`}>
                   {Number(scoreNotification.curr).toFixed(1)}
                 </span>
@@ -394,13 +395,13 @@ function BorrowerPageContent() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-[#168BFF]" />
-              <h2 className="text-xl font-bold text-[#EFF7FF]">Previous Assessments</h2>
+              <h2 className="text-xl font-bold text-[#EFF7FF]">{t("previous_assessments")}</h2>
             </div>
             <button
               onClick={handleClearHistory}
               className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1 transition-base"
             >
-              <Trash2 size={13} /> Clear history
+              <Trash2 size={13} /> {t("clear_history")}
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -444,40 +445,6 @@ function BorrowerPageContent() {
         </div>
       </section>
 
-      {/* ── SECTION 2.5: DOCUMENT VERIFICATION PIPELINE (FEATURE 4) ───── */}
-      <section id="verification" className="max-w-7xl mx-auto space-y-6">
-        <div className="glass-panel p-6 md:p-8 rounded-2xl border border-[#168BFF]/20 space-y-6">
-          <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#168BFF]/15 border border-[#168BFF]/30 flex items-center justify-center text-[#55D9FF]">
-                <FileText size={20} />
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-[#EFF7FF]">
-                  {t("doc_verif_title")}
-                </h2>
-                <p className="text-xs text-[#94A8C2] mt-0.5">
-                  {t("doc_verif_sub")}
-                </p>
-              </div>
-            </div>
-            <span className="text-[11px] font-semibold text-[#55D9FF] bg-[#168BFF]/10 border border-[#168BFF]/25 px-2.5 py-1 rounded-full">
-              FEATURE 4 • AI OCR AUDIT
-            </span>
-          </div>
-          <DocumentVerification
-            submittedData={{
-              business_name: formData?.business_name || prediction?.business_name || "",
-              income: formData?.income || prediction?.income || 0,
-              monthly_upi_volume: formData?.monthly_upi_volume || prediction?.monthly_upi_volume || 0,
-              gst_compliance_rate: formData?.gst_compliance_rate || prediction?.gst_compliance_rate || 0,
-              sector_type: formData?.sector_type || prediction?.sector_type || "",
-              business_size: formData?.business_size || prediction?.business_size || "",
-            }}
-          />
-        </div>
-      </section>
-
       {/* ── POST-SUBMIT SECTIONS (SHOW ONLY AFTER SUBMIT) ─────────────── */}
       {prediction && (
         <div ref={resultsRef} className="space-y-12">
@@ -485,7 +452,7 @@ function BorrowerPageContent() {
           <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
             <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
               <div>
-                <h2 className="text-2xl font-bold text-[#EFF7FF]">Your Credit Assessment Result</h2>
+                <h2 className="text-2xl font-bold text-[#EFF7FF]">{t("score_result_title")}</h2>
                 <p className="text-sm text-[#94A8C2]">{prediction.business_name}</p>
               </div>
               <div className="flex items-center gap-3">
@@ -493,7 +460,7 @@ function BorrowerPageContent() {
                   onClick={handleDownloadAssessmentReport}
                   className="px-4 py-2 rounded-xl bg-[#168BFF] hover:bg-[#1278e0] text-white text-xs font-semibold flex items-center gap-2 transition-base shadow-md shadow-[#168BFF]/20"
                 >
-                  <Download size={14} /> Download Report
+                  <Download size={14} /> {t("download_report")}
                 </button>
                 <RiskBadge label={prediction.risk_label} size="lg" />
               </div>
@@ -504,9 +471,9 @@ function BorrowerPageContent() {
               <div className="lg:col-span-5 flex flex-col items-center">
                 <ScoreGauge score={prediction.risk_score} label={prediction.risk_label} />
                 <p className="text-center text-sm font-medium text-[#EFF7FF] mt-4 max-w-xs leading-relaxed">
-                  {prediction.risk_label === "LOW" && "Great news! Your business shows strong creditworthiness."}
-                  {prediction.risk_label === "MEDIUM" && "Your business shows moderate risk. See tips below to improve."}
-                  {prediction.risk_label === "HIGH" && "Your application needs improvement. Follow the tips below."}
+                  {prediction.risk_label === "LOW" && t("score_low_msg")}
+                  {prediction.risk_label === "MEDIUM" && t("score_medium_msg")}
+                  {prediction.risk_label === "HIGH" && t("score_high_msg")}
                 </p>
               </div>
 
@@ -520,26 +487,26 @@ function BorrowerPageContent() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <FileText className="w-5 h-5 text-[#168BFF]" />
-                  <h3 className="text-base font-semibold text-[#EFF7FF]">Loan Recommendation</h3>
+                  <h3 className="text-base font-semibold text-[#EFF7FF]">{t("loan_recommendation")}</h3>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="p-3.5 rounded-lg bg-[#070910] border border-[#168BFF]/15">
-                    <span className="text-xs text-[#94A8C2] uppercase font-medium">Eligible Amount</span>
+                    <span className="text-xs text-[#94A8C2] uppercase font-medium">{t("eligible_amount")}</span>
                     <p className="text-lg font-bold text-[#EFF7FF] mt-1">
                       {rec.suggested_amount ? formatCurrency(rec.suggested_amount) : "N/A"}
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-[#070910] border border-[#168BFF]/15">
-                    <span className="text-xs text-[#94A8C2] uppercase font-medium">Suggested Interest Rate</span>
+                    <span className="text-xs text-[#94A8C2] uppercase font-medium">{t("suggested_rate")}</span>
                     <p className="text-lg font-bold text-[#EFF7FF] mt-1">
                       {rec.interest_rate_range || "N/A"}
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-[#070910] border border-[#168BFF]/15">
-                    <span className="text-xs text-[#94A8C2] uppercase font-medium">Repayment Period</span>
+                    <span className="text-xs text-[#94A8C2] uppercase font-medium">{t("repayment_period")}</span>
                     <p className="text-lg font-bold text-[#EFF7FF] mt-1">
                       {rec.repayment_period_months ? `${rec.repayment_period_months} Months` : "N/A"}
                     </p>
@@ -548,7 +515,7 @@ function BorrowerPageContent() {
 
                 {rec.reasons && rec.reasons.length > 0 && (
                   <div className="pt-2">
-                    <p className="text-xs font-semibold text-[#94A8C2] uppercase mb-2">Key Drivers</p>
+                    <p className="text-xs font-semibold text-[#94A8C2] uppercase mb-2">{t("key_drivers")}</p>
                     <ul className="space-y-1.5">
                       {rec.reasons.map((r, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-[#EFF7FF]">
@@ -563,11 +530,43 @@ function BorrowerPageContent() {
             </div>
           </section>
 
+          {/* ── SECTION 3.5: DOCUMENT VERIFICATION PIPELINE (FEATURE 4) ───── */}
+          <section id="verification" className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
+            <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#168BFF]/15 border border-[#168BFF]/30 flex items-center justify-center text-[#55D9FF]">
+                  <FileText size={20} />
+                </div>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold text-[#EFF7FF]">
+                    {t("doc_verif_title")}
+                  </h2>
+                  <p className="text-xs text-[#94A8C2] mt-0.5">
+                    {t("doc_verif_sub")}
+                  </p>
+                </div>
+              </div>
+              <span className="text-[11px] font-semibold text-[#55D9FF] bg-[#168BFF]/10 border border-[#168BFF]/25 px-2.5 py-1 rounded-full">
+                FEATURE 4 • AI OCR AUDIT
+              </span>
+            </div>
+            <DocumentVerification
+              submittedData={{
+                business_name: lastFormPayload?.business_name || "",
+                annual_revenue: lastFormPayload?.income || 0,
+                monthly_upi_volume: lastFormPayload?.monthly_upi_volume || 0,
+                gst_compliance_rate: lastFormPayload?.gst_compliance_rate || 0,
+                sector_type: lastFormPayload?.sector_type || "",
+                business_size: lastFormPayload?.business_size || "",
+              }}
+            />
+          </section>
+
           {/* ── SECTION 4: EXPLAINABILITY PANEL ───────────────────────── */}
           <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
-            <h2 className="text-2xl font-bold text-[#EFF7FF]">Why did you get this score?</h2>
+            <h2 className="text-2xl font-bold text-[#EFF7FF]">{t("score_explanation_title")}</h2>
             <p className="text-sm text-[#94A8C2]">
-              Top 5 factors contributing to your score breakdown (SHAP TreeExplainer). Green bars boosted your score, red bars reduced it.
+              {t("score_explanation_sub")}
             </p>
 
             <div className="space-y-4">
@@ -605,7 +604,7 @@ function BorrowerPageContent() {
           <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
             <div className="flex items-center gap-2">
               <Lightbulb className="w-6 h-6 text-amber-400" />
-              <h2 className="text-2xl font-bold text-[#EFF7FF]">How to improve your score</h2>
+              <h2 className="text-2xl font-bold text-[#EFF7FF]">{t("improvement_tips")}</h2>
             </div>
             <p className="text-sm text-[#94A8C2]">
               Actionable steps tailored to your model's adverse risk factors to reach a higher credit tier.

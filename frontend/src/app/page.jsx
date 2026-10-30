@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-const CreditCoin3D = dynamic(
-  () => import("../components/CreditCoin3D"),
-  { ssr: false, loading: () => (
-    <div className="w-full h-48 rounded-2xl bg-[#0C1C35] animate-pulse" />
-  )}
-);
+import CreditCoin3D from "../components/CreditCoin3D";
 import {
   ArrowRight, User, Building2, FileSearch, ShieldCheck,
   Zap, BarChart3, Layers, Scale, Sparkles, SlidersHorizontal,
@@ -156,38 +151,9 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 flex flex-col items-start text-left space-y-5">
-            {showWebGL ? (
-              <div
-                aria-label="Vridhi.ai"
-                className="mb-1"
-                style={{ width: "min(320px, 60vw)", height: "min(90px, 16vw)" }}
-              >
-                <ElectricLogo
-                  src="/vridhi-logo.svg"
-                  color="#C8F3FF"
-                  glowColor="#168BFF"
-                  scale={0.6}
-                  intensity={0.9}
-                  glow={1.1}
-                  thickness={1.4}
-                  strands={3}
-                  bend={0.5}
-                  crackle={1.2}
-                  arcs={1}
-                  flicker={0.45}
-                  fill={0}
-                  speed={2.2}
-                  interactive={true}
-                  cursorIntensity={0.65}
-                  cursorRadius={90}
-                  theme="dark"
-                />
-              </div>
-            ) : (
-              <div className="mb-1">
-                <Image src="/vridhi-logo.svg" alt="Vridhi.ai" width={200} height={50} priority />
-              </div>
-            )}
+            <div className="mb-1">
+              <Image src="/vridhi-logo.svg" alt="Vridhi.ai" width={200} height={50} priority />
+            </div>
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#168BFF]/10 border border-[#168BFF]/25">
               <Sparkles size={13} className="text-[#168BFF]" />

@@ -152,31 +152,6 @@ export default function CreditCoin3D() {
           </div>
         ))}
       </div>
-
-      {/* Fluid 3D Rotation Keyframes */}
-      <style jsx global>{`
-        @keyframes videoCoinFloat {
-          0% {
-            transform: rotateY(0deg) rotateX(20deg) translateY(0px);
-          }
-          25% {
-            transform: rotateY(90deg) rotateX(12deg) translateY(-12px);
-          }
-          50% {
-            transform: rotateY(180deg) rotateX(6deg) translateY(-20px);
-          }
-          75% {
-            transform: rotateY(270deg) rotateX(12deg) translateY(-8px);
-          }
-          100% {
-            transform: rotateY(360deg) rotateX(20deg) translateY(0px);
-          }
-        }
-
-        .animate-video-coin-float {
-          animation: videoCoinFloat 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-      `}</style>
     </div>
   );
 }

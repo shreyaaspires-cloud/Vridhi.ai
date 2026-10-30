@@ -70,7 +70,7 @@ function computeAnnualRevenue(parsedMonths) {
 }
 
 export default function AssessmentForm() {
-  const { submitPrediction, setLoading, setError, loading, error } =
+  const { submitPrediction, setLastFormPayload, setLoading, setError, loading, error } =
     useAssessment();
   const { t } = useLanguage();
   const [form, setForm] = useState(DEFAULTS);
@@ -161,6 +161,9 @@ export default function AssessmentForm() {
       toast.error(result.error);
     } else {
       submitPrediction(result.data, payload);
+      if (setLastFormPayload) {
+        setLastFormPayload(payload);
+      }
       toast.success("Assessment complete! Credit score generated.");
     }
   };
@@ -176,13 +179,13 @@ export default function AssessmentForm() {
       {/* Model Inputs */}
       <div className="glass-panel rounded-xl p-6">
         <h2 className="text-base font-semibold text-[#EFF7FF] mb-0.5">
-          {t("model_inputs_title")}
+          {t("model_inputs")}
         </h2>
         <p className="text-sm text-[#4A6080] mb-5">
-          {t("model_inputs_desc")}
+          {t("model_inputs_sub")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field label="Business Name" modelInput={false}>
+          <Field label={t("business_name")} modelInput={false}>
             <input
               className={inputClass}
               value={form.business_name}
@@ -190,7 +193,7 @@ export default function AssessmentForm() {
               placeholder="e.g. Sri Balaji Enterprises"
             />
           </Field>
-          <Field label="Sector Type" modelInput>
+          <Field label={t("sector_type")} modelInput>
             <select
               className={inputClass}
               value={form.sector_type}
@@ -201,7 +204,7 @@ export default function AssessmentForm() {
               ))}
             </select>
           </Field>
-          <Field label="Annual Income (INR)" modelInput hint="Annual business income">
+          <Field label={t("annual_income")} modelInput hint="Annual business income">
             <input
               type="number"
               className={inputClass}
@@ -211,7 +214,7 @@ export default function AssessmentForm() {
               min={0}
             />
           </Field>
-          <Field label="Loan Amount (INR)" modelInput hint="Requested loan amount">
+          <Field label={t("loan_amount")} modelInput hint="Requested loan amount">
             <input
               type="number"
               className={inputClass}
@@ -221,7 +224,7 @@ export default function AssessmentForm() {
               min={0}
             />
           </Field>
-          <Field label="GST Compliance Rate (%)" modelInput hint="0–100">
+          <Field label={t("gst_compliance")} modelInput hint="0–100">
             <input
               type="number"
               className={inputClass}
@@ -232,7 +235,7 @@ export default function AssessmentForm() {
               max={100}
             />
           </Field>
-          <Field label="Monthly UPI Volume (INR)" modelInput hint="Monthly UPI transaction volume">
+          <Field label={t("monthly_upi")} modelInput hint="Monthly UPI transaction volume">
             <input
               type="number"
               className={inputClass}
@@ -242,7 +245,7 @@ export default function AssessmentForm() {
               min={0}
             />
           </Field>
-          <Field label="Utility Delay Days" modelInput hint="Average delay in utility bill payments">
+          <Field label={t("utility_delay")} modelInput hint="Average delay in utility bill payments">
             <input
               type="number"
               className={inputClass}
@@ -252,7 +255,7 @@ export default function AssessmentForm() {
               min={0}
             />
           </Field>
-          <Field label="Vendor Trust Score" modelInput hint="0–100">
+          <Field label={t("vendor_trust")} modelInput hint="0–100">
             <input
               type="number"
               className={inputClass}
@@ -263,7 +266,7 @@ export default function AssessmentForm() {
               max={100}
             />
           </Field>
-          <Field label="AFHI Score" modelInput hint="Alternative Financial Health Index (0–100)">
+          <Field label={t("afhi_score")} modelInput hint="Alternative Financial Health Index (0–100)">
             <input
               type="number"
               className={inputClass}
@@ -280,13 +283,13 @@ export default function AssessmentForm() {
       {/* Metadata / Audit Inputs */}
       <div className="glass-panel rounded-xl p-6">
         <h2 className="text-base font-semibold text-[#EFF7FF] mb-0.5">
-          Metadata &amp; Audit Inputs
+          {t("metadata_inputs")}
         </h2>
         <p className="text-sm text-[#4A6080] mb-5">
-          These fields are used for display, segmentation, fairness analysis, and forecasting — NOT as model inputs.
+          {t("metadata_inputs_sub")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Field label="Owner Gender">
+          <Field label={t("owner_gender")}>
             <select
               className={inputClass}
               value={form.owner_gender}
@@ -297,7 +300,7 @@ export default function AssessmentForm() {
               ))}
             </select>
           </Field>
-          <Field label="Region">
+          <Field label={t("region")}>
             <select
               className={inputClass}
               value={form.region}
@@ -308,7 +311,7 @@ export default function AssessmentForm() {
               ))}
             </select>
           </Field>
-          <Field label="Business Size">
+          <Field label={t("business_size")}>
             <select
               className={inputClass}
               value={form.business_size}
@@ -319,7 +322,7 @@ export default function AssessmentForm() {
               ))}
             </select>
           </Field>
-          <Field label="Years in Operation">
+          <Field label={t("years_operation")}>
             <input
               type="number"
               className={inputClass}
@@ -328,7 +331,7 @@ export default function AssessmentForm() {
               min={0}
             />
           </Field>
-          <Field label="Employee Count">
+          <Field label={t("employee_count")}>
             <input
               type="number"
               className={inputClass}
@@ -343,7 +346,10 @@ export default function AssessmentForm() {
           <div className="space-y-2">
             <div className="flex items-start gap-2">
               <label className="block text-sm font-medium text-[#94A8C2]">
-                Monthly Revenue History (last 12 months, comma-separated)
+                {t("revenue_history")}
+                <span className="ml-2 text-[10px] text-amber-400 bg-amber-400/10 border border-amber-400/20 px-1.5 py-0.5 rounded">
+                  NOT A SCORE INPUT
+                </span>
               </label>
             </div>
 
@@ -373,8 +379,7 @@ export default function AssessmentForm() {
               aria-describedby="revenue-hint"
             />
             <p id="revenue-hint" className="text-xs text-[#4A6080]">
-              Provide 12 comma-separated monthly values (January → December) for the cash-flow forecast.
-              Partial entries (6–11 months) are accepted for forecasting but annual revenue won't be computed until all 12 are provided.
+              {t("revenue_hint")}
             </p>
 
             {/* Annual Revenue Derived Display */}
@@ -441,10 +446,10 @@ export default function AssessmentForm() {
         {loading ? (
           <>
             <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            {t("analyzing_btn")}
+            {t("submitting")}
           </>
         ) : (
-          t("assess_btn")
+          t("submit_assessment")
         )}
       </button>
     </form>

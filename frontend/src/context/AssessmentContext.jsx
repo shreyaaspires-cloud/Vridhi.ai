@@ -7,6 +7,7 @@ const AssessmentContext = createContext(null);
 export function AssessmentProvider({ children }) {
   const [prediction, setPrediction] = useState(null);
   const [formData, setFormData] = useState(null);
+  const [lastFormPayload, setLastFormPayload] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [chatContext, setChatContext] = useState({});
@@ -31,6 +32,7 @@ export function AssessmentProvider({ children }) {
   const clearPrediction = useCallback(() => {
     setPrediction(null);
     setFormData(null);
+    setLastFormPayload(null);
     setError(null);
     setChatContext({});
   }, []);
@@ -40,10 +42,12 @@ export function AssessmentProvider({ children }) {
       value={{
         prediction,
         formData,
+        lastFormPayload,
         loading,
         error,
         chatContext,
         setFormData,
+        setLastFormPayload,
         setLoading,
         setError,
         setPrediction,
