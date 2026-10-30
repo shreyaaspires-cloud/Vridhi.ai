@@ -2,13 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { api } from "../../lib/api";
-import { Users, TrendingUp, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Users, TrendingUp, CheckCircle2, AlertTriangle, Download } from "lucide-react";
 import KpiCard from "../../components/KpiCard";
 import {
   ResponsiveContainer, ScatterChart, Scatter,
   XAxis, YAxis, CartesianGrid, Tooltip, ZAxis, Legend,
 } from "recharts";
 import RiskBadge from "../../components/RiskBadge";
+import { useLanguage } from "../../context/LanguageContext";
+import { generatePortfolioReportPdf } from "../../lib/pdfReportGenerator";
+import toast from "react-hot-toast";
 
 const RISK_COLORS = { LOW: "#10b981", MEDIUM: "#f59e0b", HIGH: "#ef4444" };
 
@@ -25,9 +28,11 @@ const CHART_DARK = {
 };
 
 export default function PortfolioPage() {
+  const { t } = useLanguage();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error,   setError]   = useState(null);
+  const [isExporting, setIsExporting] = useState(false);
   const [filters, setFilters] = useState({ sector: "all", region: "all", size: "all", x: "income", y: "risk_score" });
 
   useEffect(() => { load(); }, [filters]);
@@ -44,6 +49,30 @@ export default function PortfolioPage() {
     setLoading(false);
     if (result.error) setError(result.error);
     else              setData(result.data);
+  };
+
+  const handleDownloadPortfolioReport = () => {
+    if (!data || !data.points || data.points.length === 0) {
+      toast.error(t("no_portfolio_data") || "No portfolio data available to download.");
+      return;
+    }
+    setIsExporting(true);
+    try {
+      generatePortfolioReportPdf({
+        portfolioData: data,
+        filters: {
+          sector: filters.sector === "all" ? "All" : filters.sector,
+          region: filters.region === "all" ? "All" : filters.region,
+          size: filters.size === "all" ? "All" : filters.size,
+        },
+      });
+      toast.success("Portfolio report PDF downloaded successfully.");
+    } catch (err) {
+      console.error("Failed to generate portfolio PDF:", err);
+      toast.error("Failed to generate portfolio PDF report.");
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   if (loading && !data) {
@@ -67,36 +96,47 @@ export default function PortfolioPage() {
     business: p.business, sector: p.sector, region: p.region,
   }));
 
-  const selectClass =
-    "dark-input";
+  const selectClass = "dark-input";
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1
-          className="text-2xl font-bold text-[#EFF7FF]"
-          style={{ fontFamily: "'Space Grotesk', Inter, system-ui, sans-serif" }}
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1
+            className="text-2xl font-bold text-[#EFF7FF]"
+            style={{ fontFamily: "'Space Grotesk', Inter, system-ui, sans-serif" }}
+          >
+            {t("portfolio_title")}
+          </h1>
+          <p className="text-sm text-[#94A8C2] mt-1">{t("portfolio_sub")}</p>
+        </div>
+
+        {/* Change 5: Download Full Portfolio Report Button in Portfolio Section */}
+        <button
+          onClick={handleDownloadPortfolioReport}
+          disabled={isExporting || (data.points || []).length === 0}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#168BFF] hover:bg-[#1278e0] text-white font-semibold text-sm transition-base shadow-lg shadow-[#168BFF]/20 border border-[#168BFF]/30 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
-          Portfolio &amp; Segmentation
-        </h1>
-        <p className="text-sm text-[#94A8C2] mt-1">Risk distribution across the MSME portfolio</p>
+          <Download size={16} />
+          {isExporting ? t("downloading_portfolio_pdf") : t("download_portfolio_pdf")}
+        </button>
       </div>
 
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        <KpiCard title="Total Businesses" value={data.total}             icon={Users}         color="blue" />
-        <KpiCard title="Avg Score"        value={data.average_score}     icon={TrendingUp}    color="slate" />
-        <KpiCard title="LOW"              value={data.LOW}               icon={CheckCircle2}  color="emerald" />
-        <KpiCard title="HIGH"             value={data.HIGH}              icon={AlertTriangle} color="red" />
-        <KpiCard title="Approval Rate"    value={`${data.approval_rate}%`} icon={CheckCircle2} color="emerald" />
+        <KpiCard title={t("total_businesses")} value={data.total}             icon={Users}         color="blue" />
+        <KpiCard title={t("avg_score")}        value={data.average_score}     icon={TrendingUp}    color="slate" />
+        <KpiCard title={t("low_risk")}         value={data.LOW}               icon={CheckCircle2}  color="emerald" />
+        <KpiCard title={t("high_risk")}        value={data.HIGH}              icon={AlertTriangle} color="red" />
+        <KpiCard title={t("approval_rate")}    value={`${data.approval_rate}%`} icon={CheckCircle2} color="emerald" />
       </div>
 
       {/* Filters */}
       <div className="glass-panel rounded-xl p-4 flex flex-wrap gap-3 items-end">
         {[
-          { key: "sector", label: "Sector",        opts: data.available_sectors || [] },
-          { key: "region", label: "Region",        opts: data.available_regions || [] },
-          { key: "size",   label: "Business Size", opts: data.available_sizes   || [] },
+          { key: "sector", label: t("filter_sector"), opts: data.available_sectors || [] },
+          { key: "region", label: t("filter_region"), opts: data.available_regions || [] },
+          { key: "size",   label: t("filter_size"),   opts: data.available_sizes   || [] },
         ].map(({ key, label, opts }) => (
           <div key={key}>
             <label className="block text-xs font-medium text-[#4A6080] mb-1">{label}</label>
@@ -106,13 +146,13 @@ export default function PortfolioPage() {
               value={filters[key]}
               onChange={(e) => setFilters({ ...filters, [key]: e.target.value })}
             >
-              <option value="all">All</option>
+              <option value="all">{t("all")}</option>
               {opts.map((o) => <option key={o} value={o}>{o}</option>)}
             </select>
           </div>
         ))}
         <div>
-          <label className="block text-xs font-medium text-[#4A6080] mb-1">X Axis</label>
+          <label className="block text-xs font-medium text-[#4A6080] mb-1">{t("filter_x")}</label>
           <select
             className={selectClass}
             style={{ width: "auto", minWidth: 110 }}
@@ -125,7 +165,7 @@ export default function PortfolioPage() {
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-[#4A6080] mb-1">Y Axis</label>
+          <label className="block text-xs font-medium text-[#4A6080] mb-1">{t("filter_y")}</label>
           <select
             className={selectClass}
             style={{ width: "auto", minWidth: 110 }}
@@ -145,7 +185,7 @@ export default function PortfolioPage() {
           {filters.x.replace(/_/g, " ")} vs {filters.y.replace(/_/g, " ")}
         </h3>
         {scatterData.length === 0 ? (
-          <p className="text-center text-[#4A6080] py-12">No data for the selected filters.</p>
+          <p className="text-center text-[#4A6080] py-12">{t("no_portfolio_data")}</p>
         ) : (
           <ResponsiveContainer width="100%" height={400}>
             <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: 20 }}>
@@ -203,7 +243,7 @@ export default function PortfolioPage() {
                   style={{ width: `${pct}%`, backgroundColor: RISK_COLORS[label] }}
                 />
               </div>
-              <p className="text-xs text-[#4A6080] mt-2">{pct}% of portfolio</p>
+              <p className="text-xs text-[#4A6080] mt-2">{pct}{t("pct_of_portfolio")}</p>
             </div>
           );
         })}

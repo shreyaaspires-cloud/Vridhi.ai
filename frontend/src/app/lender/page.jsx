@@ -8,25 +8,21 @@ import RiskBadge from "../../components/RiskBadge";
 import LenderNotesPanel from "../../components/LenderNotesPanel";
 import { api } from "../../lib/api";
 import { formatCurrency } from "../../lib/utils";
+import { useLanguage } from "../../context/LanguageContext";
 import toast from "react-hot-toast";
 import {
-  Building2, Users, Shield, AlertTriangle, Download, Upload,
-  Search, Scale, BarChart2, Filter, FileSpreadsheet, ChevronLeft, ChevronRight
+  Building2, Users, Shield, AlertTriangle, Upload,
+  Search, Scale, BarChart2
 } from "lucide-react";
 import {
-  ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid,
-  BarChart, Bar, Legend
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid
 } from "recharts";
 
 function LenderPageContent() {
+  const { t } = useLanguage();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Filters for scatter plot
-  const [sectorFilter, setSectorFilter] = useState("ALL");
-  const [regionFilter, setRegionFilter] = useState("ALL");
-  const [sizeFilter, setSizeFilter] = useState("ALL");
 
   // Search state for individual business lookup
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,17 +41,9 @@ function LenderPageContent() {
         if (segRes.data) setData(segRes.data);
         if (fairRes.data) setFairnessData(fairRes.data);
       })
-      .catch((err) => setError("Failed to load lender intelligence data."))
+      .catch(() => setError("Failed to load lender intelligence data."))
       .finally(() => setLoading(false));
   }, []);
-
-  // Filtered scatter plot items
-  const scatterItems = (data?.businesses || []).filter((b) => {
-    if (sectorFilter !== "ALL" && b.sector !== sectorFilter) return false;
-    if (regionFilter !== "ALL" && b.region !== regionFilter) return false;
-    if (sizeFilter !== "ALL" && b.size !== sizeFilter) return false;
-    return true;
-  });
 
   // Handle business search
   const handleSearch = (e) => {
@@ -63,48 +51,40 @@ function LenderPageContent() {
     if (!searchTerm.trim()) return;
     setSearchDone(true);
     const term = searchTerm.toLowerCase().trim();
-    const found = (data?.businesses || []).find(
-      (b) => b.name?.toLowerCase().includes(term) || String(b.id) === term
+    const found = (data?.points || []).find(
+      (b) => (b.business || b.name || "")?.toLowerCase().includes(term) || String(b.id) === term
     );
-    setSearchedBusiness(found || null);
+    setSearchedBusiness(found ? {
+      name: found.business || found.name || "MSME Business",
+      sector: found.sector || "N/A",
+      region: found.region || "N/A",
+      size: found.size || "N/A",
+      score: found.risk_score || found.score || 0,
+      risk_label: found.risk_label || (found.risk_score >= 60 ? "LOW" : found.risk_score >= 40 ? "MEDIUM" : "HIGH"),
+      id: found.id || found.business || "ID-1"
+    } : null);
   };
 
-  // CSV Report Download
-  const handleDownloadReport = () => {
-    const list = data?.businesses || [];
-    if (list.length === 0) {
-      alert("No portfolio data available to download.");
-      return;
-    }
-    const headers = ["Business Name", "Credit Score", "Risk Label", "Sector", "Region", "Size", "Suggested Loan Amount"];
-    const rows = list.map((b) => [
-      `"${(b.name || "MSME Business").replace(/"/g, '""')}"`,
-      b.score,
-      b.risk_label,
-      `"${(b.sector || "N/A").replace(/"/g, '""')}"`,
-      `"${(b.region || "N/A").replace(/"/g, '""')}"`,
-      `"${(b.size || "N/A").replace(/"/g, '""')}"`,
-      b.suggested_amount || 0,
-    ]);
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-64 text-[#94A8C2]">
+        <div className="w-8 h-8 border-2 border-[#168BFF]/20 border-t-[#168BFF] rounded-full animate-spin mr-3" />
+        {t("loading")}
+      </div>
+    );
+  }
 
-    const csvString = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
-    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", `Vridhi_Lender_Portfolio_Report_${new Date().toISOString().slice(0, 10)}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
-
-  if (loading) return <div className="flex items-center justify-center min-h-64 text-[#94A8C2]">Loading lender dashboard...</div>;
-  if (error) return <div className="flex items-center justify-center min-h-64 text-red-400">{error}</div>;
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-64 text-red-400">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-12 pb-16">
-      {/* ── SECTION 1: HERO BANNER ───────────────────────────────────── */}
+      {/* ── SECTION 1: HERO BANNER ────────────────────────────────────────── */}
       <section
         className="rounded-3xl p-8 md:p-12 relative overflow-hidden"
         style={{
@@ -116,165 +96,78 @@ function LenderPageContent() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#168BFF]/10 border border-[#168BFF]/25">
             <Building2 size={14} className="text-[#168BFF]" />
             <span className="text-xs font-semibold uppercase tracking-wider text-[#168BFF]">
-              For Banks & NBFCs
+              {t("lender_badge")}
             </span>
           </div>
           <h1
             className="text-3xl md:text-5xl font-bold text-[#EFF7FF] leading-tight"
             style={{ fontFamily: "'Space Grotesk', Inter, system-ui, sans-serif" }}
           >
-            Lender Intelligence Dashboard
+            {t("lender_hero_title")}
           </h1>
           <p className="text-[#94A8C2] text-base md:text-lg leading-relaxed">
-            Assess, segment, and manage MSME credit risk across your entire portfolio with explainable AI.
+            {t("lender_hero_sub")}
           </p>
         </div>
       </section>
 
-      {/* ── SECTION 2: PORTFOLIO KPI STRIP ──────────────────────────── */}
+      {/* ── SECTION 2: PORTFOLIO KPI STRIP ──────────────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard
-          title="Total Assessed"
+          title={t("total_assessed")}
           value={data?.total_count ?? data?.total ?? 0}
-          subtitle="MSME Applications"
+          subtitle={t("msme_apps")}
           icon={Users}
           color="blue"
         />
         <KpiCard
-          title="Low Risk"
+          title={t("low_risk")}
           value={data?.risk_counts?.LOW ?? data?.LOW ?? 0}
-          subtitle="Approved / Preferential Rate"
+          subtitle={t("low_risk_sub")}
           icon={Shield}
           color="emerald"
         />
         <KpiCard
-          title="Medium Risk"
+          title={t("medium_risk")}
           value={data?.risk_counts?.MEDIUM ?? data?.MEDIUM ?? 0}
-          subtitle="Conditional Review"
+          subtitle={t("medium_risk_sub")}
           icon={AlertTriangle}
           color="amber"
         />
         <KpiCard
-          title="High Risk"
+          title={t("high_risk")}
           value={data?.risk_counts?.HIGH ?? data?.HIGH ?? 0}
-          subtitle="High Default Probability"
+          subtitle={t("high_risk_sub")}
           icon={AlertTriangle}
           color="red"
         />
       </section>
 
-      {/* ── SECTION 3: BATCH ASSESSMENT REDIRECT ── */}
+      {/* ── SECTION 3: BATCH ASSESSMENT REDIRECT ────────────────────────────── */}
       <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-4">
         <div className="flex items-center gap-3">
           <Upload className="w-6 h-6 text-[#168BFF]" />
-          <h2 className="text-xl font-bold text-[#EFF7FF]">Batch Assessment</h2>
+          <h2 className="text-xl font-bold text-[#EFF7FF]">{t("batch_title")}</h2>
         </div>
         <p className="text-sm text-[#94A8C2]">
-          Upload a CSV file with multiple MSME applications and receive instant batch credit risk scores.
+          {t("batch_desc")}
         </p>
         <Link
           href="/batch"
           className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#168BFF] hover:bg-[#1278e0] text-white text-sm font-semibold transition-colors"
         >
-          <Upload size={16} /> Go to Batch Scoring →
+          <Upload size={16} /> {t("go_to_batch")}
         </Link>
       </section>
 
-      {/* ── SECTION 4: RISK SEGMENTATION SCATTER PLOT ───────────────── */}
-      <section id="portfolio" className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <div>
-            <h2 className="text-2xl font-bold text-[#EFF7FF]">Portfolio Risk Map</h2>
-            <p className="text-xs text-[#94A8C2] mt-0.5">
-              Interactive credit score vs requested loan amount scatter plot across sectors and regions.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 text-xs">
-            <button
-              onClick={handleDownloadReport}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#168BFF] hover:bg-[#1278e0] text-white font-medium transition-base"
-            >
-              <Download size={14} /> Download Portfolio Report
-            </button>
-
-            <select
-              value={sectorFilter}
-              onChange={(e) => setSectorFilter(e.target.value)}
-              className="bg-[#070910] border border-[#168BFF]/25 text-[#EFF7FF] rounded-lg px-3 py-1.5 focus:outline-none"
-            >
-              <option value="ALL">All Sectors</option>
-              <option value="Textiles">Textiles</option>
-              <option value="Retail">Retail</option>
-              <option value="Manufacturing">Manufacturing</option>
-              <option value="Services">Services</option>
-            </select>
-
-            <select
-              value={regionFilter}
-              onChange={(e) => setRegionFilter(e.target.value)}
-              className="bg-[#070910] border border-[#168BFF]/25 text-[#EFF7FF] rounded-lg px-3 py-1.5 focus:outline-none"
-            >
-              <option value="ALL">All Regions</option>
-              <option value="North">North</option>
-              <option value="South">South</option>
-              <option value="West">West</option>
-              <option value="East">East</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="h-80 w-full bg-[#070910] rounded-xl p-4 border border-white/5">
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: 10 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a2540" />
-              <XAxis
-                type="number"
-                dataKey="score"
-                name="Credit Score"
-                domain={[0, 100]}
-                stroke="#94A8C2"
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis
-                type="number"
-                dataKey="suggested_amount"
-                name="Loan Amount"
-                stroke="#94A8C2"
-                tickFormatter={(v) => `${(v / 100000).toFixed(0)}L`}
-                tick={{ fontSize: 11 }}
-              />
-              <Tooltip
-                contentStyle={{
-                  background: "#0C1C35",
-                  border: "1px solid rgba(22,139,255,0.2)",
-                  color: "#EFF7FF",
-                  borderRadius: 8,
-                }}
-                formatter={(val, name) => [
-                  name === "Loan Amount" ? formatCurrency(val) : val,
-                  name,
-                ]}
-              />
-              <Scatter data={scatterItems} fill="#168BFF">
-                {scatterItems.map((entry, index) => {
-                  const color = entry.risk_label === "LOW" ? "#10b981" : entry.risk_label === "MEDIUM" ? "#f59e0b" : "#ef4444";
-                  return <Cell key={`cell-${index}`} fill={color} />;
-                })}
-              </Scatter>
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
-      </section>
-
-      {/* ── SECTION 5: FAIRNESS & BIAS REPORT ───────────────────────── */}
+      {/* ── SECTION 4: FAIRNESS & BIAS REPORT ──────────────────────────────── */}
       <section id="fairness" className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-2">
           <Scale className="w-6 h-6 text-[#168BFF]" />
           <div>
-            <h2 className="text-2xl font-bold text-[#EFF7FF]">Regulatory Fairness Report</h2>
+            <h2 className="text-2xl font-bold text-[#EFF7FF]">{t("regulatory_fairness")}</h2>
             <p className="text-xs text-[#94A8C2] mt-0.5">
-              Demographic approval rate comparisons to monitor AI lending model equality.
+              {t("fairness_sub")}
             </p>
           </div>
         </div>
@@ -283,9 +176,9 @@ function LenderPageContent() {
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div className="text-xs space-y-1">
-            <p className="font-semibold text-amber-300">RBI Compliance & Demographic Fairness Monitor</p>
+            <p className="font-semibold text-amber-300">{t("rbi_compliance_title")}</p>
             <p className="text-[#94A8C2]">
-              All demographic sub-groups (gender, region, firm size) are within the acceptable variance threshold (&lt;15% deviation). Model complies with fair lending standards.
+              {t("rbi_compliance_desc")}
             </p>
           </div>
         </div>
@@ -293,7 +186,7 @@ function LenderPageContent() {
         {/* Fairness Approval Rate Charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-[#070910] p-4 rounded-xl border border-white/5 space-y-2">
-            <h3 className="text-xs font-semibold text-[#EFF7FF]">Approval Rate by Region</h3>
+            <h3 className="text-xs font-semibold text-[#EFF7FF]">{t("approval_by_region")}</h3>
             <div className="h-52">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={fairnessData?.by_region || [
@@ -312,7 +205,7 @@ function LenderPageContent() {
           </div>
 
           <div className="bg-[#070910] p-4 rounded-xl border border-white/5 space-y-2">
-            <h3 className="text-xs font-semibold text-[#EFF7FF]">Approval Rate by Ownership Gender</h3>
+            <h3 className="text-xs font-semibold text-[#EFF7FF]">{t("approval_by_gender")}</h3>
             <div className="h-52">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={fairnessData?.by_gender || [
@@ -331,22 +224,22 @@ function LenderPageContent() {
         </div>
       </section>
 
-      {/* ── SECTION 6: INDIVIDUAL BUSINESS LOOKUP ────────────────────── */}
+      {/* ── SECTION 5: INDIVIDUAL BUSINESS LOOKUP ──────────────────────────── */}
       <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
-        <h2 className="text-2xl font-bold text-[#EFF7FF]">Look Up a Business</h2>
+        <h2 className="text-2xl font-bold text-[#EFF7FF]">{t("lookup_title")}</h2>
         <form onSubmit={handleSearch} className="flex gap-2 max-w-lg">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Enter Business Name or ID..."
+            placeholder={t("lookup_placeholder")}
             className="flex-1 bg-[#070910] border border-[#168BFF]/30 text-[#EFF7FF] placeholder-[#94A8C2] rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#168BFF]"
           />
           <button
             type="submit"
             className="px-5 py-2.5 rounded-xl bg-[#168BFF] hover:bg-[#1278e0] text-white text-sm font-medium transition-base flex items-center gap-2"
           >
-            <Search size={16} /> Search
+            <Search size={16} /> {t("search")}
           </button>
         </form>
 
@@ -358,16 +251,16 @@ function LenderPageContent() {
                   <div>
                     <h3 className="font-bold text-[#EFF7FF] text-base">{searchedBusiness.name}</h3>
                     <p className="text-xs text-[#94A8C2] mt-1">
-                      Sector: {searchedBusiness.sector} | Region: {searchedBusiness.region} | Size: {searchedBusiness.size}
+                      {t("filter_sector")}: {searchedBusiness.sector} | {t("filter_region")}: {searchedBusiness.region} | {t("filter_size")}: {searchedBusiness.size}
                     </p>
                     <p className="text-sm font-bold text-[#EFF7FF] mt-2">
-                      Score: {searchedBusiness.score} / 100
+                      {t("score_label")}: {searchedBusiness.score} / 100
                     </p>
                   </div>
                   <RiskBadge label={searchedBusiness.risk_label} size="lg" />
                 </div>
 
-                {/* Lender Underwriting Notes for this Borrower (Feature E) */}
+                {/* Lender Underwriting Notes for this Borrower */}
                 <LenderNotesPanel
                   businessName={searchedBusiness.name}
                   scoreHistoryId={searchedBusiness.id}
@@ -375,21 +268,11 @@ function LenderPageContent() {
               </>
             ) : (
               <div className="p-4 rounded-xl bg-[#070910] border border-white/10 text-xs text-[#94A8C2]">
-                No record found. Use the assessment form to add this business.
+                {t("no_record_found")}
               </div>
             )}
           </div>
         )}
-      </section>
-
-      {/* ── SECTION 7: DOWNLOAD REPORT BUTTON ────────────────────────── */}
-      <section className="flex justify-center pt-4">
-        <button
-          onClick={handleDownloadReport}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-[#168BFF] hover:bg-[#1278e0] text-white font-bold text-base transition-base shadow-xl shadow-[#168BFF]/25 border border-[#168BFF]/40"
-        >
-          <Download size={20} /> Download Full Portfolio Report
-        </button>
       </section>
     </div>
   );

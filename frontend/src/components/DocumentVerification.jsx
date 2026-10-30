@@ -101,10 +101,10 @@ export default function DocumentVerification({ submittedData = {} }) {
         toast.error(res.error);
       } else {
         setResult(res.data);
-        if (res.data.status === "VERIFIED") {
-          toast.success("Document verified successfully!");
+        if (res.data.status === "VERIFIED" || res.data.status === "VERIFIED_DEMO") {
+          toast.success(res.data.message || "Verified (Demo Mode) — Document verified successfully!");
         } else if (res.data.status === "PARTIALLY_VERIFIED") {
-          toast("Document partially verified with notes", { icon: "ℹ️" });
+          toast("Document partially verified with notes", { icon: "👍" });
         } else {
           toast("Verification needs manual review", { icon: "⚠️" });
         }
@@ -135,6 +135,14 @@ export default function DocumentVerification({ submittedData = {} }) {
 
   const getStatusBadge = (status) => {
     switch (status) {
+      case "VERIFIED_DEMO":
+        return {
+          bg: "rgba(16,185,129,0.15)",
+          border: "rgba(16,185,129,0.4)",
+          text: "#10B981",
+          icon: <ShieldCheck className="w-4 h-4" />,
+          label: "Verified (Demo Mode)",
+        };
       case "VERIFIED":
         return {
           bg: "rgba(16,185,129,0.15)",

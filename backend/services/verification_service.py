@@ -52,6 +52,7 @@ STATUS_NEEDS_REVIEW = "needs_review"
 OVERALL_PENDING = "PENDING"
 OVERALL_IN_PROGRESS = "IN_PROGRESS"
 OVERALL_VERIFIED = "VERIFIED"
+OVERALL_VERIFIED_DEMO = "VERIFIED_DEMO"
 OVERALL_PARTIALLY_VERIFIED = "PARTIALLY_VERIFIED"
 OVERALL_NEEDS_REVIEW = "NEEDS_REVIEW"
 OVERALL_REJECTED = "REJECTED"
@@ -62,6 +63,10 @@ DISCLAIMER = (
     "Automated document and data consistency checks are indicative only. "
     "They do not independently establish document authenticity, verify legal "
     "compliance, or constitute a credit-scoring or lending decision."
+)
+DEMO_DISCLAIMER = (
+    "DEMO / SIMULATION MODE: Document verification has been simulated as successful for presentation and demonstration purposes. "
+    "This does not represent genuine AI extraction or statutory validation."
 )
 
 
@@ -425,6 +430,68 @@ def verify_document(
     Full document verification pipeline.
     Returns a structured result dict ready for the API response.
     """
+    demo_mode_env = os.getenv("DEMO_VERIFICATION_MODE", "true").strip().lower()
+    is_demo_mode = demo_mode_env in ("true", "1", "yes", "enabled")
+
+    if is_demo_mode:
+        # Mock / Demo Verification Mode (Change 2)
+        # Returns guaranteed successful demo verification for valid uploaded files
+        revenue_val = _parse_inr(submitted_data.get("annual_revenue")) or 1200000.0
+        gst_val = _parse_inr(submitted_data.get("gst_compliance_rate")) or 92.5
+        upi_val = _parse_inr(submitted_data.get("monthly_upi_volume")) or 350000.0
+        size_val = str(submitted_data.get("business_size") or "Small")
+        sector_val = str(submitted_data.get("sector_type") or "Services")
+
+        demo_comparison = {
+            "annual_revenue": {
+                "submitted_value": revenue_val,
+                "extracted_value": revenue_val,
+                "status": STATUS_CONSISTENT,
+                "deviation_pct": 0.0,
+            },
+            "gst_compliance_rate": {
+                "submitted_value": gst_val,
+                "extracted_value": gst_val,
+                "status": STATUS_CONSISTENT,
+                "deviation_abs": 0.0,
+            },
+            "monthly_upi_volume": {
+                "submitted_value": upi_val,
+                "extracted_value": upi_val,
+                "status": STATUS_CONSISTENT,
+                "deviation_pct": 0.0,
+            },
+            "business_size": {
+                "submitted_value": size_val,
+                "extracted_value": size_val,
+                "status": STATUS_CONSISTENT,
+            },
+            "sector_type": {
+                "submitted_value": sector_val,
+                "extracted_value": sector_val,
+                "status": STATUS_CONSISTENT,
+            },
+        }
+
+        return {
+            "document_type": document_type,
+            "status": OVERALL_VERIFIED_DEMO,
+            "verification_score": 100.0,
+            "extracted_fields": {
+                "annual_turnover": revenue_val,
+                "gst_compliance_rate": gst_val,
+                "monthly_upi_volume": upi_val,
+                "business_size": size_val,
+                "sector_type": sector_val,
+                "document_reference": filename,
+            },
+            "reporting_period": "Current Financial Year",
+            "comparison": demo_comparison,
+            "flags": [],
+            "disclaimer": DEMO_DISCLAIMER,
+            "is_demo_mode": True,
+            "message": "Document verified successfully (Demo Mode)",
+        }
     try:
         text = extract_text(content, filename)
     except RuntimeError as exc:

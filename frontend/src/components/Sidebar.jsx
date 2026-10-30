@@ -20,26 +20,6 @@ import {
   Languages,
 } from "lucide-react";
 
-const sectionItems = [
-  { href: "/#home",        label: "Home" },
-  { href: "/#about",       label: "About" },
-  { href: "/#features",    label: "Features" },
-  { href: "/#how-it-works",label: "How it works" },
-];
-
-const borrowerNavItems = [
-  { href: "/borrower", label: "My Score", icon: FileSearch },
-  { href: "/borrower/simulator", label: "Simulator", icon: SlidersHorizontal },
-  { href: "/borrower/chat", label: "Ask Vridhi", icon: MessageCircle },
-];
-
-const lenderNavItems = [
-  { href: "/lender", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/portfolio", label: "Portfolio", icon: Users },
-  { href: "/batch", label: "Batch Upload", icon: Upload },
-  { href: "/fairness", label: "Fairness", icon: Scale },
-];
-
 function VridhiLogo({ className = "" }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -57,7 +37,7 @@ export default function TopNav() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { user, profile, signOut } = useAuth();
-  const { lang, setLang } = useLanguage();
+  const { lang, setLang, t } = useLanguage();
 
   const handleSignOut = async () => {
     await signOut();
@@ -76,6 +56,26 @@ export default function TopNav() {
   const isLenderPage = pathname.startsWith("/lender");
   const isLandingPage = pathname === "/" || pathname.startsWith("/#");
 
+  const sectionItems = [
+    { href: "/#home",        label: t("home") },
+    { href: "/#about",       label: t("about") },
+    { href: "/#features",    label: t("features") },
+    { href: "/#how-it-works",label: t("how_it_works") },
+  ];
+
+  const borrowerNavItems = [
+    { href: "/borrower", label: t("my_score"), icon: FileSearch },
+    { href: "/borrower/simulator", label: t("simulator"), icon: SlidersHorizontal },
+    { href: "/borrower/chat", label: t("ask_vridhi"), icon: MessageCircle },
+  ];
+
+  const lenderNavItems = [
+    { href: "/lender", label: t("dashboard"), icon: LayoutDashboard },
+    { href: "/portfolio", label: t("portfolio"), icon: Users },
+    { href: "/batch", label: t("batch_upload"), icon: Upload },
+    { href: "/fairness", label: t("fairness"), icon: Scale },
+  ];
+
   let activeNavItems = [];
   if (isLandingPage) {
     activeNavItems = sectionItems;
@@ -84,8 +84,6 @@ export default function TopNav() {
   } else if (isLenderPage) {
     activeNavItems = lenderNavItems;
   } else {
-    // Pages like /dashboard /portfolio /batch /fairness /simulator
-    // redirect to lender portal since they are lender features
     activeNavItems = lenderNavItems;
   }
 
@@ -123,7 +121,7 @@ export default function TopNav() {
                 href="/"
                 className="hidden sm:inline-flex items-center text-xs font-medium text-[#94A8C2] hover:text-[#EFF7FF] transition-base"
               >
-                ← Home
+                ← {t("home")}
               </Link>
             )}
 
@@ -167,7 +165,7 @@ export default function TopNav() {
 
           {/* Right Side: Language Switcher, Portal Switcher Pills & User Greeting */}
           <div className="flex items-center gap-2">
-            {/* Language Toggle (Feature I) */}
+            {/* Language Toggle */}
             <button
               onClick={() => setLang(lang === "en" ? "hi" : "en")}
               className="px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base border border-white/15 hover:border-white/30 text-[#EFF7FF] bg-[#0C1C35]"
@@ -185,7 +183,7 @@ export default function TopNav() {
               }`}
             >
               <User size={13} />
-              <span className="hidden sm:inline">Business Owner</span>
+              <span className="hidden sm:inline">{t("business_owner")}</span>
               <span className="sm:hidden">Borrower</span>
             </button>
 
@@ -198,7 +196,7 @@ export default function TopNav() {
               }`}
             >
               <Building2 size={13} />
-              <span className="hidden sm:inline">Bank / Lender</span>
+              <span className="hidden sm:inline">{t("bank_lender")}</span>
               <span className="sm:hidden">Lender</span>
             </button>
 
@@ -207,7 +205,7 @@ export default function TopNav() {
                 onClick={handleSignOut}
                 className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium text-[#94A8C2] border border-white/10 hover:text-[#EFF7FF] hover:border-white/20 transition-base"
               >
-                Sign out
+                {t("sign_out")}
               </button>
             )}
 
@@ -241,59 +239,45 @@ export default function TopNav() {
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
-          <nav className="relative z-10 flex flex-col gap-1 p-5" aria-label="Mobile navigation">
-            {!isLandingPage && (
-              <Link
-                href="/"
-                onClick={() => setOpen(false)}
-                className="px-4 py-3 rounded-xl text-sm font-medium text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5 transition-base mb-2 border-b border-white/5"
-              >
-                ← Home
-              </Link>
-            )}
+          <div className="relative p-6 space-y-4">
+            <nav className="flex flex-col gap-2">
+              {activeNavItems.map(({ href, label, icon: Icon }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="px-4 py-3 rounded-xl text-base font-medium text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5 flex items-center gap-3 transition-base"
+                >
+                  {Icon && <Icon size={18} />}
+                  {label}
+                </Link>
+              ))}
+            </nav>
 
-            {user && (
+            <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
               <button
                 onClick={() => {
+                  setLang(lang === "en" ? "hi" : "en");
                   setOpen(false);
-                  handleSignOut();
                 }}
-                className="px-4 py-3 rounded-xl text-left text-sm font-medium text-[#FF5252] hover:bg-white/5 transition-base mb-2 border-b border-white/5"
+                className="w-full py-2.5 rounded-xl border border-white/15 text-sm font-medium text-[#EFF7FF] flex items-center justify-center gap-2"
               >
-                Sign out
+                <Languages size={15} className="text-[#55D9FF]" />
+                {lang === "en" ? "हिंदी में बदलें" : "Switch to English"}
               </button>
-            )}
-
-            {isLandingPage
-              ? sectionItems.map(({ href, label }) => (
-                  <a
-                    key={href}
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className="px-4 py-3 rounded-xl text-base font-medium text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5 transition-base"
-                  >
-                    {label}
-                  </a>
-                ))
-              : activeNavItems.map(({ href, label, icon: Icon }) => {
-                  const isActive = pathname === href;
-                  return (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={() => setOpen(false)}
-                      className={`px-4 py-3 rounded-xl text-base font-medium flex items-center gap-3 transition-base ${
-                        isActive
-                          ? "bg-[#168BFF]/15 text-[#EFF7FF] border border-[#168BFF]/30"
-                          : "text-[#94A8C2] hover:text-[#EFF7FF] hover:bg-white/5"
-                      }`}
-                    >
-                      {Icon && <Icon size={18} />}
-                      {label}
-                    </Link>
-                  );
-                })}
-          </nav>
+              {user && (
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    handleSignOut();
+                  }}
+                  className="w-full py-2.5 rounded-xl border border-white/10 text-sm font-medium text-[#94A8C2] hover:text-[#EFF7FF]"
+                >
+                  {t("sign_out")}
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </>
