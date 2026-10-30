@@ -32,6 +32,7 @@ from backend.routes import (  # noqa: E402
     predict,
     segmentation,
     simulate,
+    verify,
 )
 from backend.utils.portfolio_store import load_portfolio  # noqa: E402
 
@@ -89,6 +90,7 @@ app.include_router(fairness.router)
 app.include_router(simulate.router)
 app.include_router(forecast.router)
 app.include_router(chat.router)
+app.include_router(verify.router)
 
 
 @app.get("/")

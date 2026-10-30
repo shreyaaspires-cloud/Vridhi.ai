@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { api } from "../lib/api";
 import { useAssessment } from "../context/AssessmentContext";
+import { useLanguage } from "../context/LanguageContext";
 import toast from "react-hot-toast";
+import { Info } from "lucide-react";
 
 const SECTORS = ["Manufacturing", "Retail", "Services"];
 const REGIONS = ["North", "South", "East", "West", "Central"];
@@ -46,13 +48,40 @@ function Field({ label, children, hint, modelInput }) {
   );
 }
 
+/** Parse the revenue text into an array of valid floats, returning null for missing/invalid entries */
+function parseRevenue(text) {
+  if (!text || !text.trim()) return [];
+  return text
+    .split(",")
+    .map((v) => {
+      const trimmed = v.trim();
+      if (trimmed === "" || trimmed === "-") return null;
+      const n = parseFloat(trimmed);
+      return isNaN(n) ? null : n;
+    });
+}
+
+/** Compute annual revenue only when all 12 months are present and valid */
+function computeAnnualRevenue(parsedMonths) {
+  if (!parsedMonths || parsedMonths.length < 12) return null;
+  if (parsedMonths.some((v) => v === null || v < 0)) return null;
+  const sum = parsedMonths.reduce((acc, v) => acc + v, 0);
+  return Math.round(sum);
+}
+
 export default function AssessmentForm() {
   const { submitPrediction, setLoading, setError, loading, error } =
     useAssessment();
+  const { t } = useLanguage();
   const [form, setForm] = useState(DEFAULTS);
   const [revText, setRevText] = useState(
     DEFAULTS.revenue_history.join(", ")
   );
+
+  const parsedRevMonths = useMemo(() => parseRevenue(revText), [revText]);
+  const annualRevenue = useMemo(() => computeAnnualRevenue(parsedRevMonths), [parsedRevMonths]);
+  const hasPartialRevenue = parsedRevMonths.length > 0 && parsedRevMonths.length < 12;
+  const hasMissingMonths = parsedRevMonths.length === 12 && parsedRevMonths.some((v) => v === null);
 
   const update = (key, val) =>
     setForm((prev) => ({ ...prev, [key]: val }));
@@ -147,10 +176,10 @@ export default function AssessmentForm() {
       {/* Model Inputs */}
       <div className="glass-panel rounded-xl p-6">
         <h2 className="text-base font-semibold text-[#EFF7FF] mb-0.5">
-          Model Inputs
+          {t("model_inputs_title")}
         </h2>
         <p className="text-sm text-[#4A6080] mb-5">
-          These 8 features are used by the XGBoost model for credit-risk prediction.
+          {t("model_inputs_desc")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field label="Business Name" modelInput={false}>
@@ -310,17 +339,87 @@ export default function AssessmentForm() {
           </Field>
         </div>
         <div className="mt-4">
-          <Field
-            label="Revenue History (last 6–12 months, comma-separated)"
-            hint="Used for cash-flow forecasting"
-          >
+          {/* Revenue History Section with clear disclaimer */}
+          <div className="space-y-2">
+            <div className="flex items-start gap-2">
+              <label className="block text-sm font-medium text-[#94A8C2]">
+                Monthly Revenue History (last 12 months, comma-separated)
+              </label>
+            </div>
+
+            {/* Important distinction banner */}
+            <div
+              className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-lg text-xs"
+              style={{
+                background: "rgba(22,139,255,0.06)",
+                border: "1px solid rgba(22,139,255,0.18)",
+              }}
+              role="note"
+              aria-label="Revenue history purpose"
+            >
+              <Info className="w-4 h-4 text-[#168BFF] flex-shrink-0 mt-0.5" />
+              <p className="text-[#94A8C2] leading-relaxed">
+                <span className="font-semibold text-[#EFF7FF]">Revenue history is used for cash-flow forecasting only.</span>{" "}
+                It does not directly affect your credit score.{" "}
+                <span className="text-[#EFF7FF] font-medium">Annual Income</span> (in Model Inputs above) is a separate field used by the XGBoost credit-risk model.
+              </p>
+            </div>
+
             <textarea
               className={inputClass + " h-20 resize-none"}
               value={revText}
               onChange={(e) => setRevText(e.target.value)}
-              placeholder="e.g. 400000, 420000, 410000, 450000, 470000, 460000"
+              placeholder="Enter 12 monthly values: e.g. 400000, 420000, 410000, 450000, 470000, 460000, 480000, 490000, 475000, 500000, 510000, 520000"
+              aria-describedby="revenue-hint"
             />
-          </Field>
+            <p id="revenue-hint" className="text-xs text-[#4A6080]">
+              Provide 12 comma-separated monthly values (January → December) for the cash-flow forecast.
+              Partial entries (6–11 months) are accepted for forecasting but annual revenue won't be computed until all 12 are provided.
+            </p>
+
+            {/* Annual Revenue Derived Display */}
+            {parsedRevMonths.length > 0 && (
+              <div
+                className="rounded-lg px-3.5 py-2.5 text-xs"
+                style={{
+                  background: annualRevenue !== null
+                    ? "rgba(16,185,129,0.06)"
+                    : "rgba(245,158,11,0.06)",
+                  border: annualRevenue !== null
+                    ? "1px solid rgba(16,185,129,0.2)"
+                    : "1px solid rgba(245,158,11,0.2)",
+                }}
+              >
+                {annualRevenue !== null ? (
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                      <span className="text-[#94A8C2]">Calculated Annual Revenue: </span>
+                      <span className="font-bold text-emerald-400">
+                        ₹{annualRevenue.toLocaleString("en-IN")}
+                      </span>
+                      <span className="text-[#4A6080] ml-2">
+                        (Sum of 12 monthly values)
+                      </span>
+                    </div>
+                    <span
+                      className="px-2 py-0.5 rounded text-[10px] font-semibold"
+                      style={{ background: "rgba(16,185,129,0.15)", color: "#10b981" }}
+                    >
+                      FOR FORECASTING ONLY
+                    </span>
+                  </div>
+                ) : hasMissingMonths ? (
+                  <p className="text-amber-400">
+                    ⚠ Some months have invalid or missing values — annual revenue cannot be calculated.
+                  </p>
+                ) : hasPartialRevenue ? (
+                  <p className="text-amber-400">
+                    {parsedRevMonths.filter(v => v !== null).length} of 12 months entered — provide all 12 to see annual revenue.
+                  </p>
+                ) : null}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -342,10 +441,10 @@ export default function AssessmentForm() {
         {loading ? (
           <>
             <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            Analyzing...
+            {t("analyzing_btn")}
           </>
         ) : (
-          "Assess Credit Risk"
+          t("assess_btn")
         )}
       </button>
     </form>

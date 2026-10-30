@@ -87,4 +87,19 @@ export const api = {
   getBaseUrl() {
     return API_URL;
   },
+
+  /**
+   * Document verification: POST /api/verify
+   * Accepts: multipart/form-data with 'file', 'document_type', and 'submitted_data' (JSON string)
+   */
+  async verifyDocument(file, documentType, submittedData = {}) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("document_type", documentType);
+    formData.append("submitted_data", JSON.stringify(submittedData));
+    return request("/api/verify", {
+      method: "POST",
+      body: formData,
+    });
+  },
 };

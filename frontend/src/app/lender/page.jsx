@@ -4,6 +4,7 @@ import ProtectedRoute from "../../components/ProtectedRoute";
 import { useEffect, useState } from "react";
 import KpiCard from "../../components/KpiCard";
 import RiskBadge from "../../components/RiskBadge";
+import LenderNotesPanel from "../../components/LenderNotesPanel";
 import { api } from "../../lib/api";
 import { formatCurrency } from "../../lib/utils";
 import toast from "react-hot-toast";
@@ -581,20 +582,28 @@ function LenderPageContent() {
         </form>
 
         {searchDone && (
-          <div className="pt-2">
+          <div className="pt-2 space-y-4">
             {searchedBusiness ? (
-              <div className="p-5 rounded-xl bg-[#0C1C35] border border-[#168BFF]/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div>
-                  <h3 className="font-bold text-[#EFF7FF] text-base">{searchedBusiness.name}</h3>
-                  <p className="text-xs text-[#94A8C2] mt-1">
-                    Sector: {searchedBusiness.sector} | Region: {searchedBusiness.region} | Size: {searchedBusiness.size}
-                  </p>
-                  <p className="text-sm font-bold text-[#EFF7FF] mt-2">
-                    Score: {searchedBusiness.score} / 100
-                  </p>
+              <>
+                <div className="p-5 rounded-xl bg-[#0C1C35] border border-[#168BFF]/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div>
+                    <h3 className="font-bold text-[#EFF7FF] text-base">{searchedBusiness.name}</h3>
+                    <p className="text-xs text-[#94A8C2] mt-1">
+                      Sector: {searchedBusiness.sector} | Region: {searchedBusiness.region} | Size: {searchedBusiness.size}
+                    </p>
+                    <p className="text-sm font-bold text-[#EFF7FF] mt-2">
+                      Score: {searchedBusiness.score} / 100
+                    </p>
+                  </div>
+                  <RiskBadge label={searchedBusiness.risk_label} size="lg" />
                 </div>
-                <RiskBadge label={searchedBusiness.risk_label} size="lg" />
-              </div>
+
+                {/* Lender Underwriting Notes for this Borrower (Feature E) */}
+                <LenderNotesPanel
+                  businessName={searchedBusiness.name}
+                  scoreHistoryId={searchedBusiness.id}
+                />
+              </>
             ) : (
               <div className="p-4 rounded-xl bg-[#070910] border border-white/10 text-xs text-[#94A8C2]">
                 No record found. Use the assessment form to add this business.

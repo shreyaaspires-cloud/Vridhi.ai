@@ -2,17 +2,21 @@
 
 import ProtectedRoute from "../../components/ProtectedRoute";
 import { useAssessment } from "../../context/AssessmentContext";
+import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
 import AssessmentForm from "../../components/AssessmentForm";
+import DocumentVerification from "../../components/DocumentVerification";
 import ScoreGauge from "../../components/ScoreGauge";
 import RiskBadge from "../../components/RiskBadge";
 import Chatbot from "../../components/Chatbot";
 import { formatCurrency } from "../../lib/utils";
 import { api } from "../../lib/api";
-import { useState, useEffect, useRef } from "react";
+import { supabase } from "../../lib/supabase";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Sparkles, Shield, Lightbulb, SlidersHorizontal,
   FileText, ArrowDown, TrendingUp, AlertTriangle, CheckCircle2,
-  Download, Clock, Trash2
+  Download, Clock, Trash2, Bell, ArrowUpRight, ArrowDownRight, Minus
 } from "lucide-react";
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell
@@ -20,70 +24,131 @@ import {
 import toast from "react-hot-toast";
 
 const STORAGE_KEY = "vridhi_history";
+// Minimum score change (in points) that triggers a user notification
+const NOTIFICATION_THRESHOLD = 0.5;
+
 
 function BorrowerPageContent() {
-  const { prediction, chatContext, setPrediction } = useAssessment();
+  const { prediction, formData, chatContext, setPrediction } = useAssessment();
+  const { user } = useAuth();
+  const { t } = useLanguage();
   const resultsRef = useRef(null);
 
-  // Local Storage Assessment History state (Feature 2)
+  // Score history — persisted in Supabase; local array shown in UI
   const [history, setHistory] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+  // Score-change notification shown after a new assessment
+  const [scoreNotification, setScoreNotification] = useState(null); // { prev, curr, delta }
+  // Track the last notified prediction id to prevent re-notify on re-render
+  const lastNotifiedId = useRef(null);
 
-  // Load history safely on client mount
-  useEffect(() => {
+  // ── Load score history from Supabase (Feature 8) ────────────────────
+  const loadHistory = useCallback(async () => {
+    if (!user) return;
+    setHistoryLoading(true);
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setHistory(parsed.slice(0, 3));
-        }
+      const { data, error } = await supabase
+        .from("score_history")
+        .select("id, business_name, risk_score, risk_label, assessed_at")
+        .eq("user_id", user.id)
+        .order("assessed_at", { ascending: false })
+        .limit(5);
+
+      if (!error && data) {
+        setHistory(
+          data.map((r) => ({
+            id: r.id,
+            business_name: r.business_name,
+            risk_score: r.risk_score,
+            risk_label: r.risk_label,
+            date: new Date(r.assessed_at).toLocaleDateString("en-IN", {
+              day: "numeric", month: "short", year: "numeric",
+            }),
+          }))
+        );
       }
     } catch (e) {
-      console.error("Failed to read assessment history from localStorage:", e);
+      // Graceful degradation: show local fallback
+      console.error("Score history load error:", e);
+    } finally {
+      setHistoryLoading(false);
     }
-  }, []);
+  }, [user]);
 
-  // Save new prediction to history (deduplicated by timestamp/id)
   useEffect(() => {
-    if (!prediction || !prediction.business_name) return;
+    loadHistory();
+  }, [loadHistory]);
 
-    try {
-      setHistory((prev) => {
-        // Prevent duplicate addition if prediction is already the latest in history
-        if (prev.length > 0 && prev[0].id === prediction.id) {
-          return prev;
-        }
+  // ── Persist new assessment to Supabase + trigger notification (Features 6, 8) ──
+  useEffect(() => {
+    if (!prediction || !prediction.business_name || !user) return;
+    // Prevent duplicate notification on re-render
+    const predId = prediction.id || `${prediction.business_name}_${prediction.risk_score}`;
+    if (lastNotifiedId.current === predId) return;
+    lastNotifiedId.current = predId;
 
-        const newItem = {
-          id: prediction.id || `eval_${Date.now()}`,
+    const saveAndNotify = async () => {
+      // Find previous score for notification
+      const prevScore = history.length > 0 ? history[0].risk_score : null;
+      const currScore = prediction.risk_score;
+
+      // Persist to Supabase
+      try {
+        await supabase.from("score_history").insert({
+          user_id: user.id,
           business_name: prediction.business_name,
           risk_score: prediction.risk_score,
           risk_label: prediction.risk_label,
-          date: new Date().toLocaleDateString("en-IN", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          }),
-        };
+          confidence: prediction.confidence ?? null,
+          default_probability: prediction.default_probability ?? null,
+        });
+        loadHistory(); // refresh display
+      } catch (e) {
+        console.error("Failed to save score to Supabase:", e);
+        // Fallback: local storage
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          const newItem = {
+            id: predId,
+            business_name: prediction.business_name,
+            risk_score: prediction.risk_score,
+            risk_label: prediction.risk_label,
+            date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+          };
+          const updated = [newItem, ...saved.filter(i => i.id !== newItem.id)].slice(0, 5);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+          setHistory(updated);
+        } catch {}
+      }
 
-        const updated = [newItem, ...prev.filter((item) => item.id !== newItem.id)].slice(0, 3);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-        return updated;
-      });
-    } catch (e) {
-      console.error("Failed to save assessment to localStorage:", e);
-    }
+      // Score-change notification (Feature 6)
+      if (prevScore !== null) {
+        const delta = Number((currScore - prevScore).toFixed(1));
+        if (Math.abs(delta) >= NOTIFICATION_THRESHOLD) {
+          setScoreNotification({ prev: prevScore, curr: currScore, delta });
+        }
+      }
+    };
+
+    saveAndNotify();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prediction]);
 
-  const handleClearHistory = () => {
-    if (window.confirm("Are you sure you want to clear your assessment history?")) {
-      try {
+
+  const handleClearHistory = async () => {
+    if (!window.confirm("Are you sure you want to clear your assessment history?")) return;
+    try {
+      if (user) {
+        await supabase.from("score_history").delete().eq("user_id", user.id);
+      } else {
         localStorage.removeItem(STORAGE_KEY);
-        setHistory([]);
-        toast.success("Assessment history cleared.");
-      } catch (e) {
-        console.error(e);
       }
+      setHistory([]);
+      setScoreNotification(null);
+      toast.success("Assessment history cleared.");
+    } catch (e) {
+      console.error(e);
+      toast.error("Failed to clear history.");
     }
   };
 
@@ -277,7 +342,53 @@ function BorrowerPageContent() {
         </div>
       </section>
 
-      {/* ── PREVIOUS ASSESSMENTS (FEATURE 2) ─────────────────────────── */}
+      {/* ── SCORE CHANGE NOTIFICATION (FEATURE 6) ────────────────────── */}
+      {scoreNotification && (
+        <section
+          className="rounded-2xl px-5 py-4 flex items-center justify-between gap-4 flex-wrap"
+          style={{
+            background: scoreNotification.delta > 0
+              ? "rgba(16,185,129,0.08)"
+              : "rgba(239,68,68,0.08)",
+            border: scoreNotification.delta > 0
+              ? "1px solid rgba(16,185,129,0.3)"
+              : "1px solid rgba(239,68,68,0.3)",
+          }}
+          role="alert"
+        >
+          <div className="flex items-center gap-3">
+            <Bell className={`w-5 h-5 flex-shrink-0 ${scoreNotification.delta > 0 ? "text-emerald-400" : "text-red-400"}`} />
+            <div>
+              <p className="text-sm font-semibold text-[#EFF7FF]">
+                {scoreNotification.delta > 0
+                  ? t("score_change_improved")
+                  : t("score_change_decreased")}
+              </p>
+              <p className="text-xs text-[#94A8C2] mt-0.5">
+                Score changed from{" "}
+                <span className="font-bold text-[#EFF7FF]">{Number(scoreNotification.prev).toFixed(1)}</span>
+                {" "}to{" "}
+                <span className={`font-bold ${scoreNotification.delta > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  {Number(scoreNotification.curr).toFixed(1)}
+                </span>
+                {" "}
+                <span className={`font-semibold ${scoreNotification.delta > 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  ({scoreNotification.delta > 0 ? "+" : ""}{Number(scoreNotification.delta).toFixed(1)} points)
+                </span>
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setScoreNotification(null)}
+            className="text-xs text-[#4A6080] hover:text-[#94A8C2] transition-base flex-shrink-0"
+            aria-label="Dismiss notification"
+          >
+            Dismiss
+          </button>
+        </section>
+      )}
+
+      {/* ── PREVIOUS ASSESSMENTS ──────────────────────────────────────── */}
       {history.length > 0 && (
         <section className="glass-panel rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex items-center justify-between">
@@ -322,14 +433,48 @@ function BorrowerPageContent() {
             <Shield size={22} className="text-[#168BFF]" />
             <div>
               <h2 className="text-xl md:text-2xl font-bold text-[#EFF7FF]">
-                Business Credit Assessment
+                {t("assessment_title")}
               </h2>
               <p className="text-xs text-[#94A8C2] mt-0.5">
-                Fill in your operational business details below to calculate your credit risk score instantly.
+                {t("assessment_subtitle")}
               </p>
             </div>
           </div>
           <AssessmentForm />
+        </div>
+      </section>
+
+      {/* ── SECTION 2.5: DOCUMENT VERIFICATION PIPELINE (FEATURE 4) ───── */}
+      <section id="verification" className="max-w-7xl mx-auto space-y-6">
+        <div className="glass-panel p-6 md:p-8 rounded-2xl border border-[#168BFF]/20 space-y-6">
+          <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#168BFF]/15 border border-[#168BFF]/30 flex items-center justify-center text-[#55D9FF]">
+                <FileText size={20} />
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-[#EFF7FF]">
+                  {t("doc_verif_title")}
+                </h2>
+                <p className="text-xs text-[#94A8C2] mt-0.5">
+                  {t("doc_verif_sub")}
+                </p>
+              </div>
+            </div>
+            <span className="text-[11px] font-semibold text-[#55D9FF] bg-[#168BFF]/10 border border-[#168BFF]/25 px-2.5 py-1 rounded-full">
+              FEATURE 4 • AI OCR AUDIT
+            </span>
+          </div>
+          <DocumentVerification
+            submittedData={{
+              business_name: formData?.business_name || prediction?.business_name || "",
+              income: formData?.income || prediction?.income || 0,
+              monthly_upi_volume: formData?.monthly_upi_volume || prediction?.monthly_upi_volume || 0,
+              gst_compliance_rate: formData?.gst_compliance_rate || prediction?.gst_compliance_rate || 0,
+              sector_type: formData?.sector_type || prediction?.sector_type || "",
+              business_size: formData?.business_size || prediction?.business_size || "",
+            }}
+          />
         </div>
       </section>
 

@@ -136,37 +136,114 @@ export default function SimulatorPage() {
           {result ? (
             <>
               <div className="glass-panel rounded-xl p-6">
-                <h3 className="text-sm font-semibold text-[#94A8C2] mb-5">Simulation Results</h3>
-                <div className="flex items-center justify-around mb-6">
-                  <div className="text-center">
-                    <p className="text-xs text-[#4A6080] uppercase mb-1">Before</p>
-                    <p className="text-3xl font-bold text-[#EFF7FF]">{result.original_score}</p>
-                    <div className="mt-2"><RiskBadge label={result.old_label} size="sm" /></div>
-                  </div>
-                  <ArrowRight className="w-6 h-6 text-[#1a2540]" />
-                  <div className="text-center">
-                    <p className="text-xs text-[#4A6080] uppercase mb-1">After</p>
-                    <p
-                      className="text-3xl font-bold"
-                      style={{ color: result.delta >= 0 ? "#10b981" : "#ef4444" }}
+                <h3 className="text-sm font-semibold text-[#94A8C2] mb-5">Credit Score Simulation</h3>
+
+                {/* Main score comparison */}
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  {/* Previous score */}
+                  <div className="text-center flex-1">
+                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-2">Previous Score</p>
+                    <div
+                      className="inline-flex flex-col items-center justify-center rounded-2xl p-4 w-full"
+                      style={{ background: "#0C1C35", border: "1px solid rgba(22,139,255,0.15)" }}
                     >
-                      {result.new_score}
-                    </p>
-                    <div className="mt-2"><RiskBadge label={result.new_label} size="sm" /></div>
+                      <span className="text-4xl font-bold tabular-nums text-[#EFF7FF]">
+                        {result.original_score != null ? result.original_score.toFixed(1) : "—"}
+                      </span>
+                      <span className="text-xs text-[#4A6080] mt-1">/ 100</span>
+                    </div>
+                    <div className="mt-2 flex justify-center"><RiskBadge label={result.old_label} size="sm" /></div>
+                  </div>
+
+                  {/* Directional arrow */}
+                  <div className="flex flex-col items-center gap-1">
+                    <ArrowRight
+                      className="w-7 h-7"
+                      style={{ color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#4A6080" }}
+                    />
+                    {/* Delta badge */}
+                    <span
+                      className="text-xs font-bold px-2 py-0.5 rounded-full tabular-nums"
+                      style={{
+                        background: result.delta > 0
+                          ? "rgba(16,185,129,0.15)"
+                          : result.delta < 0
+                          ? "rgba(239,68,68,0.15)"
+                          : "rgba(74,96,128,0.2)",
+                        color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#94A8C2",
+                      }}
+                    >
+                      {result.delta > 0 ? "+" : ""}{result.delta != null ? result.delta.toFixed(1) : "0"} pts
+                    </span>
+                  </div>
+
+                  {/* New score */}
+                  <div className="text-center flex-1">
+                    <p className="text-xs text-[#4A6080] uppercase tracking-wider mb-2">Simulated Score</p>
+                    <div
+                      className="inline-flex flex-col items-center justify-center rounded-2xl p-4 w-full"
+                      style={{
+                        background: "#0C1C35",
+                        border: `1px solid ${result.delta > 0 ? "rgba(16,185,129,0.3)" : result.delta < 0 ? "rgba(239,68,68,0.3)" : "rgba(22,139,255,0.15)"}`,
+                        boxShadow: result.delta > 0
+                          ? "0 0 16px rgba(16,185,129,0.12)"
+                          : result.delta < 0
+                          ? "0 0 16px rgba(239,68,68,0.12)"
+                          : "none",
+                      }}
+                    >
+                      <span
+                        className="text-4xl font-bold tabular-nums"
+                        style={{ color: result.delta > 0 ? "#10b981" : result.delta < 0 ? "#ef4444" : "#EFF7FF" }}
+                      >
+                        {result.new_score != null ? result.new_score.toFixed(1) : "—"}
+                      </span>
+                      <span className="text-xs text-[#4A6080] mt-1">/ 100</span>
+                    </div>
+                    <div className="mt-2 flex justify-center"><RiskBadge label={result.new_label} size="sm" /></div>
                   </div>
                 </div>
+
+                {/* Score change summary row */}
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  {result.delta >= 0 ? (
+                  {result.delta > 0 ? (
                     <TrendingUp className="w-5 h-5 text-emerald-400" />
-                  ) : (
+                  ) : result.delta < 0 ? (
                     <TrendingDown className="w-5 h-5 text-red-400" />
+                  ) : (
+                    <span className="w-5 h-5 text-[#4A6080] text-center font-bold">—</span>
                   )}
-                  <span
-                    className={`text-lg font-bold ${result.delta >= 0 ? "text-emerald-400" : "text-red-400"}`}
-                  >
-                    {result.delta > 0 ? "+" : ""}{result.delta} pts
+                  <span className={`text-base font-semibold ${
+                    result.delta > 0 ? "text-emerald-400" : result.delta < 0 ? "text-red-400" : "text-[#94A8C2]"
+                  }`}>
+                    Score change:{" "}
+                    {result.delta > 0 ? "+" : ""}{result.delta != null ? result.delta.toFixed(1) : "0"} points
                   </span>
                 </div>
+
+                {/* Risk tier shift callout */}
+                {result.old_label !== result.new_label && (
+                  <div
+                    className="flex items-center justify-center gap-2 mb-4 px-4 py-2.5 rounded-lg text-xs font-medium"
+                    style={{
+                      background: "rgba(22,139,255,0.08)",
+                      border: "1px solid rgba(22,139,255,0.2)",
+                    }}
+                  >
+                    <span className="text-[#94A8C2]">Risk tier shift:</span>
+                    <RiskBadge label={result.old_label} size="sm" />
+                    <ArrowRight className="w-3 h-3 text-[#168BFF]" />
+                    <RiskBadge label={result.new_label} size="sm" />
+                  </div>
+                )}
+
+                {/* No change callout */}
+                {result.delta === 0 && (
+                  <div className="flex items-center justify-center mb-4 text-xs text-[#94A8C2]">
+                    No change in credit score under these conditions.
+                  </div>
+                )}
+
                 <div className="glass-panel-deep rounded-lg p-4">
                   <p className="text-sm text-[#94A8C2]">{result.message}</p>
                 </div>

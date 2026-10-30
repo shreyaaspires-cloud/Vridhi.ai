@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useLanguage } from "../context/LanguageContext";
 import {
   FileSearch,
   LayoutDashboard,
@@ -16,6 +17,7 @@ import {
   MessageCircle,
   Building2,
   User,
+  Languages,
 } from "lucide-react";
 
 const sectionItems = [
@@ -55,6 +57,7 @@ export default function TopNav() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { user, profile, signOut } = useAuth();
+  const { lang, setLang } = useLanguage();
 
   const handleSignOut = async () => {
     await signOut();
@@ -162,8 +165,17 @@ export default function TopNav() {
                 })}
           </nav>
 
-          {/* Right Side: Persistent Portal Switcher Pills & User Greeting */}
+          {/* Right Side: Language Switcher, Portal Switcher Pills & User Greeting */}
           <div className="flex items-center gap-2">
+            {/* Language Toggle (Feature I) */}
+            <button
+              onClick={() => setLang(lang === "en" ? "hi" : "en")}
+              className="px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base border border-white/15 hover:border-white/30 text-[#EFF7FF] bg-[#0C1C35]"
+              title="Change Language / भाषा बदलें"
+            >
+              <Languages size={13} className="text-[#55D9FF]" />
+              <span>{lang === "en" ? "हिंदी" : "English"}</span>
+            </button>
             <button
               onClick={() => handlePortalClick("borrower")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-base ${
