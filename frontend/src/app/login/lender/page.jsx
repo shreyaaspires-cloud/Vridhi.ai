@@ -90,19 +90,18 @@ export default function LenderLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#070910] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg-page)] px-4 transition-colors">
       <div
-        className="w-full max-w-md p-10 rounded-2xl"
-        style={{ background: "#0C1C35", border: "1px solid rgba(22,139,255,0.15)" }}
+        className="w-full max-w-md p-10 rounded-2xl shadow-xl transition-colors bg-[var(--surface-card)] border border-[var(--border-default)]"
       >
         <div className="text-center mb-8">
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/25">
+          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[var(--brand-sage)] text-[var(--brand-primary)] border border-[var(--border-default)]">
             Bank / Lender Portal
           </span>
-          <h1 className="text-2xl font-bold text-[#EFF7FF] mt-4">
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mt-4">
             {isSignUp ? "Create Account" : "Lender Intelligence Portal"}
           </h1>
-          <p className="text-sm text-[#94A8C2] mt-2">
+          <p className="text-sm text-[var(--text-secondary)] mt-2">
             {isSignUp
               ? "Sign up to access lender dashboard"
               : "Sign in to access portfolio analytics and batch assessment tools"}
@@ -116,7 +115,7 @@ export default function LenderLogin() {
             disabled={loading}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl text-sm text-[#EFF7FF] bg-[#070910] border border-[rgba(22,139,255,0.2)] focus:border-[#168BFF] outline-none transition-colors disabled:opacity-50"
+            className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-primary)] bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-[var(--brand-emerald)] focus:ring-2 focus:ring-[var(--focus-ring)] placeholder-[var(--input-placeholder)] outline-none transition-colors disabled:opacity-50"
           />
           <input
             type="password"
@@ -126,12 +125,12 @@ export default function LenderLogin() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
-            className="w-full px-4 py-3 rounded-xl text-sm text-[#EFF7FF] bg-[#070910] border border-[rgba(22,139,255,0.2)] focus:border-[#168BFF] outline-none transition-colors disabled:opacity-50"
+            className="w-full px-4 py-3 rounded-xl text-sm text-[var(--text-primary)] bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-[var(--brand-emerald)] focus:ring-2 focus:ring-[var(--focus-ring)] placeholder-[var(--input-placeholder)] outline-none transition-colors disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-[#168BFF] hover:bg-[#1278e0] transition-all disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full py-3 rounded-xl text-sm font-semibold text-[var(--btn-primary-text)] bg-[var(--brand-primary)] hover:bg-[var(--brand-deep)] transition-all shadow-md disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
           </button>
@@ -141,13 +140,13 @@ export default function LenderLogin() {
             type="button"
             disabled={loading}
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-sm text-[#94A8C2] hover:text-[#168BFF] transition-colors block w-full disabled:opacity-50"
+            className="text-sm text-[var(--text-secondary)] hover:text-[var(--brand-emerald)] transition-colors block w-full disabled:opacity-50"
           >
             {isSignUp ? "Already have an account? Sign in" : "New here? Create account"}
           </button>
-          <p className="text-xs text-[#4A6080]">
+          <p className="text-xs text-[var(--text-muted)]">
             Are you a Business Owner?{" "}
-            <a href="/login/borrower" className="text-[#168BFF] hover:underline">
+            <a href="/login/borrower" className="text-[var(--brand-emerald)] hover:underline font-medium">
               Sign in here →
             </a>
           </p>

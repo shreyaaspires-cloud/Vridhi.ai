@@ -108,22 +108,22 @@ export default function LenderNotesPanel({ businessName, scoreHistoryId = null }
   };
 
   return (
-    <div className="rounded-xl bg-[#070910] border border-[rgba(22,139,255,0.2)] p-5 space-y-4">
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+    <div className="rounded-xl bg-[var(--surface-card)] border border-[var(--border-default)] p-5 space-y-4">
+      <div className="flex items-center justify-between border-b border-[var(--border-default)] pb-3">
         <div className="flex items-center gap-2">
-          <StickyNote className="w-4 h-4 text-[#55D9FF]" />
-          <h4 className="text-sm font-bold text-[#EFF7FF]">
+          <StickyNote className="w-4 h-4 text-[var(--brand-emerald)]" />
+          <h4 className="text-sm font-bold text-[var(--text-primary)]">
             Internal Lender Underwriting Notes
           </h4>
         </div>
-        <span className="text-[11px] font-semibold text-[#168BFF] bg-[#168BFF]/10 border border-[#168BFF]/25 px-2 py-0.5 rounded-full flex items-center gap-1">
+        <span className="text-[11px] font-semibold text-[var(--brand-emerald)] bg-[var(--brand-emerald)]/10 border border-[var(--brand-emerald)]/25 px-2 py-0.5 rounded-full flex items-center gap-1">
           <ShieldAlert size={12} /> Confidential • Lenders Only
         </span>
       </div>
 
-      <p className="text-xs text-[#94A8C2]">
+      <p className="text-xs text-[var(--text-secondary)]">
         Add confidential underwriting observations, covenants, or follow-up items for{" "}
-        <strong className="text-[#EFF7FF]">{businessName}</strong>. These notes are restricted to authorized lender accounts.
+        <strong className="text-[var(--text-primary)]">{businessName}</strong>. These notes are restricted to authorized lender accounts.
       </p>
 
       {/* Note submission input */}
@@ -133,13 +133,13 @@ export default function LenderNotesPanel({ businessName, scoreHistoryId = null }
           value={noteText}
           onChange={(e) => setNoteText(e.target.value)}
           placeholder={`Enter underwriting note for ${businessName}...`}
-          className="w-full bg-[#0C1C35] border border-white/10 text-xs text-[#EFF7FF] placeholder-[#4A6080] rounded-xl p-3 focus:outline-none focus:border-[#168BFF]"
+          className="w-full bg-[var(--surface-secondary)] border border-[var(--border-default)] text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] rounded-xl p-3 focus:outline-none focus:border-[var(--brand-emerald)]"
         />
         <div className="flex justify-end">
           <button
             type="submit"
             disabled={submitting || !noteText.trim()}
-            className="px-4 py-2 rounded-lg bg-[#168BFF] hover:bg-[#1278e0] text-white text-xs font-semibold flex items-center gap-1.5 transition-all disabled:opacity-40"
+            className="px-4 py-2 rounded-lg bg-[var(--brand-primary)] hover:bg-[var(--brand-deep)] text-white text-xs font-semibold flex items-center gap-1.5 transition-all disabled:opacity-40"
           >
             <Send size={12} /> {submitting ? "Saving..." : "Save Note"}
           </button>
@@ -148,23 +148,23 @@ export default function LenderNotesPanel({ businessName, scoreHistoryId = null }
 
       {/* Notes list */}
       <div className="space-y-2 pt-1">
-        <h5 className="text-[11px] font-semibold uppercase tracking-wider text-[#4A6080]">
+        <h5 className="text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
           Existing Notes ({notes.length})
         </h5>
 
         {loading ? (
-          <p className="text-xs text-[#4A6080]">Loading notes...</p>
+          <p className="text-xs text-[var(--text-muted)]">Loading notes...</p>
         ) : notes.length === 0 ? (
-          <p className="text-xs text-[#4A6080] italic">No notes recorded yet for this borrower.</p>
+          <p className="text-xs text-[var(--text-muted)] italic">No notes recorded yet for this borrower.</p>
         ) : (
           <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
             {notes.map((n) => (
               <div
                 key={n.id}
-                className="p-3 rounded-lg bg-[#0C1C35] border border-white/5 space-y-1.5"
+                className="p-3 rounded-lg bg-[var(--surface-secondary)] border border-[var(--border-default)] space-y-1.5"
               >
-                <div className="flex items-center justify-between text-[11px] text-[#4A6080]">
-                  <span className="flex items-center gap-1 text-[#94A8C2]">
+                <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
+                  <span className="flex items-center gap-1 text-[var(--text-secondary)]">
                     <Clock size={11} />
                     {new Date(n.created_at).toLocaleString("en-IN", {
                       day: "numeric",

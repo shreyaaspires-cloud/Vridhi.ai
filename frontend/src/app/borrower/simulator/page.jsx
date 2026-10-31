@@ -88,12 +88,12 @@ export default function BorrowerSimulatorPage() {
     <div className="space-y-8 pb-16 max-w-6xl mx-auto">
       <div>
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-6 h-6 text-[#168BFF]" />
-          <h1 className="text-3xl font-bold text-[#EFF7FF]" style={{ fontFamily: "'Space Grotesk', Inter, sans-serif" }}>
+          <SlidersHorizontal className="w-6 h-6 text-[var(--brand-emerald)]" />
+          <h1 className="text-3xl font-bold text-[var(--text-primary)]" style={{ fontFamily: "'Space Grotesk', Inter, sans-serif" }}>
             Business Score Simulator
           </h1>
         </div>
-        <p className="text-sm text-[#94A8C2] mt-1">
+        <p className="text-sm text-[var(--text-secondary)] mt-1">
           Adjust operational parameters below and click <strong>Simulate Credit Score</strong> to recalculate your score.
         </p>
       </div>
@@ -101,13 +101,13 @@ export default function BorrowerSimulatorPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Sliders & Action Button */}
         <div className="lg:col-span-7 glass-panel p-6 md:p-8 rounded-2xl space-y-6">
-          <h2 className="text-lg font-bold text-[#EFF7FF]">Adjust Parameters</h2>
+          <h2 className="text-lg font-bold text-[var(--text-primary)]">Adjust Parameters</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-3 bg-[#0C1C35] p-5 rounded-xl border border-[rgba(22,139,255,0.12)]">
-              <div className="flex justify-between text-xs font-semibold text-[#EFF7FF]">
+            <div className="space-y-3 bg-[var(--surface-secondary)] p-5 rounded-xl border border-[var(--border-default)]">
+              <div className="flex justify-between text-xs font-semibold text-[var(--text-primary)]">
                 <span>GST Compliance Rate</span>
-                <span className="text-[#168BFF]">{simValues.gst_compliance}%</span>
+                <span className="text-[var(--brand-emerald)] font-bold">{simValues.gst_compliance}%</span>
               </div>
               <input
                 type="range"
@@ -115,14 +115,14 @@ export default function BorrowerSimulatorPage() {
                 max="100"
                 value={simValues.gst_compliance}
                 onChange={(e) => setSimValues((prev) => ({ ...prev, gst_compliance: Number(e.target.value) }))}
-                className="w-full accent-[#168BFF]"
+                className="w-full accent-[var(--brand-emerald)] cursor-pointer"
               />
             </div>
 
-            <div className="space-y-3 bg-[#0C1C35] p-5 rounded-xl border border-[rgba(22,139,255,0.12)]">
-              <div className="flex justify-between text-xs font-semibold text-[#EFF7FF]">
+            <div className="space-y-3 bg-[var(--surface-secondary)] p-5 rounded-xl border border-[var(--border-default)]">
+              <div className="flex justify-between text-xs font-semibold text-[var(--text-primary)]">
                 <span>Monthly UPI Volume</span>
-                <span className="text-[#168BFF]">{formatCurrency(simValues.monthly_upi_volume)}</span>
+                <span className="text-[var(--brand-emerald)] font-bold">{formatCurrency(simValues.monthly_upi_volume)}</span>
               </div>
               <input
                 type="range"
@@ -131,14 +131,14 @@ export default function BorrowerSimulatorPage() {
                 step="50000"
                 value={simValues.monthly_upi_volume}
                 onChange={(e) => setSimValues((prev) => ({ ...prev, monthly_upi_volume: Number(e.target.value) }))}
-                className="w-full accent-[#168BFF]"
+                className="w-full accent-[var(--brand-emerald)] cursor-pointer"
               />
             </div>
 
-            <div className="space-y-3 bg-[#0C1C35] p-5 rounded-xl border border-[rgba(22,139,255,0.12)]">
-              <div className="flex justify-between text-xs font-semibold text-[#EFF7FF]">
+            <div className="space-y-3 bg-[var(--surface-secondary)] p-5 rounded-xl border border-[var(--border-default)]">
+              <div className="flex justify-between text-xs font-semibold text-[var(--text-primary)]">
                 <span>Vendor Trust Score</span>
-                <span className="text-[#168BFF]">{simValues.vendor_trust_score} / 100</span>
+                <span className="text-[var(--brand-emerald)] font-bold">{simValues.vendor_trust_score} / 100</span>
               </div>
               <input
                 type="range"
@@ -146,14 +146,14 @@ export default function BorrowerSimulatorPage() {
                 max="100"
                 value={simValues.vendor_trust_score}
                 onChange={(e) => setSimValues((prev) => ({ ...prev, vendor_trust_score: Number(e.target.value) }))}
-                className="w-full accent-[#168BFF]"
+                className="w-full accent-[var(--brand-emerald)] cursor-pointer"
               />
             </div>
 
-            <div className="space-y-3 bg-[#0C1C35] p-5 rounded-xl border border-[rgba(22,139,255,0.12)]">
-              <div className="flex justify-between text-xs font-semibold text-[#EFF7FF]">
+            <div className="space-y-3 bg-[var(--surface-secondary)] p-5 rounded-xl border border-[var(--border-default)]">
+              <div className="flex justify-between text-xs font-semibold text-[var(--text-primary)]">
                 <span>Requested Loan Amount</span>
-                <span className="text-[#168BFF]">{formatCurrency(simValues.requested_amount)}</span>
+                <span className="text-[var(--brand-emerald)] font-bold">{formatCurrency(simValues.requested_amount)}</span>
               </div>
               <input
                 type="range"
@@ -162,7 +162,7 @@ export default function BorrowerSimulatorPage() {
                 step="100000"
                 value={simValues.requested_amount}
                 onChange={(e) => setSimValues((prev) => ({ ...prev, requested_amount: Number(e.target.value) }))}
-                className="w-full accent-[#168BFF]"
+                className="w-full accent-[var(--brand-emerald)] cursor-pointer"
               />
             </div>
           </div>
@@ -170,11 +170,7 @@ export default function BorrowerSimulatorPage() {
           <button
             onClick={() => handleSimulate()}
             disabled={simLoading}
-            className="w-full font-bold py-3.5 px-6 rounded-xl text-white flex items-center justify-center gap-2 transition-all"
-            style={{
-              background: "linear-gradient(135deg, #168BFF 0%, #0E6CD4 100%)",
-              boxShadow: "0 4px 16px rgba(22,139,255,0.3)",
-            }}
+            className="w-full font-bold py-3.5 px-6 rounded-xl text-white flex items-center justify-center gap-2 transition-all shadow-md bg-[var(--brand-primary)] hover:bg-[var(--brand-deep)] active:scale-[0.99]"
           >
             <Play className="w-5 h-5 fill-current" />
             {simLoading ? "Calculating Score..." : "Simulate Credit Score"}
@@ -183,17 +179,17 @@ export default function BorrowerSimulatorPage() {
 
         {/* Right Column: Calculated Score Gauge */}
         <div className="lg:col-span-5 glass-panel p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center space-y-6">
-          <h2 className="text-sm font-semibold text-[#94A8C2] uppercase tracking-wider self-start">
+          <h2 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider self-start">
             Calculated Credit Risk Score
           </h2>
 
           <ScoreGauge score={currentScore} label={currentLabel} />
           
-          <div className="w-full flex justify-around items-center pt-4 border-t border-[rgba(22,139,255,0.15)]">
+          <div className="w-full flex justify-around items-center pt-4 border-t border-[var(--border-default)]">
             <RiskBadge label={currentLabel} size="lg" />
             <div className="text-right">
-              <span className="text-xs text-[#94A8C2] block">Updated Score</span>
-              <span className="text-xl font-bold text-[#EFF7FF]">
+              <span className="text-xs text-[var(--text-secondary)] block">Updated Score</span>
+              <span className="text-xl font-bold text-[var(--text-primary)]">
                 {Number(currentScore).toFixed(1)} / 100
               </span>
             </div>

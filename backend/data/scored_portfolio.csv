@@ -1430,7 +1430,7 @@ BlueRiver Consulting,2784897.0,387679.0,62.8,315414.0,7.0,79.0,Services,52.0,Mal
 Unity Stationery House,3649137.0,698449.0,87.1,96124.0,17.0,50.0,Retail,84.0,Other,North,Micro,0.0,0.0,,,,,,,,,,,,,39.5,HIGH,0
 Vertex Precision Tools,4865051.0,938464.0,79.7,238416.0,6.0,48.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,55.79999923706055,MEDIUM,1
 FreshField Organics,3161143.0,715332.0,77.4,285071.0,1.0,85.0,Manufacturing,79.0,Other,Central,Micro,0.0,0.0,,,,,,,,,,,,,85.0,LOW,1
-Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.399999618530277,HIGH,0
+Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.39999961853028,HIGH,0
 Ironclad Fabricators,7515171.0,1499734.0,91.4,474399.0,9.0,69.0,Manufacturing,82.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,82.4000015258789,LOW,1
 Peacock Garment House,3487746.0,580497.0,73.1,38963.0,18.0,89.0,Manufacturing,72.0,Male,West,Micro,0.0,0.0,,,,,,,,,,,,,48.20000076293945,MEDIUM,0
 CityLink Couriers,1100416.0,413099.0,64.6,42441.0,21.0,97.0,Services,53.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,8.600000381469727,HIGH,0
@@ -1445,7 +1445,7 @@ Aarambh Fashion Studio,1542793.0,311188.0,84.7,280864.0,10.0,55.0,Manufacturing,
 HarvestMoon Agro Tools,1269826.0,153729.0,90.9,359030.0,8.0,52.0,Manufacturing,85.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,78.0999984741211,LOW,1
 Summit Industrial Supply,8077854.0,2328619.0,66.2,697127.0,4.0,76.0,Retail,40.0,Female,West,Medium,0.0,0.0,,,,,,,,,,,,,76.5,LOW,1
 abc,5000000.0,1500000.0,85.0,200000.0,5.0,75.0,Manufacturing,70.0,Male,South,Small,8.0,25.0,,,,,,,,,,,,,72.5,LOW,1
-Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469727,HIGH,0
+Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469728,HIGH,0
 Mahalaxmi Retail Mart,3832406.0,559844.0,77.8,28435.0,2.0,55.0,Retail,52.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,23.600000381469727,HIGH,0
 Sunrise Tech Services,2020678.0,582710.0,88.9,706852.0,17.0,68.0,Services,52.0,Female,North,Medium,0.0,0.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
 Nova Digital Solutions,3967660.0,732406.0,90.6,141456.0,2.0,66.0,Services,44.0,Female,South,Medium,0.0,0.0,,,,,,,,,,,,,74.5999984741211,LOW,1
@@ -1454,7 +1454,7 @@ UrbanLeaf Retail,1561023.0,445847.0,93.1,349282.0,11.0,78.0,Retail,50.0,Other,No
 BrightPath Logistics,1483470.0,198410.0,70.5,176722.0,2.0,96.0,Services,52.0,Male,East,Small,0.0,0.0,,,,,,,,,,,,,53.29999923706055,MEDIUM,0
 Pratham Auto Components,7359712.0,1496907.0,85.8,389298.0,5.0,65.0,Manufacturing,60.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,88.19999694824219,LOW,1
 BluePeak Textiles,3139572.0,1037773.0,87.6,62435.0,19.0,82.0,Manufacturing,48.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,75.80000305175781,LOW,1
-Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.599998474121094,MEDIUM,0
+Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.59999847412109,MEDIUM,0
 Silverline Pharmacy,2534196.0,944889.0,91.1,101560.0,1.0,93.0,Services,58.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,80.69999694824219,LOW,1
 Crestview Furniture,3145973.0,439985.0,96.2,322365.0,22.0,62.0,Services,51.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,49.70000076293945,MEDIUM,0
 Orchid Beauty Supplies,3561498.0,850092.0,96.3,185899.0,4.0,58.0,Retail,46.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,43.900001525878906,MEDIUM,0
@@ -1473,7 +1473,7 @@ BlueRiver Consulting,2784897.0,387679.0,62.8,315414.0,7.0,79.0,Services,52.0,Mal
 Unity Stationery House,3649137.0,698449.0,87.1,96124.0,17.0,50.0,Retail,84.0,Other,North,Micro,0.0,0.0,,,,,,,,,,,,,39.5,HIGH,0
 Vertex Precision Tools,4865051.0,938464.0,79.7,238416.0,6.0,48.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,55.79999923706055,MEDIUM,1
 FreshField Organics,3161143.0,715332.0,77.4,285071.0,1.0,85.0,Manufacturing,79.0,Other,Central,Micro,0.0,0.0,,,,,,,,,,,,,85.0,LOW,1
-Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.399999618530273,HIGH,0
+Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.39999961853028,HIGH,0
 Ironclad Fabricators,7515171.0,1499734.0,91.4,474399.0,9.0,69.0,Manufacturing,82.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,82.4000015258789,LOW,1
 Peacock Garment House,3487746.0,580497.0,73.1,38963.0,18.0,89.0,Manufacturing,72.0,Male,West,Micro,0.0,0.0,,,,,,,,,,,,,48.20000076293945,MEDIUM,0
 CityLink Couriers,1100416.0,413099.0,64.6,42441.0,21.0,97.0,Services,53.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,8.600000381469727,HIGH,0
@@ -1491,7 +1491,7 @@ abc,5300000.0,1750000.0,80.0,150000.0,10.0,75.0,Services,70.0,Female,North,Mediu
 abc,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
 abc,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
 abc,7200000.0,900000.0,76.0,1000000.0,5.0,87.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,87.1,LOW,1
-Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469727,HIGH,0
+Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469728,HIGH,0
 Mahalaxmi Retail Mart,3832406.0,559844.0,77.8,28435.0,2.0,55.0,Retail,52.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,23.600000381469727,HIGH,0
 Sunrise Tech Services,2020678.0,582710.0,88.9,706852.0,17.0,68.0,Services,52.0,Female,North,Medium,0.0,0.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
 Nova Digital Solutions,3967660.0,732406.0,90.6,141456.0,2.0,66.0,Services,44.0,Female,South,Medium,0.0,0.0,,,,,,,,,,,,,74.5999984741211,LOW,1
@@ -1500,7 +1500,7 @@ UrbanLeaf Retail,1561023.0,445847.0,93.1,349282.0,11.0,78.0,Retail,50.0,Other,No
 BrightPath Logistics,1483470.0,198410.0,70.5,176722.0,2.0,96.0,Services,52.0,Male,East,Small,0.0,0.0,,,,,,,,,,,,,53.29999923706055,MEDIUM,0
 Pratham Auto Components,7359712.0,1496907.0,85.8,389298.0,5.0,65.0,Manufacturing,60.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,88.19999694824219,LOW,1
 BluePeak Textiles,3139572.0,1037773.0,87.6,62435.0,19.0,82.0,Manufacturing,48.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,75.80000305175781,LOW,1
-Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.599998474121094,MEDIUM,0
+Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.59999847412109,MEDIUM,0
 Silverline Pharmacy,2534196.0,944889.0,91.1,101560.0,1.0,93.0,Services,58.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,80.69999694824219,LOW,1
 Crestview Furniture,3145973.0,439985.0,96.2,322365.0,22.0,62.0,Services,51.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,49.70000076293945,MEDIUM,0
 Orchid Beauty Supplies,3561498.0,850092.0,96.3,185899.0,4.0,58.0,Retail,46.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,43.900001525878906,MEDIUM,0
@@ -1519,7 +1519,7 @@ BlueRiver Consulting,2784897.0,387679.0,62.8,315414.0,7.0,79.0,Services,52.0,Mal
 Unity Stationery House,3649137.0,698449.0,87.1,96124.0,17.0,50.0,Retail,84.0,Other,North,Micro,0.0,0.0,,,,,,,,,,,,,39.5,HIGH,0
 Vertex Precision Tools,4865051.0,938464.0,79.7,238416.0,6.0,48.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,55.79999923706055,MEDIUM,1
 FreshField Organics,3161143.0,715332.0,77.4,285071.0,1.0,85.0,Manufacturing,79.0,Other,Central,Micro,0.0,0.0,,,,,,,,,,,,,85.0,LOW,1
-Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.399999618530273,HIGH,0
+Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.39999961853028,HIGH,0
 Ironclad Fabricators,7515171.0,1499734.0,91.4,474399.0,9.0,69.0,Manufacturing,82.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,82.4000015258789,LOW,1
 Peacock Garment House,3487746.0,580497.0,73.1,38963.0,18.0,89.0,Manufacturing,72.0,Male,West,Micro,0.0,0.0,,,,,,,,,,,,,48.20000076293945,MEDIUM,0
 CityLink Couriers,1100416.0,413099.0,64.6,42441.0,21.0,97.0,Services,53.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,8.600000381469727,HIGH,0
@@ -1539,6 +1539,99 @@ sbip,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,U
 sbip,7200000.0,1600000.0,79.0,550000.0,5.0,73.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,86.1,LOW,1
 sbip,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
 sbip,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469728,HIGH,0
+Mahalaxmi Retail Mart,3832406.0,559844.0,77.8,28435.0,2.0,55.0,Retail,52.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,23.600000381469727,HIGH,0
+Sunrise Tech Services,2020678.0,582710.0,88.9,706852.0,17.0,68.0,Services,52.0,Female,North,Medium,0.0,0.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
+Nova Digital Solutions,3967660.0,732406.0,90.6,141456.0,2.0,66.0,Services,44.0,Female,South,Medium,0.0,0.0,,,,,,,,,,,,,74.5999984741211,LOW,1
+Shree Ganesh Traders,2649716.0,797876.0,92.3,285312.0,14.0,76.0,Retail,45.0,Female,West,Micro,0.0,0.0,,,,,,,,,,,,,53.0,MEDIUM,0
+UrbanLeaf Retail,1561023.0,445847.0,93.1,349282.0,11.0,78.0,Retail,50.0,Other,North,Small,0.0,0.0,,,,,,,,,,,,,45.0,MEDIUM,0
+BrightPath Logistics,1483470.0,198410.0,70.5,176722.0,2.0,96.0,Services,52.0,Male,East,Small,0.0,0.0,,,,,,,,,,,,,53.29999923706055,MEDIUM,0
+Pratham Auto Components,7359712.0,1496907.0,85.8,389298.0,5.0,65.0,Manufacturing,60.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,88.19999694824219,LOW,1
+BluePeak Textiles,3139572.0,1037773.0,87.6,62435.0,19.0,82.0,Manufacturing,48.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,75.80000305175781,LOW,1
+Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.59999847412109,MEDIUM,0
+Silverline Pharmacy,2534196.0,944889.0,91.1,101560.0,1.0,93.0,Services,58.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,80.69999694824219,LOW,1
+Crestview Furniture,3145973.0,439985.0,96.2,322365.0,22.0,62.0,Services,51.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,49.70000076293945,MEDIUM,0
+Orchid Beauty Supplies,3561498.0,850092.0,96.3,185899.0,4.0,58.0,Retail,46.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,43.900001525878906,MEDIUM,0
+Horizon Agro Foods,5421269.0,1077870.0,83.9,330939.0,12.0,65.0,Manufacturing,52.0,Male,Central,Small,0.0,0.0,,,,,,,,,,,,,84.4000015258789,LOW,1
+MetroFix Services,3621951.0,970881.0,90.3,57740.0,4.0,82.0,Services,48.0,Other,West,Micro,0.0,0.0,,,,,,,,,,,,,59.29999923706055,MEDIUM,1
+CloudNine Systems,4441334.0,1327615.0,76.4,337417.0,14.0,75.0,Services,54.0,Other,South,Small,0.0,0.0,,,,,,,,,,,,,40.70000076293945,MEDIUM,0
+Evergreen Paper Products,1793356.0,581199.0,66.3,551748.0,24.0,59.0,Manufacturing,87.0,Other,East,Medium,0.0,0.0,,,,,,,,,,,,,25.600000381469727,HIGH,0
+Kaveri Handloom Works,2627518.0,403233.0,78.3,184016.0,0.0,88.0,Manufacturing,94.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,57.70000076293945,MEDIUM,1
+Pioneer Medical Distributors,3109467.0,1279752.0,90.6,291171.0,3.0,97.0,Services,78.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,93.5999984741211,LOW,1
+Golden Route Transport,9285451.0,2810623.0,67.7,197456.0,17.0,91.0,Services,71.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,28.299999237060547,HIGH,0
+MapleStone Ceramics,3619218.0,964817.0,66.2,215306.0,9.0,57.0,Manufacturing,41.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,37.20000076293945,HIGH,0
+Lotus Home Essentials,1092463.0,159167.0,80.2,42900.0,24.0,76.0,Retail,87.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,4.699999809265137,HIGH,0
+Northstar Electricals,1977025.0,628546.0,97.5,111574.0,8.0,75.0,Retail,93.0,Other,North,Small,0.0,0.0,,,,,,,,,,,,,68.4000015258789,MEDIUM,1
+TerraNova Chemicals,8009168.0,3278223.0,96.8,733849.0,22.0,54.0,Manufacturing,83.0,Female,Central,Medium,0.0,0.0,,,,,,,,,,,,,27.100000381469727,HIGH,0
+BlueRiver Consulting,2784897.0,387679.0,62.8,315414.0,7.0,79.0,Services,52.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,42.20000076293945,MEDIUM,0
+Unity Stationery House,3649137.0,698449.0,87.1,96124.0,17.0,50.0,Retail,84.0,Other,North,Micro,0.0,0.0,,,,,,,,,,,,,39.5,HIGH,0
+Vertex Precision Tools,4865051.0,938464.0,79.7,238416.0,6.0,48.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,55.79999923706055,MEDIUM,1
+FreshField Organics,3161143.0,715332.0,77.4,285071.0,1.0,85.0,Manufacturing,79.0,Other,Central,Micro,0.0,0.0,,,,,,,,,,,,,85.0,LOW,1
+Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.39999961853028,HIGH,0
+Ironclad Fabricators,7515171.0,1499734.0,91.4,474399.0,9.0,69.0,Manufacturing,82.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,82.4000015258789,LOW,1
+Peacock Garment House,3487746.0,580497.0,73.1,38963.0,18.0,89.0,Manufacturing,72.0,Male,West,Micro,0.0,0.0,,,,,,,,,,,,,48.20000076293945,MEDIUM,0
+CityLink Couriers,1100416.0,413099.0,64.6,42441.0,21.0,97.0,Services,53.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,8.600000381469727,HIGH,0
+WellSpring Wellness,1905681.0,766996.0,83.4,328520.0,19.0,44.0,Services,77.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,66.4000015258789,MEDIUM,1
+RedBrick Construction,7950083.0,2521861.0,83.2,343562.0,8.0,55.0,Manufacturing,80.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,43.0,MEDIUM,0
+OliveTree Furnishings,3535565.0,677434.0,76.8,377159.0,20.0,61.0,Services,67.0,Female,South,Small,0.0,0.0,,,,,,,,,,,,,37.29999923706055,HIGH,0
+NextGen Repair Hub,1055974.0,129667.0,85.3,224119.0,3.0,46.0,Services,72.0,Male,East,Micro,0.0,0.0,,,,,,,,,,,,,81.80000305175781,LOW,1
+Saffron Spice Traders,5143668.0,1026471.0,97.0,61066.0,7.0,65.0,Retail,56.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,82.19999694824219,LOW,1
+CrystalClear Packaging,8236364.0,3048471.0,88.4,622251.0,20.0,75.0,Manufacturing,38.0,Other,North,Medium,0.0,0.0,,,,,,,,,,,,,36.0,HIGH,0
+SilverOak Books,2387959.0,954053.0,65.9,66784.0,8.0,49.0,Retail,94.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,37.900001525878906,HIGH,0
+Aarambh Fashion Studio,1542793.0,311188.0,84.7,280864.0,10.0,55.0,Manufacturing,81.0,Other,West,Micro,0.0,0.0,,,,,,,,,,,,,43.20000076293945,MEDIUM,0
+HarvestMoon Agro Tools,1269826.0,153729.0,90.9,359030.0,8.0,52.0,Manufacturing,85.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,78.0999984741211,LOW,1
+Summit Industrial Supply,8077854.0,2328619.0,66.2,697127.0,4.0,76.0,Retail,40.0,Female,West,Medium,0.0,0.0,,,,,,,,,,,,,76.5,LOW,1
+abc,5700000.0,1700000.0,82.0,210000.0,8.0,75.0,Retail,70.0,Male,East,Small,8.0,28.0,,,,,,,,,,,,,47.4,MEDIUM,0
+abc,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+abc,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+abc,7200000.0,900000.0,74.0,500000.0,5.0,86.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,89.9,LOW,1
+Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469728,HIGH,0
+Mahalaxmi Retail Mart,3832406.0,559844.0,77.8,28435.0,2.0,55.0,Retail,52.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,23.600000381469727,HIGH,0
+Sunrise Tech Services,2020678.0,582710.0,88.9,706852.0,17.0,68.0,Services,52.0,Female,North,Medium,0.0,0.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
+Nova Digital Solutions,3967660.0,732406.0,90.6,141456.0,2.0,66.0,Services,44.0,Female,South,Medium,0.0,0.0,,,,,,,,,,,,,74.5999984741211,LOW,1
+Shree Ganesh Traders,2649716.0,797876.0,92.3,285312.0,14.0,76.0,Retail,45.0,Female,West,Micro,0.0,0.0,,,,,,,,,,,,,53.0,MEDIUM,0
+UrbanLeaf Retail,1561023.0,445847.0,93.1,349282.0,11.0,78.0,Retail,50.0,Other,North,Small,0.0,0.0,,,,,,,,,,,,,45.0,MEDIUM,0
+BrightPath Logistics,1483470.0,198410.0,70.5,176722.0,2.0,96.0,Services,52.0,Male,East,Small,0.0,0.0,,,,,,,,,,,,,53.29999923706055,MEDIUM,0
+Pratham Auto Components,7359712.0,1496907.0,85.8,389298.0,5.0,65.0,Manufacturing,60.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,88.19999694824219,LOW,1
+BluePeak Textiles,3139572.0,1037773.0,87.6,62435.0,19.0,82.0,Manufacturing,48.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,75.80000305175781,LOW,1
+Riverstone Packaging,5316519.0,898602.0,76.2,648979.0,22.0,77.0,Manufacturing,52.0,Other,South,Medium,0.0,0.0,,,,,,,,,,,,,40.59999847412109,MEDIUM,0
+Silverline Pharmacy,2534196.0,944889.0,91.1,101560.0,1.0,93.0,Services,58.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,80.69999694824219,LOW,1
+Crestview Furniture,3145973.0,439985.0,96.2,322365.0,22.0,62.0,Services,51.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,49.70000076293945,MEDIUM,0
+Orchid Beauty Supplies,3561498.0,850092.0,96.3,185899.0,4.0,58.0,Retail,46.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,43.900001525878906,MEDIUM,0
+Horizon Agro Foods,5421269.0,1077870.0,83.9,330939.0,12.0,65.0,Manufacturing,52.0,Male,Central,Small,0.0,0.0,,,,,,,,,,,,,84.4000015258789,LOW,1
+MetroFix Services,3621951.0,970881.0,90.3,57740.0,4.0,82.0,Services,48.0,Other,West,Micro,0.0,0.0,,,,,,,,,,,,,59.29999923706055,MEDIUM,1
+CloudNine Systems,4441334.0,1327615.0,76.4,337417.0,14.0,75.0,Services,54.0,Other,South,Small,0.0,0.0,,,,,,,,,,,,,40.70000076293945,MEDIUM,0
+Evergreen Paper Products,1793356.0,581199.0,66.3,551748.0,24.0,59.0,Manufacturing,87.0,Other,East,Medium,0.0,0.0,,,,,,,,,,,,,25.600000381469727,HIGH,0
+Kaveri Handloom Works,2627518.0,403233.0,78.3,184016.0,0.0,88.0,Manufacturing,94.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,57.70000076293945,MEDIUM,1
+Pioneer Medical Distributors,3109467.0,1279752.0,90.6,291171.0,3.0,97.0,Services,78.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,93.5999984741211,LOW,1
+Golden Route Transport,9285451.0,2810623.0,67.7,197456.0,17.0,91.0,Services,71.0,Male,West,Medium,0.0,0.0,,,,,,,,,,,,,28.299999237060547,HIGH,0
+MapleStone Ceramics,3619218.0,964817.0,66.2,215306.0,9.0,57.0,Manufacturing,41.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,37.20000076293945,HIGH,0
+Lotus Home Essentials,1092463.0,159167.0,80.2,42900.0,24.0,76.0,Retail,87.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,4.699999809265137,HIGH,0
+Northstar Electricals,1977025.0,628546.0,97.5,111574.0,8.0,75.0,Retail,93.0,Other,North,Small,0.0,0.0,,,,,,,,,,,,,68.4000015258789,MEDIUM,1
+TerraNova Chemicals,8009168.0,3278223.0,96.8,733849.0,22.0,54.0,Manufacturing,83.0,Female,Central,Medium,0.0,0.0,,,,,,,,,,,,,27.100000381469727,HIGH,0
+BlueRiver Consulting,2784897.0,387679.0,62.8,315414.0,7.0,79.0,Services,52.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,42.20000076293945,MEDIUM,0
+Unity Stationery House,3649137.0,698449.0,87.1,96124.0,17.0,50.0,Retail,84.0,Other,North,Micro,0.0,0.0,,,,,,,,,,,,,39.5,HIGH,0
+Vertex Precision Tools,4865051.0,938464.0,79.7,238416.0,6.0,48.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,55.79999923706055,MEDIUM,1
+FreshField Organics,3161143.0,715332.0,77.4,285071.0,1.0,85.0,Manufacturing,79.0,Other,Central,Micro,0.0,0.0,,,,,,,,,,,,,85.0,LOW,1
+Skyline Event Services,1207911.0,166913.0,89.3,57601.0,7.0,54.0,Services,50.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,20.399999618530277,HIGH,0
+Ironclad Fabricators,7515171.0,1499734.0,91.4,474399.0,9.0,69.0,Manufacturing,82.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,82.4000015258789,LOW,1
+Peacock Garment House,3487746.0,580497.0,73.1,38963.0,18.0,89.0,Manufacturing,72.0,Male,West,Micro,0.0,0.0,,,,,,,,,,,,,48.20000076293945,MEDIUM,0
+CityLink Couriers,1100416.0,413099.0,64.6,42441.0,21.0,97.0,Services,53.0,Female,North,Micro,0.0,0.0,,,,,,,,,,,,,8.600000381469727,HIGH,0
+WellSpring Wellness,1905681.0,766996.0,83.4,328520.0,19.0,44.0,Services,77.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,66.4000015258789,MEDIUM,1
+RedBrick Construction,7950083.0,2521861.0,83.2,343562.0,8.0,55.0,Manufacturing,80.0,Other,Central,Medium,0.0,0.0,,,,,,,,,,,,,43.0,MEDIUM,0
+OliveTree Furnishings,3535565.0,677434.0,76.8,377159.0,20.0,61.0,Services,67.0,Female,South,Small,0.0,0.0,,,,,,,,,,,,,37.29999923706055,HIGH,0
+NextGen Repair Hub,1055974.0,129667.0,85.3,224119.0,3.0,46.0,Services,72.0,Male,East,Micro,0.0,0.0,,,,,,,,,,,,,81.80000305175781,LOW,1
+Saffron Spice Traders,5143668.0,1026471.0,97.0,61066.0,7.0,65.0,Retail,56.0,Male,West,Small,0.0,0.0,,,,,,,,,,,,,82.19999694824219,LOW,1
+CrystalClear Packaging,8236364.0,3048471.0,88.4,622251.0,20.0,75.0,Manufacturing,38.0,Other,North,Medium,0.0,0.0,,,,,,,,,,,,,36.0,HIGH,0
+SilverOak Books,2387959.0,954053.0,65.9,66784.0,8.0,49.0,Retail,94.0,Male,South,Micro,0.0,0.0,,,,,,,,,,,,,37.900001525878906,HIGH,0
+Aarambh Fashion Studio,1542793.0,311188.0,84.7,280864.0,10.0,55.0,Manufacturing,81.0,Other,West,Micro,0.0,0.0,,,,,,,,,,,,,43.20000076293945,MEDIUM,0
+HarvestMoon Agro Tools,1269826.0,153729.0,90.9,359030.0,8.0,52.0,Manufacturing,85.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,78.0999984741211,LOW,1
+Summit Industrial Supply,8077854.0,2328619.0,66.2,697127.0,4.0,76.0,Retail,40.0,Female,West,Medium,0.0,0.0,,,,,,,,,,,,,76.5,LOW,1
+nbm,5000000.0,1500000.0,85.0,200000.0,5.0,75.0,Manufacturing,70.0,Male,South,Small,8.0,25.0,,,,,,,,,,,,,72.5,LOW,1
+nbm,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+nbm,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+nbm,7200000.0,1500000.0,69.0,600000.0,5.0,76.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,80.2,LOW,1
+nbm,7200000.0,1500000.0,69.0,600000.0,5.0,76.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,80.2,LOW,1
 Apex Engineering Solutions,1833912.0,233829.0,72.3,142026.0,4.0,89.0,Manufacturing,44.0,Other,West,Small,0.0,0.0,,,,,,,,,,,,,11.600000381469727,HIGH,0
 Mahalaxmi Retail Mart,3832406.0,559844.0,77.8,28435.0,2.0,55.0,Retail,52.0,Other,South,Micro,0.0,0.0,,,,,,,,,,,,,23.600000381469727,HIGH,0
 Sunrise Tech Services,2020678.0,582710.0,88.9,706852.0,17.0,68.0,Services,52.0,Female,North,Medium,0.0,0.0,,,,,,,,,,,,,65.30000305175781,MEDIUM,1
@@ -1581,3 +1674,11 @@ SilverOak Books,2387959.0,954053.0,65.9,66784.0,8.0,49.0,Retail,94.0,Male,South,
 Aarambh Fashion Studio,1542793.0,311188.0,84.7,280864.0,10.0,55.0,Manufacturing,81.0,Other,West,Micro,0.0,0.0,,,,,,,,,,,,,43.20000076293945,MEDIUM,0
 HarvestMoon Agro Tools,1269826.0,153729.0,90.9,359030.0,8.0,52.0,Manufacturing,85.0,Female,North,Small,0.0,0.0,,,,,,,,,,,,,78.0999984741211,LOW,1
 Summit Industrial Supply,8077854.0,2328619.0,66.2,697127.0,4.0,76.0,Retail,40.0,Female,West,Medium,0.0,0.0,,,,,,,,,,,,,76.5,LOW,1
+SRD,5000000.0,1500000.0,85.0,200000.0,5.0,75.0,Manufacturing,70.0,Male,South,Small,8.0,25.0,,,,,,,,,,,,,72.5,LOW,1
+SRD,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+SRD,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+SRD,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+SRD,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+fds,5000000.0,1500000.0,85.0,200000.0,5.0,75.0,Manufacturing,70.0,Male,South,Small,8.0,25.0,,,,,,,,,,,,,72.5,LOW,1
+fds,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1
+fds,7200000.0,1500000.0,85.0,350000.0,5.0,85.0,Manufacturing,70.0,Unspecified,Unknown,Micro,0.0,0.0,,,,,,,,,,,,,82.0,LOW,1

@@ -96,7 +96,11 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
       {!embedded && (
         <button
           onClick={() => setOpen(!open)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#168BFF] text-white shadow-xl shadow-[#168BFF]/25 hover:bg-[#1278e0] transition-base flex items-center justify-center border border-[#168BFF]/40"
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full text-white shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center border border-[var(--border-default)]"
+          style={{
+            background: "var(--brand-primary)",
+            boxShadow: "0 8px 24px rgba(22, 61, 50, 0.28)",
+          }}
           aria-label="Open chatbot"
         >
           {open ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
@@ -108,31 +112,31 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
         <div
           className={
             embedded
-              ? "w-full h-[550px] flex flex-col overflow-hidden shadow-2xl rounded-2xl border border-[rgba(22,139,255,0.15)]"
-              : "fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-96 h-[500px] max-h-[70vh] flex flex-col overflow-hidden shadow-2xl rounded-2xl border border-[rgba(22,139,255,0.15)]"
+              ? "w-full h-[550px] flex flex-col overflow-hidden shadow-2xl rounded-2xl border border-[var(--border-default)] transition-colors"
+              : "fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-96 h-[500px] max-h-[70vh] flex flex-col overflow-hidden shadow-2xl rounded-2xl border border-[var(--border-default)] transition-colors"
           }
           style={{
-            background: "#070910",
+            background: "var(--bg-page)",
           }}
         >
           {/* Header */}
           <div
-            className="px-4 py-3 flex items-center justify-between"
+            className="px-4 py-3 flex items-center justify-between transition-colors"
             style={{
-              background: "#0C1C35",
-              borderBottom: "1px solid rgba(22,139,255,0.15)",
+              background: "var(--surface-primary)",
+              borderBottom: "1px solid var(--border-default)",
             }}
           >
             <div className="flex items-center gap-2.5">
-              <Sparkles className="w-5 h-5 text-[#168BFF]" />
+              <Sparkles className="w-5 h-5 text-[var(--brand-emerald)]" />
               <div>
-                <div className="font-semibold text-sm text-[#EFF7FF]">{title}</div>
-                <div className="text-[12px] text-[#94A8C2]">Powered by Groq AI</div>
+                <div className="font-semibold text-sm text-[var(--text-primary)]">{title}</div>
+                <div className="text-[12px] text-[var(--text-secondary)]">Powered by Groq AI</div>
               </div>
             </div>
             <button
               onClick={clearChat}
-              className="p-1.5 rounded-lg hover:bg-white/5 transition-base text-[#94A8C2] hover:text-[#EFF7FF]"
+              className="p-1.5 rounded-lg hover:bg-[var(--surface-hover)] transition-colors text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               title="Clear chat"
             >
               <Trash2 className="w-4 h-4" />
@@ -142,16 +146,16 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="flex-1 overflow-y-auto space-y-3"
+            className="flex-1 overflow-y-auto space-y-3 transition-colors"
             style={{
-              background: "#070910",
+              background: "var(--bg-page)",
               padding: "16px",
             }}
           >
             {messages.length === 0 && (
               <div className="text-center py-6">
-                <Sparkles className="w-8 h-8 text-[#168BFF] mx-auto mb-3" />
-                <p className="text-xs text-[#94A8C2] mb-4 leading-relaxed">
+                <Sparkles className="w-8 h-8 text-[var(--brand-emerald)] mx-auto mb-3" />
+                <p className="text-xs text-[var(--text-secondary)] mb-4 leading-relaxed">
                   I'm Vridhi Assistant. Ask me about credit scores, risk factors, or loan recommendations.
                 </p>
                 <div className="space-y-1.5">
@@ -159,7 +163,7 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
                     <button
                       key={prompt}
                       onClick={() => sendMessage(prompt)}
-                      className="block w-full text-left text-xs text-[#EFF7FF] bg-[#0C1C35] hover:bg-[#168BFF]/15 border border-[rgba(22,139,255,0.15)] rounded-lg px-3 py-2 transition-base"
+                      className="block w-full text-left text-xs text-[var(--text-primary)] bg-[var(--surface-card)] hover:bg-[var(--surface-hover)] border border-[var(--border-default)] rounded-lg px-3 py-2 transition-all shadow-sm"
                     >
                       {prompt}
                     </button>
@@ -179,14 +183,15 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
                     padding: "10px 14px",
                     ...(msg.role === "user"
                       ? {
-                          background: "#168BFF",
-                          color: "#EFF7FF",
+                          background: "var(--brand-primary)",
+                          color: "var(--btn-primary-text)",
                           borderRadius: "12px 12px 2px 12px",
+                          boxShadow: "0 2px 8px rgba(22, 61, 50, 0.15)",
                         }
                       : {
-                          background: "#0C1C35",
-                          border: "1px solid rgba(22,139,255,0.12)",
-                          color: "#EFF7FF",
+                          background: "var(--surface-card)",
+                          border: "1px solid var(--border-default)",
+                          color: "var(--text-primary)",
                           borderRadius: "12px 12px 12px 2px",
                         }),
                   }}
@@ -201,16 +206,16 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
               <div className="flex justify-start">
                 <div
                   style={{
-                    background: "#0C1C35",
-                    border: "1px solid rgba(22,139,255,0.12)",
+                    background: "var(--surface-card)",
+                    border: "1px solid var(--border-default)",
                     borderRadius: "12px",
                     padding: "10px 14px",
                   }}
                   className="flex items-center gap-1.5"
                 >
-                  <span className="typing-dot w-2 h-2 rounded-full bg-[#168BFF] animate-pulse" />
-                  <span className="typing-dot w-2 h-2 rounded-full bg-[#168BFF] animate-pulse delay-150" />
-                  <span className="typing-dot w-2 h-2 rounded-full bg-[#168BFF] animate-pulse delay-300" />
+                  <span className="typing-dot w-2 h-2 rounded-full bg-[var(--brand-emerald)] animate-pulse" />
+                  <span className="typing-dot w-2 h-2 rounded-full bg-[var(--brand-emerald)] animate-pulse delay-150" />
+                  <span className="typing-dot w-2 h-2 rounded-full bg-[var(--brand-emerald)] animate-pulse delay-300" />
                 </div>
               </div>
             )}
@@ -220,7 +225,7 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
                 style={{
                   background: "rgba(239,68,68,0.08)",
                   border: "1px solid rgba(239,68,68,0.2)",
-                  color: "#f87171",
+                  color: "#ef4444",
                   borderRadius: "12px",
                   padding: "10px 14px",
                   fontSize: "13px",
@@ -233,10 +238,10 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
 
           {/* Input */}
           <div
-            className="p-3 flex gap-2"
+            className="p-3 flex gap-2 transition-colors"
             style={{
-              background: "#0C1C35",
-              borderTop: "1px solid rgba(22,139,255,0.12)",
+              background: "var(--surface-primary)",
+              borderTop: "1px solid var(--border-default)",
             }}
           >
             <input
@@ -245,11 +250,11 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               placeholder="Ask about credit risk..."
-              className="flex-1 text-sm px-3 py-2 focus:outline-none transition-base"
+              className="flex-1 text-sm px-3 py-2 focus:outline-none transition-all placeholder-[var(--input-placeholder)]"
               style={{
-                background: "#070910",
-                border: "1px solid rgba(22,139,255,0.2)",
-                color: "#EFF7FF",
+                background: "var(--input-bg)",
+                border: "1px solid var(--input-border)",
+                color: "var(--input-text)",
                 borderRadius: "10px",
               }}
               disabled={loading}
@@ -257,14 +262,12 @@ export default function Chatbot({ context = {}, title = "Vridhi Assistant", embe
             <button
               onClick={() => sendMessage()}
               disabled={loading || !input.trim()}
-              className="px-3 py-2 disabled:opacity-40 transition-base flex items-center justify-center"
+              className="px-3 py-2 disabled:opacity-40 transition-all flex items-center justify-center cursor-pointer shadow-sm hover:scale-[1.03] active:scale-[0.97]"
               style={{
-                background: "#168BFF",
-                color: "white",
+                background: "var(--brand-primary)",
+                color: "var(--btn-primary-text)",
                 borderRadius: "10px",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#1278e0")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#168BFF")}
             >
               <Send className="w-4 h-4" />
             </button>

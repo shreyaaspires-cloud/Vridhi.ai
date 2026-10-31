@@ -13,8 +13,8 @@ export default function ScoreGauge({ score, label }) {
   const data = [{ name: "score", value: score, fill: color }];
 
   return (
-    <div className="glass-panel rounded-xl p-6 flex flex-col items-center">
-      <h3 className="text-sm font-semibold text-[#94A8C2] mb-2 self-start">
+    <div className="glass-panel rounded-xl p-6 flex flex-col items-center transition-colors">
+      <h3 className="text-sm font-semibold text-[var(--text-muted)] mb-2 self-start">
         Credit Risk Score
       </h3>
       <div className="relative w-48 h-48">
@@ -28,7 +28,7 @@ export default function ScoreGauge({ score, label }) {
           >
             <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
             <RadialBar
-              background={{ fill: "#1a2540" }}
+              background={{ fill: "var(--border-default)" }}
               dataKey="value"
               cornerRadius={10}
             />
@@ -38,7 +38,7 @@ export default function ScoreGauge({ score, label }) {
           <span className="text-4xl font-bold font-display" style={{ color }}>
             {score}
           </span>
-          <span className="text-xs text-[#4A6080] mt-1">out of 100</span>
+          <span className="text-xs text-[var(--text-muted)] mt-1">out of 100</span>
         </div>
       </div>
       {label && (
@@ -50,7 +50,7 @@ export default function ScoreGauge({ score, label }) {
             border: `1px solid ${color}40`,
           }}
         >
-          {label} RISK
+          {label} Risk
         </div>
       )}
     </div>

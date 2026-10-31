@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class", '[data-theme="dark"]'],
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,28 +11,41 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // --- Dark midnight palette ---
+        // --- Semantic CSS variable mappings ---
+        theme: {
+          bg:         "var(--bg-page)",
+          "bg-soft":  "var(--bg-page-soft)",
+          surface:    "var(--surface-primary)",
+          "surface-sub": "var(--surface-secondary)",
+          elevated:   "var(--surface-elevated)",
+          border:     "var(--border-default)",
+          text:       "var(--text-primary)",
+          muted:      "var(--text-muted)",
+          brand:      "var(--brand-primary)",
+          emerald:    "var(--brand-emerald)",
+        },
+        // --- Dynamic midnight mapping to semantic surface variables ---
         midnight: {
-          DEFAULT: "#070910",
-          50:  "#0B1425",
-          100: "#0C1C35",
-          200: "#0E2244",
-          300: "#1a2540",
-          400: "#1e3158",
+          DEFAULT: "var(--midnight)",
+          50:  "var(--midnight-50)",
+          100: "var(--midnight-100)",
+          200: "var(--midnight-200)",
+          300: "var(--midnight-300)",
+          400: "var(--midnight-400)",
         },
         electric: {
-          DEFAULT: "#168BFF",
-          dim:    "#0E6CD4",
-          muted:  "#168BFF26",
+          DEFAULT: "var(--electric)",
+          dim:    "var(--brand-emerald-dim)",
+          muted:  "rgba(40, 118, 87, 0.15)",
         },
         cyan: {
-          DEFAULT: "#55D9FF",
-          muted:  "#55D9FF20",
+          DEFAULT: "var(--cyan)",
+          muted:  "rgba(22, 61, 50, 0.15)",
         },
         ink: {
-          white:  "#EFF7FF",
-          mid:    "#94A8C2",
-          dim:    "#4A6080",
+          white:  "var(--ink-white)",
+          mid:    "var(--ink-mid)",
+          dim:    "var(--ink-dim)",
         },
         // --- Preserved original palette ---
         primary: {
@@ -69,28 +83,19 @@ module.exports = {
         sans:     ["Inter", "system-ui", "sans-serif"],
         display:  ["'Space Grotesk'", "Inter", "system-ui", "sans-serif"],
       },
-      backgroundImage: {
-        "hero-glow": "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(22,139,255,0.18) 0%, transparent 70%)",
-        "card-sheen": "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)",
-      },
       boxShadow: {
-        "glass":    "0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
-        "glass-lg": "0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)",
-        "electric": "0 0 0 1px rgba(22,139,255,0.35), 0 4px 20px rgba(22,139,255,0.12)",
+        "glass":    "0 4px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.1)",
+        "glass-lg": "0 8px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)",
+        "electric": "0 0 0 1px rgba(40, 118, 87, 0.35), 0 4px 20px rgba(40, 118, 87, 0.12)",
       },
       keyframes: {
         "fade-up": {
           "0%":   { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(22,139,255,0)" },
-          "50%":      { boxShadow: "0 0 0 6px rgba(22,139,255,0.08)" },
-        },
       },
       animation: {
         "fade-up":    "fade-up 0.5s ease-out both",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
       },
     },
   },

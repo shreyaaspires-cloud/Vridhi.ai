@@ -28,22 +28,21 @@ const DEFAULTS = {
   revenue_history: [400000, 420000, 410000, 450000, 470000, 460000, 480000, 490000, 475000, 500000, 510000, 520000],
 };
 
-const inputClass =
-  "dark-input";
+const inputClass = "dark-input";
 
 function Field({ label, children, hint, modelInput }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#94A8C2] mb-1.5">
+      <label className="block text-sm font-semibold text-[var(--text-primary)] mb-1.5">
         {label}
         {modelInput && (
-          <span className="ml-2 text-xs text-[#168BFF] bg-[#168BFF]/10 border border-[#168BFF]/20 px-1.5 py-0.5 rounded">
+          <span className="ml-2 text-xs font-semibold text-[var(--brand-emerald)] bg-[var(--brand-emerald)]/10 border border-[var(--brand-emerald)]/25 px-1.5 py-0.5 rounded">
             MODEL INPUT
           </span>
         )}
       </label>
       {children}
-      {hint && <p className="mt-1 text-xs text-[#4A6080]">{hint}</p>}
+      {hint && <p className="mt-1 text-xs text-[var(--text-muted)]">{hint}</p>}
     </div>
   );
 }
@@ -98,43 +97,57 @@ export default function AssessmentForm() {
       return;
     }
     if (form.income === "" || form.income === null || isNaN(form.income) || Number(form.income) <= 0) {
-      const msg = "Please enter a valid Annual Income (> 0).";
+      const msg = "Annual Income must be a positive number.";
       setError(msg);
       toast.error(msg);
       return;
     }
     if (form.loan_amount === "" || form.loan_amount === null || isNaN(form.loan_amount) || Number(form.loan_amount) <= 0) {
-      const msg = "Please enter a valid Requested Loan Amount (> 0).";
+      const msg = "Loan Amount must be a positive number.";
       setError(msg);
       toast.error(msg);
       return;
     }
-    if (form.gst_compliance_rate === "" || form.gst_compliance_rate === null || isNaN(form.gst_compliance_rate)) {
-      const msg = "Please enter a valid GST Compliance Rate (0-100%).";
+    if (form.gst_compliance_rate === "" || isNaN(form.gst_compliance_rate) || form.gst_compliance_rate < 0 || form.gst_compliance_rate > 100) {
+      const msg = "GST Compliance Rate must be between 0 and 100.";
       setError(msg);
       toast.error(msg);
       return;
     }
-    if (form.monthly_upi_volume === "" || form.monthly_upi_volume === null || isNaN(form.monthly_upi_volume)) {
-      const msg = "Please enter a valid Monthly UPI Volume.";
+    if (form.monthly_upi_volume === "" || isNaN(form.monthly_upi_volume) || Number(form.monthly_upi_volume) < 0) {
+      const msg = "Monthly UPI Volume cannot be negative.";
       setError(msg);
       toast.error(msg);
       return;
     }
-    if (form.utility_delay_days === "" || form.utility_delay_days === null || isNaN(form.utility_delay_days)) {
-      const msg = "Please enter Utility Delay Days.";
+    if (form.utility_delay_days === "" || isNaN(form.utility_delay_days) || Number(form.utility_delay_days) < 0) {
+      const msg = "Utility Delay Days cannot be negative.";
       setError(msg);
       toast.error(msg);
       return;
     }
-    if (form.vendor_trust_score === "" || form.vendor_trust_score === null || isNaN(form.vendor_trust_score)) {
-      const msg = "Please enter Vendor Trust Score (0-100).";
+    if (form.vendor_trust_score === "" || isNaN(form.vendor_trust_score) || form.vendor_trust_score < 0 || form.vendor_trust_score > 100) {
+      const msg = "Vendor Trust Score must be between 0 and 100.";
       setError(msg);
       toast.error(msg);
       return;
     }
-    if (form.afhi_score === "" || form.afhi_score === null || isNaN(form.afhi_score)) {
-      const msg = "Please enter AFHI Score (0-100).";
+    if (form.afhi_score === "" || isNaN(form.afhi_score) || form.afhi_score < 0 || form.afhi_score > 100) {
+      const msg = "AFHI Score must be between 0 and 100.";
+      setError(msg);
+      toast.error(msg);
+      return;
+    }
+
+    // Revenue history validation
+    if (hasPartialRevenue) {
+      const msg = `Please enter exactly 12 months of revenue (entered ${parsedRevMonths.length}).`;
+      setError(msg);
+      toast.error(msg);
+      return;
+    }
+    if (hasMissingMonths) {
+      const msg = "One or more monthly revenue entries are invalid.";
       setError(msg);
       toast.error(msg);
       return;
@@ -169,22 +182,22 @@ export default function AssessmentForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {error && (
-        <div className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl px-4 py-3 text-sm">
+        <div className="bg-red-500/10 border border-red-500/30 text-red-500 rounded-xl px-4 py-3 text-sm">
           {error}
         </div>
       )}
 
       {/* Model Inputs */}
-      <div className="glass-panel rounded-xl p-6">
-        <h2 className="text-base font-semibold text-[#EFF7FF] mb-0.5">
+      <div className="glass-panel rounded-xl p-6 transition-colors">
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1 font-display">
           {t("model_inputs")}
         </h2>
-        <p className="text-sm text-[#4A6080] mb-5">
+        <p className="text-sm text-[var(--text-secondary)] mb-6">
           {t("model_inputs_sub")}
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Field label={t("business_name")} modelInput={false}>
             <input
               className={inputClass}
@@ -204,91 +217,71 @@ export default function AssessmentForm() {
               ))}
             </select>
           </Field>
-          <Field label={t("annual_income")} modelInput hint="Annual business income">
+          <Field label={t("annual_income")} modelInput>
             <input
               type="number"
               className={inputClass}
               value={form.income}
               onChange={(e) => update("income", +e.target.value)}
-              step={100000}
-              min={0}
             />
           </Field>
-          <Field label={t("loan_amount")} modelInput hint="Requested loan amount">
+          <Field label={t("loan_amount")} modelInput>
             <input
               type="number"
               className={inputClass}
               value={form.loan_amount}
               onChange={(e) => update("loan_amount", +e.target.value)}
-              step={50000}
-              min={0}
             />
           </Field>
-          <Field label={t("gst_compliance")} modelInput hint="0–100">
+          <Field label={t("gst_compliance")} modelInput hint="Range: 0 - 100%">
             <input
               type="number"
+              min="0"
+              max="100"
               className={inputClass}
               value={form.gst_compliance_rate}
               onChange={(e) => update("gst_compliance_rate", +e.target.value)}
-              step={1}
-              min={0}
-              max={100}
             />
           </Field>
-          <Field label={t("monthly_upi")} modelInput hint="Monthly UPI transaction volume">
+          <Field label={t("monthly_upi")} modelInput>
             <input
               type="number"
               className={inputClass}
               value={form.monthly_upi_volume}
               onChange={(e) => update("monthly_upi_volume", +e.target.value)}
-              step={10000}
-              min={0}
             />
           </Field>
-          <Field label={t("utility_delay")} modelInput hint="Average delay in utility bill payments">
+          <Field label={t("utility_delay")} modelInput hint="Average days delay in utility payments">
             <input
               type="number"
+              min="0"
               className={inputClass}
               value={form.utility_delay_days}
               onChange={(e) => update("utility_delay_days", +e.target.value)}
-              step={1}
-              min={0}
             />
           </Field>
-          <Field label={t("vendor_trust")} modelInput hint="0–100">
+          <Field label={t("vendor_trust")} modelInput hint="Range: 0 - 100">
             <input
               type="number"
+              min="0"
+              max="100"
               className={inputClass}
               value={form.vendor_trust_score}
               onChange={(e) => update("vendor_trust_score", +e.target.value)}
-              step={1}
-              min={0}
-              max={100}
-            />
-          </Field>
-          <Field label={t("afhi_score")} modelInput hint="Alternative Financial Health Index (0–100)">
-            <input
-              type="number"
-              className={inputClass}
-              value={form.afhi_score}
-              onChange={(e) => update("afhi_score", +e.target.value)}
-              step={1}
-              min={0}
-              max={100}
             />
           </Field>
         </div>
       </div>
 
-      {/* Metadata / Audit Inputs */}
-      <div className="glass-panel rounded-xl p-6">
-        <h2 className="text-base font-semibold text-[#EFF7FF] mb-0.5">
+      {/* Metadata & Audit Inputs */}
+      <div className="glass-panel rounded-xl p-6 transition-colors">
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1 font-display">
           {t("metadata_inputs")}
         </h2>
-        <p className="text-sm text-[#4A6080] mb-5">
+        <p className="text-sm text-[var(--text-secondary)] mb-6">
           {t("metadata_inputs_sub")}
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Field label={t("owner_gender")}>
             <select
               className={inputClass}
@@ -325,132 +318,62 @@ export default function AssessmentForm() {
           <Field label={t("years_operation")}>
             <input
               type="number"
+              min="0"
               className={inputClass}
               value={form.years_in_operation}
               onChange={(e) => update("years_in_operation", +e.target.value)}
-              min={0}
             />
           </Field>
           <Field label={t("employee_count")}>
             <input
               type="number"
+              min="1"
               className={inputClass}
               value={form.employee_count}
               onChange={(e) => update("employee_count", +e.target.value)}
-              min={0}
+            />
+          </Field>
+          <Field label={t("afhi_score")} hint="Alternative Financial Health Index (0-100)">
+            <input
+              type="number"
+              min="0"
+              max="100"
+              className={inputClass}
+              value={form.afhi_score}
+              onChange={(e) => update("afhi_score", +e.target.value)}
             />
           </Field>
         </div>
-        <div className="mt-4">
-          {/* Revenue History Section with clear disclaimer */}
-          <div className="space-y-2">
-            <div className="flex items-start gap-2">
-              <label className="block text-sm font-medium text-[#94A8C2]">
-                {t("revenue_history")}
-                <span className="ml-2 text-[10px] text-amber-400 bg-amber-400/10 border border-amber-400/20 px-1.5 py-0.5 rounded">
-                  NOT A SCORE INPUT
-                </span>
-              </label>
-            </div>
+      </div>
 
-            {/* Important distinction banner */}
-            <div
-              className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-lg text-xs"
-              style={{
-                background: "rgba(22,139,255,0.06)",
-                border: "1px solid rgba(22,139,255,0.18)",
-              }}
-              role="note"
-              aria-label="Revenue history purpose"
-            >
-              <Info className="w-4 h-4 text-[#168BFF] flex-shrink-0 mt-0.5" />
-              <p className="text-[#94A8C2] leading-relaxed">
-                <span className="font-semibold text-[#EFF7FF]">Revenue history is used for cash-flow forecasting only.</span>{" "}
-                It does not directly affect your credit score.{" "}
-                <span className="text-[#EFF7FF] font-medium">Annual Income</span> (in Model Inputs above) is a separate field used by the XGBoost credit-risk model.
-              </p>
-            </div>
-
-            <textarea
-              className={inputClass + " h-20 resize-none"}
-              value={revText}
-              onChange={(e) => setRevText(e.target.value)}
-              placeholder="Enter 12 monthly values: e.g. 400000, 420000, 410000, 450000, 470000, 460000, 480000, 490000, 475000, 500000, 510000, 520000"
-              aria-describedby="revenue-hint"
-            />
-            <p id="revenue-hint" className="text-xs text-[#4A6080]">
-              {t("revenue_hint")}
-            </p>
-
-            {/* Annual Revenue Derived Display */}
-            {parsedRevMonths.length > 0 && (
-              <div
-                className="rounded-lg px-3.5 py-2.5 text-xs"
-                style={{
-                  background: annualRevenue !== null
-                    ? "rgba(16,185,129,0.06)"
-                    : "rgba(245,158,11,0.06)",
-                  border: annualRevenue !== null
-                    ? "1px solid rgba(16,185,129,0.2)"
-                    : "1px solid rgba(245,158,11,0.2)",
-                }}
-              >
-                {annualRevenue !== null ? (
-                  <div className="flex items-center justify-between flex-wrap gap-2">
-                    <div>
-                      <span className="text-[#94A8C2]">Calculated Annual Revenue: </span>
-                      <span className="font-bold text-emerald-400">
-                        ₹{annualRevenue.toLocaleString("en-IN")}
-                      </span>
-                      <span className="text-[#4A6080] ml-2">
-                        (Sum of 12 monthly values)
-                      </span>
-                    </div>
-                    <span
-                      className="px-2 py-0.5 rounded text-[10px] font-semibold"
-                      style={{ background: "rgba(16,185,129,0.15)", color: "#10b981" }}
-                    >
-                      FOR FORECASTING ONLY
-                    </span>
-                  </div>
-                ) : hasMissingMonths ? (
-                  <p className="text-amber-400">
-                    ⚠ Some months have invalid or missing values — annual revenue cannot be calculated.
-                  </p>
-                ) : hasPartialRevenue ? (
-                  <p className="text-amber-400">
-                    {parsedRevMonths.filter(v => v !== null).length} of 12 months entered — provide all 12 to see annual revenue.
-                  </p>
-                ) : null}
-              </div>
-            )}
-          </div>
-        </div>
+      {/* Revenue History */}
+      <div className="glass-panel rounded-xl p-6 transition-colors">
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1 font-display">
+          {t("revenue_history")}
+        </h2>
+        <p className="text-sm text-[var(--text-secondary)] mb-4">
+          Provide monthly turnover numbers for cashflow forecasting analysis.
+        </p>
+        <textarea
+          rows={3}
+          className={`${inputClass} font-mono text-sm`}
+          value={revText}
+          onChange={(e) => setRevText(e.target.value)}
+          placeholder="e.g. 400000, 420000, 410000, 450000, 470000, 460000, 480000, 490000, 475000, 500000, 510000, 520000"
+        />
+        {annualRevenue !== null && (
+          <p className="text-xs text-[var(--brand-emerald)] font-semibold mt-2">
+            Computed Annual Revenue: ₹{annualRevenue.toLocaleString("en-IN")}
+          </p>
+        )}
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full font-semibold py-3.5 rounded-xl transition-base flex items-center justify-center gap-2 text-white disabled:opacity-50"
-        style={{
-          background: "linear-gradient(135deg, #168BFF 0%, #0E6CD4 100%)",
-          boxShadow: "0 4px 20px rgba(22,139,255,0.25)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = "0 4px 28px rgba(22,139,255,0.45)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = "0 4px 20px rgba(22,139,255,0.25)";
-        }}
+        className="w-full py-3.5 px-6 rounded-xl bg-[var(--brand-primary)] hover:bg-[var(--brand-deep)] text-white font-bold text-sm tracking-wide shadow-md transition-base disabled:opacity-50"
       >
-        {loading ? (
-          <>
-            <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            {t("submitting")}
-          </>
-        ) : (
-          t("submit_assessment")
-        )}
+        {loading ? t("submitting") : t("submit_assessment")}
       </button>
     </form>
   );

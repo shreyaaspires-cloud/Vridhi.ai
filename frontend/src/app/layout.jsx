@@ -10,7 +10,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var storedTheme = localStorage.getItem('vridhi_theme') || 'light';
+                document.documentElement.setAttribute('data-theme', storedTheme);
+                if (storedTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body>
         <Providers>
           <Toaster
@@ -18,23 +35,23 @@ export default function RootLayout({ children }) {
             toastOptions={{
               duration: 4000,
               style: {
-                background: "#0C1C35",
-                color: "#EFF7FF",
-                border: "1px solid rgba(22,139,255,0.25)",
-                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.5)",
+                background: "var(--surface-elevated)",
+                color: "var(--text-primary)",
+                border: "1px solid var(--border-default)",
+                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.2)",
                 fontSize: "14px",
                 borderRadius: "12px",
               },
               success: {
                 iconTheme: {
-                  primary: "#10B981",
-                  secondary: "#0C1C35",
+                  primary: "#287657",
+                  secondary: "#FFFFFF",
                 },
               },
               error: {
                 iconTheme: {
                   primary: "#EF4444",
-                  secondary: "#0C1C35",
+                  secondary: "#FFFFFF",
                 },
               },
             }}
